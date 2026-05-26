@@ -1,0 +1,15 @@
+---
+title: "nic_demo"
+output: html_document
+---
+
+# Introduction
+
+My attempt to understand and reproduce the work done in the synthpop repo by j4sonli.
+
+```{r}
+
+```
+
+
+
