@@ -108,7 +108,10 @@ FIPS_STATE_CODE <- state_fips[state_fips$state_name == STATE_NAME,]$state_code
 
 
 ```{r}
-run_command <- glue('Rscript synthpop.R -puma={FIPS_STATE_CODE}00{PUMA_CODE}')
+cfg <- config::get()
+US_CENSUS_API_KEY <- cfg$us_census_api_key
+# CENSUS_API_KEY="your_actual_key_here" Rscript synthpop.R -puma=1300100
+run_command <- glue('CENSUS_API_KEY={US_CENSUS_API_KEY} Rscript synthpop.R -puma={FIPS_STATE_CODE}00{PUMA_CODE}')
 print(run_command)
 system(run_command)
 ```
