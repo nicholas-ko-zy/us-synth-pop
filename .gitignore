@@ -51,4 +51,4 @@ rsconnect/
 .positai
 
 # My US Census API key
-./synthpop/api_keys.txt
+./synthpop/config.yml
