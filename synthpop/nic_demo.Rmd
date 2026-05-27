@@ -7,8 +7,19 @@ output: html_document
 
 My attempt to understand and reproduce the work done in the synthpop repo by j4sonli.
 
-```{r}
+# Set up Environment
 
+^ Only need to run once
+```{r}
+# 1. Initialise a renv in the project directory, you can check 
+# it's created in your local machine by running `.libPaths()`
+# renv::init()
+
+# 2. Install the packages j4sonli recommended in his README
+# renv::install(c(c("dplyr","tidyr","stringr","R.utils","tidycensus","bnlearn","foreach","doSNOW","ggplot2")))
+
+# 3. Update your lockfile
+# renv::snapshot()
 ```
 
 
