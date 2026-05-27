@@ -1,0 +1,241 @@
+nicho@WIN-4NBVJVBUVBL MINGW64 ~/Documents/git/us-synth-pop/synthpop (main)
+$ Rscript synthpop.R -puma=1300100
+Synthetic population generation for the United States.
+Preparing PUMS and ACS data for PUMA 1300100.....
+Your original .Renviron will be backed up and stored in your R HOME directory if needed.
+Your API key has been stored in your .Renviron and can be accessed by Sys.getenv("CENSUS_API_KEY").
+To use now, restart R or run `readRenviron("~/.Renviron")`
+Getting data from the 2015-2019 5-year ACS Public Use Microdata Sample
+Downloading: 840 kB     Census API call: https://api.census.gov/data/2019/acs/acs5/pums?get=SERIALNO%2CSP
+ORDER%2CWGTP%2CPWGTP%2CNP%2CHINCP%2CPINCP%2CAGEP%2CRAC1P%2CESR%2CSEX%2CSCHL%2CTEN%2CHISP%2CVEH%2CNOC%2CHH
+T%2CWIF%2CINDP%2CSCH&ucgid=7950000US1300100
+Creating new directory at synthpop_data/acs_marginals/1300100/
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+Getting data from the 2020-2024 5-year ACS
+.....2.25 mins
+Learning household BNs.....0.2 secs
+Learning individual BNs.....2.38 secs
+Warning message:
+Using `by = character()` to perform a cross join was deprecated in dplyr 1.1.0.
+ℹ Please use `cross_join()` instead.
+Sampling household pool (73636  households).....30.65 mins
+Preparing for optimization.....2.76 secs
+Household pool completed.
+Sampling individuals.....
+  |======================================================================| 100%
+.....7.23 mins
+Preparing for optimization.....6.06 secs
+Individual pool completed.
+Household Pool Size: 86597
+Marginals: ["puma_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv", "blkgp_tenur_hhsiz.csv", "trac
+t_i_sex_i_age.csv", "blkgp_emply.csv"]
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2827889
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Gurobi Optimizer version 13.0.2 build v13.0.2rc1 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) N150, instruction set [SSE2|AVX|AVX2]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Optimize a model with 433088 rows, 173244 columns and 2025635 nonzeros (Min)
+Model fingerprint: 0x1a2906cd
+Model has 50 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [7e-06, 9e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [4e-02, 7e+04]
+
+Presolve removed 433036 rows and 161880 columns
+Presolve time: 0.86s
+Presolved: 52 rows, 11364 columns, 122741 nonzeros
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 9.460e+02
+ Factor NZ  : 1.102e+03 (roughly 5 MB of memory)
+ Factor Ops : 2.874e+04 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   5.82093324e+03 -4.47285365e+02  9.07e+05 0.00e+00  1.22e+01     1s
+   1   8.13278875e+01 -3.56559734e+02  1.27e+04 4.44e-16  2.31e-01     1s
+   2   3.75311990e+00 -1.39013861e+02  5.22e+02 4.44e-16  2.99e-02     1s
+   3   5.56133945e-01 -1.00088911e+01  1.71e+01 8.88e-16  1.87e-03     1s
+   4   2.78053746e-01 -4.15952632e+00  3.85e+00 4.44e-16  7.82e-04     1s
+   5   2.01415206e-01 -1.57385335e+00  2.06e+00 8.88e-16  3.12e-04     1s
+   6   1.54562611e-01 -6.88499935e-01  6.88e-01 4.44e-16  1.48e-04     1s
+   7   1.32628054e-01 -2.03851727e-01  1.28e-01 4.44e-16  5.92e-05     1s
+   8   1.28026663e-01  6.53892755e-03  7.24e-02 8.88e-16  2.14e-05     1s
+   9   1.25135647e-01  4.26100922e-02  4.66e-02 8.88e-16  1.45e-05     1s
+  10   1.23872379e-01  9.59187219e-02  3.80e-02 8.88e-16  4.91e-06     1s
+  11   1.20679255e-01  1.06403260e-01  1.24e-02 4.44e-16  2.51e-06     1s
+  12   1.19544536e-01  1.13755477e-01  5.47e-03 4.44e-16  1.02e-06     1s
+  13   1.19320999e-01  1.17861366e-01  4.07e-03 8.88e-16  2.56e-07     1s
+  14   1.18923603e-01  1.18348423e-01  1.58e-03 4.44e-16  1.01e-07     1s
+  15   1.18781795e-01  1.18578451e-01  6.77e-04 8.88e-16  3.57e-08     1s
+
+Barrier performed 15 iterations in 1.02 seconds (1.20 work units)
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     393    1.1866603e-01   0.000000e+00   0.000000e+00      1s
+
+Solved in 393 iterations and 1.32 seconds (1.52 work units)
+Optimal objective  1.186660283e-01
+
+User-callback calls 92, time in user-callback 0.03 sec
+****************************************************
+final objective value = 0.11866602826429434
+ 55.464543 seconds (176.37 M allocations: 6.752 GiB, 8.71% gc time, 48.37% compilation time: 21% of which
+ was recompilation)
+Block groups: 34
+Tracts: 32
+Households: 20370
+Individuals: 44505
+Marginals: ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv", "blkgp_tenur_hhsiz.csv", "tra
+ct_i_sex_i_age.csv", "blkgp_emply.csv"]
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2827889
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Gurobi Optimizer version 13.0.2 build v13.0.2rc1 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) N150, instruction set [SSE2|AVX|AVX2]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Optimize a model with 1407842 rows, 693719 columns and 8047542 nonzeros (Min)
+Model fingerprint: 0x93275624
+Model has 1139 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [3e-03, 5e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e-01, 2e+03]
+
+Presolve removed 1386899 rows and 20969 columns (presolve time = 5s)...
+Presolve removed 1386899 rows and 20969 columns
+Presolve time: 5.25s
+Presolved: 20943 rows, 672750 columns, 3719713 nonzeros
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Ordering time: 0.04s
+
+Barrier statistics:
+ AA' NZ     : 4.813e+05
+ Factor NZ  : 6.979e+05 (roughly 50 MB of memory)
+ Factor Ops : 1.595e+08 (less than 1 second per iteration)
+ Threads    : 3
+
+Barrier performed 0 iterations in 6.64 seconds (4.26 work units)
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Ordering time: 0.26s
+
+Barrier statistics:
+ AA' NZ     : 2.709e+06
+ Factor NZ  : 3.124e+06 (roughly 300 MB of memory)
+ Factor Ops : 5.113e+08 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   8.60589380e+08  4.95092014e+01  4.97e+06 8.88e-16  1.89e+03    10s
+   1   2.46832216e+08 -1.56020555e+12  1.45e+06 4.50e+00  5.54e+02    10s
+   2   5.52292637e+07 -3.52878208e+12  3.56e+05 2.87e+00  1.36e+02    11s
+   3   2.03501682e+07  1.73272154e+13  1.40e+05 1.63e+00  5.33e+01    12s
+   4   2.76433528e+06 -2.25213630e+13  2.00e+04 6.40e-01  7.86e+00    13s
+   5   5.13030952e+05  3.27777309e+14  3.79e+03 2.08e-01  1.53e+00    14s
+   6   1.57678632e+05  5.06579278e+15  1.31e+03 2.97e-02  4.27e-01    14s
+   7   7.21686283e+04  1.23218036e+16  8.21e+02 2.18e-02  1.95e-01    15s
+   8   3.19039057e+04  2.06816957e+16  5.83e+02 1.07e-02  8.57e-02    16s
+   9   2.85159110e+04  2.60141782e+16  5.58e+02 9.56e-03  6.78e-02    17s
+
+Barrier performed 9 iterations in 17.10 seconds (6.36 work units)
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+
+Solved in 17275 iterations and 17.16 seconds (7.00 work units)
+Infeasible or unbounded model
+
+User-callback calls 796, time in user-callback 0.03 sec
+****************************************************
+ERROR: LoadError: Result index of attribute MathOptInterface.ObjectiveValue(1) out of bounds. There are c
+urrently 0 solution(s) in the model.
+Stacktrace:
+  [1] check_result_index_bounds
+    @ C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\attributes.jl:238 [inlined]
+  [2] get(model::Gurobi.Optimizer, attr::MathOptInterface.ObjectiveValue)
+    @ Gurobi C:\Users\nicho\.julia\packages\Gurobi\K2XSK\src\MOI_wrapper\MOI_wrapper.jl:3301
+  [3] get(b::MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, attr::MathOptInterface.Objec
+tiveValue)
+    @ MathOptInterface.Bridges C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\Bridges\bridge_o
+ptimizer.jl:1247
+  [4] _get_model_attribute(model::MathOptInterface.Utilities.CachingOptimizer{MathOptInterface.Bridges.La
+zyBridgeOptimizer{Gurobi.Optimizer}, MathOptInterface.Utilities.UniversalFallback{MathOptInterface.Utilit
+ies.Model{Float64}}}, attr::MathOptInterface.ObjectiveValue)
+    @ MathOptInterface.Utilities C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\Utilities\cach
+ingoptimizer.jl:834
+  [5] get
+    @ C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\Utilities\cachingoptimizer.jl:897 [inline
+d]
+  [6] _moi_get_result(model::MathOptInterface.Utilities.CachingOptimizer{MathOptInterface.Bridges.LazyBri
+dgeOptimizer{Gurobi.Optimizer}, MathOptInterface.Utilities.UniversalFallback{MathOptInterface.Utilities.M
+odel{Float64}}}, args::MathOptInterface.ObjectiveValue)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\optimizer_interface.jl:1200
+  [7] get(model::Model, attr::MathOptInterface.ObjectiveValue)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\optimizer_interface.jl:1220
+  [8] objective_value(model::Model; result::Int64)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\objective.jl:122
+  [9] objective_value(model::Model)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\objective.jl:118
+ [10] macro expansion
+    @ C:\Users\nicho\Documents\git\us-synth-pop\synthpop\assign_spatial.jl:133 [inlined]
+ [11] macro expansion
+    @ .\timing.jl:697 [inlined]
+ [12] top-level scope
+    @ C:\Users\nicho\Documents\git\us-synth-pop\synthpop\assign_spatial.jl:353
+ [13] include(mod::Module, _path::String)
+    @ Base .\Base.jl:306
+    @ C:\Users\nicho\Documents\git\us-synth-pop\s
+ynthpop\assign_spatial.jl:353
+ [13] include(mod::Module, _path::String)
+    @ Base .\Base.jl:306
+ [14] exec_options(opts::Base.JLOptions)
+    @ Base .\client.jl:317
+ [15] _start()
+    @ Base .\client.jl:550
+in expression starting at C:\Users\nicho\Documents\git\us-synth-pop\synthpop\assign_spatial.jl:8
+Synthetic population generation process for PUMA 1300100 completed.
+Total time: 44.13 mins

@@ -70,8 +70,6 @@ gurobi_license <- "./gurobi.lic"
 
 cfg <- config::get()
 my_census_api_key <- cfg$us_census_api_key
-print(my_census_api_key)
-
 
 prepare_data_file <- "prepare_data.R"
 process_pums_file <- "process_pums.R"

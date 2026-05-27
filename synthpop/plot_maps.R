@@ -1,15 +1,30 @@
-library(R.utils)
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(tidycensus)
-library(ggplot2)
-library(gridExtra)
-library(tidycensus)
-library(tmap)
-library(sf)
-library(viridis)
+# library(R.utils)
+# library(dplyr)
+# library(tidyr)
+# library(stringr)
+# library(tidycensus)
+# library(ggplot2)
+# library(gridExtra)
+# library(tidycensus)
+# library(tmap)
+# library(sf)
+# library(viridis)
 
+box::use(
+  utils[read.csv, write.csv],  # <-- Add this to grant the module access
+  dplyr[...],
+  tmap[...],
+  dplyr[...],
+  tidyr[...],
+  stringr[...],
+  tidycensus[...],
+  ggplot2[...],
+  gridExtra[...],
+  tmap[...],
+  sf[...],
+  viridis[...],
+  R.utils[...]
+)
 options(dplyr.summarise.inform=F)
 
 plot_study_areas <- function(map_pumas) {
@@ -70,7 +85,7 @@ plot_study_areas <- function(map_pumas) {
                                             "Jacksonville, FL",
                                             "State of WY")))
   
-  dev.new(width=7.2, height=9, noRStudioGD = T)
+  # dev.new(width=7.2, height=9, noRStudioGD = T)
   
   tm_shape(study_area_pumas) + 
     tm_polygons(col="density",
@@ -81,8 +96,6 @@ plot_study_areas <- function(map_pumas) {
                 legend.is.portrait=F,
                 border.alpha=0.5) +
     tm_compass(position=c("right", "top")) +
-    tm_scale_bar(breaks=c(0, 100, 200),
-                 text.size=0.8) +
     tm_facets(by="NAME10",
               ncol=2) +
     tm_layout(main.title="Study areas",
@@ -156,23 +169,27 @@ get_rmses <- function(heatmap_data, spatial_level) {
            select(geoid, rmse))
 }
 
-process_marginals <- function(marg_dir) {
-  source("process_marg.R")
-  tract_tenur_hhinc.l <<- gather(tract_tenur_hhinc, tenur_hhinc_prox, marg_ct, -geoid) %>%
+process_marginals <- function(marg_dir, tract_tenur_hhinc, blkgp_tenur_hhsiz,
+                              tract_nwork, tract_hhtype, tract_nwork_ncars,
+                              tract_i_sex_i_age, blkgp_emply, tract_i_inc) {
+  local({
+  source("process_marg.R", local = parent.env(environment()))
+  })
+  tract_tenur_hhinc.l <- gather(tract_tenur_hhinc, tenur_hhinc_prox, marg_ct, -geoid) %>%
     rename(tract=geoid) %>%
     mutate(tract = str_pad(tract, 11, "left", "0")) %>%
     mutate(tenur_prox = unlist(strsplit(tenur_hhinc_prox, "\\."))[c(T, F)],
            hhinc_prox = unlist(strsplit(tenur_hhinc_prox, "\\."))[c(F, T)])
-  blkgp_tenur_hhsiz.l <<- gather(blkgp_tenur_hhsiz, tenur_hhsiz_prox, marg_ct, -geoid) %>%
+  blkgp_tenur_hhsiz.l <- gather(blkgp_tenur_hhsiz, tenur_hhsiz_prox, marg_ct, -geoid) %>%
     rename(blkgp=geoid) %>%
     mutate(blkgp = str_pad(blkgp, 12, "left", "0")) %>%
     mutate(tract = substr(blkgp, 1, 11),
            tenur_prox = unlist(strsplit(tenur_hhsiz_prox, "\\."))[c(T, F)],
            hhsiz_prox = unlist(strsplit(tenur_hhsiz_prox, "\\."))[c(F, T)])
-  tract_nwork.l <<- gather(tract_nwork, nwork, marg_ct, -geoid) %>%
+  tract_nwork.l <- gather(tract_nwork, nwork, marg_ct, -geoid) %>%
     rename(tract=geoid) %>%
     mutate(tract = str_pad(tract, 11, "left", "0"))
-  tract_hhtype.l <<- gather(tract_hhtype, hhtype, marg_ct, -geoid) %>%
+  tract_hhtype.l <- gather(tract_hhtype, hhtype, marg_ct, -geoid) %>%
     rename(tract=geoid) %>%
     mutate(tract = str_pad(tract, 11, "left", "0"))
   tract_nwork_ncars.l <<- gather(tract_nwork_ncars, nwork_ncars, marg_ct, -geoid) %>%
@@ -180,19 +197,19 @@ process_marginals <- function(marg_dir) {
     mutate(tract = str_pad(tract, 11, "left", "0")) %>%
     mutate(nwork = unlist(strsplit(nwork_ncars, "\\."))[c(T, F)],
            ncars = unlist(strsplit(nwork_ncars, "\\."))[c(F, T)])
-  tract_i_sex_i_age.l <<- gather(tract_i_sex_i_age, i_sex_i_age, marg_ct, -geoid) %>%
+  tract_i_sex_i_age.l <- gather(tract_i_sex_i_age, i_sex_i_age, marg_ct, -geoid) %>%
     rename(tract=geoid) %>%
     mutate(tract = str_pad(tract, 11, "left", "0")) %>%
     mutate(i_sex = unlist(strsplit(i_sex_i_age, "\\."))[c(T, F)],
            i_age = unlist(strsplit(i_sex_i_age, "\\."))[c(F, T)])
-  blkgp_emply.l <<- gather(blkgp_emply, emply, marg_ct, -geoid) %>%
+  blkgp_emply.l <- gather(blkgp_emply, emply, marg_ct, -geoid) %>%
     rename(blkgp=geoid) %>%
     mutate(blkgp = str_pad(blkgp, 12, "left", "0")) %>%
     mutate(tract = substr(blkgp, 1, 11),
            emply_prox = recode(emply,
                                "Civilian employed"="Employed",
                                "Armed forces employed"="Employed"))
-  tract_i_inc.l <<- tract_i_inc %>%
+  tract_i_inc.l <- tract_i_inc %>%
     mutate(`<=25K`=`age<15`+`<=25K`) %>%
     select(-`age<15`) %>%
     gather(i_inc, marg_ct, -geoid) %>%
@@ -274,7 +291,7 @@ get_error_map_data <- function(map_pumas, variable, spatial_level, synpop_suffix
                                  "1-25K"="<=25K",
                                  "76-100K"=">75K",
                                  ">100K"=">75K"))
-    marg_dir <<- paste0("synthpop_data/acs_marginals/", pumas, "/")
+    marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
     process_marginals(marg_dir)
     marg_name <- if(variable!="ncars") paste0(spatial_level,"_",variable,".l") else "tract_nwork_ncars.l"
     sym_variable <- if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "emply", "i_inc")) paste0(variable,"_prox") else variable
@@ -330,7 +347,7 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
                                         "5600500"="State of WY"), 
                                  levels=c(map_pumas[1:15], "State of WY"))
   
-  dev.new(width=8, height=8, noRStudioGD = T)
+  # dev.new(width=8, height=8, noRStudioGD = T)
   
   spatial_name <- if(spatial_level=="tract") "Tract" else "Block Group"
   
@@ -342,7 +359,6 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
                 colorNA="#e6e6e6",
                 legend.is.portrait=F) +
     tm_compass(position=c("right", "top")) +
-    tm_scale_bar(text.size=0.8) +
     tm_facets(by="puma",
               ncol=3) +
     tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
@@ -371,7 +387,7 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities) {
   sf_geos.puma <- data.frame()
   for(pumas in map_pumas){
     print(pumas)
-    marg_dir <<- paste0("synthpop_data/acs_marginals/", pumas, "/")
+    marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
     process_marginals(marg_dir)
     
     # using the column names synpop_ct and marg_ct just nominally, so that
@@ -415,7 +431,7 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities) {
                                         "5600500"="State of WY"), 
                                  levels=c(map_pumas[1:15], "State of WY"))
   
-  dev.new(width=8, height=8, noRStudioGD = T)
+  # dev.new(width=8, height=8, noRStudioGD = T)
   
   spatial_name <- "Tract"
   
@@ -427,7 +443,6 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities) {
                 colorNA="#e6e6e6",
                 legend.is.portrait=F) +
     tm_compass(position=c("right", "top")) +
-    tm_scale_bar(text.size=0.8) +
     tm_facets(by="puma",
               ncol=3) +
     tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
@@ -450,7 +465,7 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities) {
 }
 
 plot_pie <- function(main_title, variable, spatial_level, puma) {
-  marg_dir <<- paste0("synthpop_data/acs_marginals/", puma, "/")
+  marg_dir <- paste0("synthpop_data/acs_marginals/", puma, "/")
   process_marginals(marg_dir)
   marg_name <- if(variable!="ncars") paste0(spatial_level,"_",variable,".l") else "tract_nwork_ncars.l"
   sym_variable <- if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "emply", "i_inc")) paste0(variable,"_prox") else variable
@@ -462,7 +477,7 @@ plot_pie <- function(main_title, variable, spatial_level, puma) {
   pie_data.vec <- setNames(pie_data$marg_ct, pie_data$var)
   
   # save the figure
-  png(file=paste0(variable,"_",puma,".png"), width=250, height=250)
+  # png(file=paste0(variable,"_",puma,".png"), width=250, height=250)
   pie(pie_data.vec,
       col=viridis(length(pie_data.vec)),
       main=main_title)
@@ -488,6 +503,14 @@ densities <- c(383.7, 9049.6, 42788.1,
                160.5, 1989.8, 3285.1,
                # last entry is density for entire state of WY
                5.97)
+
+
+# Nic Ko - Added 20260527 to solve bug
+# FULTON_PUMA_CODE <- 1300100
+# CAMBRIDGE_PUMA_CODE <- 2503302
+# map_pumas <- c(FULTON_PUMA_CODE, CAMBRIDGE_PUMA_CODE)
+
+# densities <- c(50, 50)
 
 ############################## STUDY AREA MAPS #################################
 

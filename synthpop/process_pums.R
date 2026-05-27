@@ -1,6 +1,8 @@
 ## read and filter PUMS data
-census_api_key(my_census_api_key, overwrite=T, install=T)
-readRenviron("~/.Renviron")
+# census_api_key(my_census_api_key, overwrite=T, install=T)
+# readRenviron("~/.Renviron")
+tidycensus::census_api_key(my_census_api_key)
+Sys.setenv(CENSUS_API_KEY = my_census_api_key)
 
 pums_raw <- get_pums(
   variables = c("ST", "NP", "HINCP", "PINCP", "AGEP", "RAC1P",
@@ -10,7 +12,7 @@ pums_raw <- get_pums(
   puma = substr(pumas, 3, 7),
   survey = "acs5",
   year = 2019,
-  key = CENSUS_API_KEY,
+  key = my_census_api_key,
   show_call = T
 ) %>% 
   mutate(puma = paste0(paste0(str_pad(ST, 2, pad="0"), 

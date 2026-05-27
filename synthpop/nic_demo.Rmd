@@ -106,13 +106,175 @@ FIPS_STATE_CODE <- state_fips[state_fips$state_name == STATE_NAME,]$state_code
 ```
 
 
+# Exploring the sample output datasets
 
 ```{r}
-cfg <- config::get()
-US_CENSUS_API_KEY <- cfg$us_census_api_key
-# CENSUS_API_KEY="your_actual_key_here" Rscript synthpop.R -puma=1300100
-run_command <- glue('CENSUS_API_KEY={US_CENSUS_API_KEY} Rscript synthpop.R -puma={FIPS_STATE_CODE}00{PUMA_CODE}')
-print(run_command)
-system(run_command)
+output_cambridge_hhs <- read.csv("./synthpop_output/2503302/syn_hhs_spatial_2503302-example.csv")
+
+head(output_cambridge_hhs)
 ```
+
+```{r}
+unique(output_cambridge_hhs$tenur)
+
+# for (name in names(output_cambridge_hhs)) { 
+#   print(name)
+# }
+
+unique(output_cambridge_hhs$HHID)
+unique(output_cambridge_hhs$tenur)
+unique(output_cambridge_hhs$hhinc)
+unique(output_cambridge_hhs$nwork)
+unique(output_cambridge_hhs$ncars)
+unique(output_cambridge_hhs$nchil)
+unique(output_cambridge_hhs$hhsiz)
+unique(output_cambridge_hhs$true_hhsiz)
+unique(output_cambridge_hhs$true_nwork)
+unique(output_cambridge_hhs$true_nchil)
+unique(output_cambridge_hhs$hhtype)
+unique(output_cambridge_hhs$puma)
+unique(output_cambridge_hhs$i_age)
+unique(output_cambridge_hhs$i_sex)
+unique(output_cambridge_hhs$race_)
+unique(output_cambridge_hhs$i_eth)
+unique(output_cambridge_hhs$i_inc)
+unique(output_cambridge_hhs$emply)
+unique(output_cambridge_hhs$indus)
+unique(output_cambridge_hhs$edu_q)
+unique(output_cambridge_hhs$tenur_prox)
+```
+
+```{r}
+typeof(names(output_cambridge_hhs))
+```
+
+```{r}
+intersected_colnames <- intersect(colnames(output_cambridge_hhs), colnames(output_fulton_hhs))
+```
+
+```{r}
+for (colnames in intersected_colnames) {
+  print(colnames)
+}
+```
+
+
+```{r}
+library(DataExplorer)
+create_report(output_cambridge_hhs)
+```
+
+
+# Fulton County, Georgia
+
+Where Atlanta is located
+
+```{r}
+output_fulton_hhs <- read.csv("./synthpop_output/1300100/syn_hhs_1300100.csv")
+head(output_fulton_hhs, 5)
+```
+
+```{r}
+dim(output_fulton_hhs)
+```
+
+```{r}
+dim(output_cambridge_hhs)
+```
+
+
+
+```{r}
+create_report(output_fulton_hhs)
+```
+
+
+# Maps
+
+```{r}
+base_path <- "synthpop_data/acs_marginals"
+
+org_map_pumas <- c("0603701", "0603716", "0603733",
+               "4805000", "4804901", "4804614",
+               "0400134", "0400105", "0400122",
+               "2501400", "2503603", "2503302",
+               "1208900", "1203105", "1203103",
+               "5600200", "5600100", "5600300", "5600400", "5600500")
+
+
+for (map_puma in org_map_pumas) {
+  # Dynamically construct the path: "synthpop_data/acs_marginals/0603701"
+  full_puma_dir <- file.path(base_path, map_puma)
+  
+  if (!dir.exists(full_puma_dir)) {
+    dir.create(full_puma_dir, recursive = TRUE, showWarnings = FALSE)
+    cat("Initialized folder:", full_puma_dir, "\n")
+  }
+}
+```
+
+
+```{r}
+prepare_data_file <- "prepare_data.R"
+process_pums_file <- "process_pums.R"
+process_marg_file <- "process_marg.R"
+train_bns_file <- "train_bns.R"
+sample_hhs_file <- "sample_hhs.R"
+sample_indvs_file <- "sample_indvs.R"
+select_synpop_file <- "select_synpop.jl"
+assign_spatial_file <- "assign_spatial.jl"
+puma_tract_equiv_file <- "synthpop_data/2010_Census_Tract_to_2010_PUMA.csv"
+tract_block_equiv_file <- "synthpop_data/tract_block_equiv_2010.Rds"
+my_census_api_key <- US_CENSUS_API_KEY
+
+pumas <- org_map_pumas
+source("prepare_data.R")
+```
+
+```{r}
+options(box.path = getwd())
+```
+
+
+
+```{r}
+box::use(./plot_maps[...])
+
+# Load functions from `plot_map.R`
+# Pass the key variable directly to the active session (do not try to install it globally)
+# tidycensus::census_api_key(my_census_api_key)
+# Sys.setenv(CENSUS_API_KEY = my_census_api_key)
+# Explicitly propagate it to the system environment so child processes (system() calls) can see it
+# source("plot_maps.R")
+source("sum.R")
+
+FULTON_PUMA_CODE <- 1300100
+CAMBRIDGE_PUMA_CODE <- 2503302
+map_pumas <- c(FULTON_PUMA_CODE, CAMBRIDGE_PUMA_CODE)
+
+plot_study_area(map_pumas)
+
+```
+
+
+```{r}
+org_map_pumas <- c("0603701", "0603716", "0603733",
+               "4805000", "4804901", "4804614",
+               "0400134", "0400105", "0400122",
+               "2501400", "2503603", "2503302",
+               "1208900", "1203105", "1203103",
+               "5600200", "5600100", "5600300", "5600400", "5600500")
+for (org_puma in org_map_pumas) {
+  command <- glue('Rscript synthpop_truncated.R -puma={org_puma}')
+  print(command)
+}
+
+
+```
+
+
+
+
+
+
 
