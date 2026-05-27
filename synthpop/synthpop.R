@@ -7,6 +7,7 @@ suppressPackageStartupMessages({
   library(bnlearn)
   library(foreach)
   library(doSNOW)
+  library(config)
 })
 
 options(dplyr.summarise.inform=F)
@@ -57,6 +58,7 @@ if("n_cores" %in% names(args)){
 
 
 ##### RUN SETTINGS #####
+# Load config file
 
 Rscript_path <- "/Program Files/R/R-4.1.0/bin/Rscript.exe"
 
@@ -66,7 +68,8 @@ gurobi_home <- '"C:\\Program Files\\gurobi910\\win64"'
 
 gurobi_license <- '"C:\\Program Files\\gurobi910\\gurobi.lic"'
 
-my_census_api_key <- "ac6cb3e106c860e52384fe71cf0407a13c25b96c"
+cfg <- config::get()
+my_census_api_key <- cfg$us_census_api_key
 
 
 prepare_data_file <- "prepare_data.R"

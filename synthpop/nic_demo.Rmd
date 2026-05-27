@@ -22,5 +22,8 @@ My attempt to understand and reproduce the work done in the synthpop repo by j4s
 # renv::snapshot()
 ```
 
+```{r}
 
+
+```
 
