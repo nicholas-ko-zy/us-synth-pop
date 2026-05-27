@@ -50,5 +50,6 @@ rsconnect/
 .Rproj.user
 .positai
 
-# My US Census API key
-./synthpop/config.yml
+# Ignore config file containing my API key
+synthpop/config.yml
+synthpop/gurobi.lic
