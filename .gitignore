@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+.Rproj.user
+.positai
+
+# My US Census API key
+./synthpop/api_keys.txt
