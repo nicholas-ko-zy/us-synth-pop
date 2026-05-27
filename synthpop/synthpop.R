@@ -60,16 +60,17 @@ if("n_cores" %in% names(args)){
 ##### RUN SETTINGS #####
 # Load config file
 
-Rscript_path <- "/Program Files/R/R-4.1.0/bin/Rscript.exe"
+Rscript_path <- "C:/Program Files/R/R-4.6.0/bin/Rscript.exe"
 
-julia_path <- "/Program Files/Julia-1.6.1/bin/julia.exe"
+julia_path <- "C:/Users/nicho/AppData/Local/Microsoft/WindowsApps/julia.exe"
 
-gurobi_home <- '"C:\\Program Files\\gurobi910\\win64"'
+gurobi_home <- '"C:\\gurobi1302\\win64"'
 
-gurobi_license <- '"C:\\Program Files\\gurobi910\\gurobi.lic"'
+gurobi_license <- "./gurobi.lic"
 
 cfg <- config::get()
 my_census_api_key <- cfg$us_census_api_key
+print(my_census_api_key)
 
 
 prepare_data_file <- "prepare_data.R"
