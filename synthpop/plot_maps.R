@@ -14,7 +14,6 @@ box::use(
   utils[read.csv, write.csv],
   dplyr[...],
   tmap[...],
-  dplyr[...],
   tidyr[...],
   stringr[...],
   tidycensus[...],
@@ -310,59 +309,73 @@ plot_error_heatmaps <- function(syn_hhs_spatial_file, syn_indvs_spatial_file, ma
 
 get_error_map_data <- function(map_pumas, variable, spatial_level, synpop_suffix) {
   sf_geos.puma <- data.frame()
+  
   for(pumas in map_pumas){
     print(pumas)
-    syn_hhs_file <- paste0("synthpop_output/",pumas,"/syn_hhs_spatial_",pumas,"-",synpop_suffix,".csv")
-    syn_indvs_file <- paste0("synthpop_output/",pumas,"/syn_indvs_spatial_",pumas,"-",synpop_suffix,".csv")
+    
+    
+    syn_hhs_file <- paste0("synthpop_output/", pumas, "/syn_hhs_spatial_", pumas, "-", synpop_suffix, ".csv")
+    syn_indvs_file <- paste0("synthpop_output/", pumas, "/syn_indvs_spatial_", pumas, "-", synpop_suffix, ".csv")
+    
     syn_hhs <- read.csv(syn_hhs_file) %>%
       mutate(geoid = str_pad(geoid, 12, "left", "0")) %>%
       mutate(tract = substr(geoid, 1, 11),
              blkgp = substr(geoid, 1, 12))
+    
     syn_indvs <- read.csv(syn_indvs_file) %>%
       mutate(geoid = str_pad(geoid, 12, "left", "0")) %>%
       mutate(tract = substr(geoid, 1, 11),
              blkgp = substr(geoid, 1, 12)) %>%
       mutate(i_inc_prox = recode(i_inc,
-                                 "<=0K"="<=25K",
-                                 "1-25K"="<=25K",
-                                 "76-100K"=">75K",
-                                 ">100K"=">75K"))
+                                 "<=0K"   = "<=25K",
+                                 "1-25K"  = "<=25K",
+                                 "76-100K"= ">75K",
+                                 ">100K"  = ">75K"))
+    
+    
     marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
-    margs <- process_marginals(marg_dir)
-    marg_name <- if(variable!="ncars") paste0(spatial_level,"_",variable,".l") else "tract_nwork_ncars.l"
-    sym_variable <- if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "emply", "i_inc")) paste0(variable,"_prox") else variable
+    margs <- process_marginals(marg_dir)  
+    
+    
+    marg_name <- if(variable != "ncars") paste0(spatial_level, "_", variable, ".l") else "tract_nwork_ncars.l"
+    sym_variable <- if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "emply", "i_inc")) paste0(variable, "_prox") else variable
+    
+    
     heatmap_data <- error_heatmap(if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "nwork", "hhtype", "ncars")) syn_hhs else syn_indvs, 
-                                  eval(parse(text=marg_name)),
+                                  margs[[marg_name]], # <--- Safe, dynamic alternative to eval(parse)
                                   sym(sym_variable), sym(spatial_level),
                                   "")$heatmap_data %>%
-      rename(geoid=!!sym(spatial_level))
+      rename(geoid = !!sym(spatial_level))
     
-    ############
-    sf_geos <- readRDS(file=paste0("map_data/geos/",pumas,"_",spatial_level,"_geos.Rds"))
-    sf_geos <- left_join(sf_geos, get_rmses(heatmap_data, spatial_level), by=c("geoid"))
+    
+    sf_geos <- readRDS(file = paste0("map_data/geos/", pumas, "_", spatial_level, "_geos.Rds"))
+    sf_geos <- left_join(sf_geos, get_rmses(heatmap_data, spatial_level), by = c("geoid"))
     sf_geos$puma <- pumas
     
-    # total census spatial unit sizes
-    hh_pops <- (if(spatial_level=="tract") tract_hhtype.l else blkgp_tenur_hhsiz.l) %>% 
-      rename(geoid=!!sym(spatial_level), hh_pop=marg_ct) %>% 
+   
+    hh_marg_target <- if(spatial_level == "tract") "tract_hhtype.l" else "blkgp_tenur_hhsiz.l"
+    hh_pops <- margs[[hh_marg_target]] %>% 
+      rename(geoid = !!sym(spatial_level), hh_pop = marg_ct) %>% 
       group_by(geoid) %>%
       summarise(hh_pop = sum(hh_pop)) %>%
       ungroup()
-    indv_pops <- (if(spatial_level=="tract") tract_i_sex_i_age.l else blkgp_emply.l) %>%
-      rename(geoid=!!sym(spatial_level), indv_pop=marg_ct) %>% 
+    
+    indv_marg_target <- if(spatial_level == "tract") "tract_i_sex_i_age.l" else "blkgp_emply.l"
+    indv_pops <- margs[[indv_marg_target]] %>%
+      rename(geoid = !!sym(spatial_level), indv_pop = marg_ct) %>% 
       group_by(geoid) %>%
       summarise(indv_pop = sum(indv_pop)) %>%
       ungroup()
     
-    sf_geos <- left_join(left_join(sf_geos, hh_pops, by=c("geoid")), indv_pops, by=c("geoid"))
     
+    sf_geos <- left_join(left_join(sf_geos, hh_pops, by = c("geoid")), indv_pops, by = c("geoid"))
     sf_geos.puma <- rbind(sf_geos.puma, sf_geos)
   }
   return(sf_geos.puma)
 }
 
 plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_level, synpop_suffix, 
-                           gray_hh_pop_under, gray_indv_pop_under, NA_label) {
+                           gray_hh_pop_under, gray_indv_pop_under, NA_label, save_pdf=FALSE) {
   puma_labels <- c(paste0("PUMA ", substr(map_pumas[1:15], 3, 7), " (", round(densities[1:15]), " people/sq.mi.)"),
                    paste0("State of WY (", round(densities[16]), " people/sq.mi.)"))
   sf_geos.puma <- get_error_map_data(map_pumas,
@@ -387,7 +400,7 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
   
   spatial_name <- if(spatial_level=="tract") "Tract" else "Block Group"
   
-  tm_shape(sf_geos.puma.sf) + 
+  map <- tm_shape(sf_geos.puma.sf) + 
     tm_polygons(col="rmse",
                 style="cont",
                 title=paste0("RMSE % (Census ",spatial_name,")"),
@@ -397,7 +410,10 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
     tm_compass(position=c("right", "top")) +
     tm_facets(by="puma",
               ncol=3) +
-    tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
+    # tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
+    #         size=1.2, 
+    #         space=1) 
+    tm_ylab("Boston, MA", 
             size=1.2, 
             space=1) +
     tm_layout(main.title=main_title,
@@ -413,7 +429,11 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
               legend.title.fontface="bold",
               legend.text.size=1,
               outer.margins=c(0, 0.02, 0, 0.02),
-              inner.margins=c(0.06, 0.06, 0.06, 0.06)) 
+              inner.margins=c(0.06, 0.06, 0.06, 0.06))
+  if (save_pdf) {
+    tmap::tmap_save(map, filename = "./plots/plot_error_map.pdf", width = 7.2, height = 9)            
+  }
+  return(map)
 }
 
 plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_hhtype) {
@@ -481,7 +501,11 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
     tm_compass(position=c("right", "top")) +
     tm_facets(by="puma",
               ncol=3) +
-    tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
+    # Old ylab
+    # tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
+    #         size=1.2, 
+    #         space=1) 
+    tm_ylab("Boston, MA", 
             size=1.2, 
             space=1) +
     tm_layout(main.title=main_title,

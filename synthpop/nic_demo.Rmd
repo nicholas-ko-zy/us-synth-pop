@@ -1,6 +1,8 @@
 ---
 title: "nic_demo"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r}
@@ -45,7 +47,6 @@ us_census_api_key <- cfg$us_census_api_key
 
 
 ```{r}
-# Base R dataset excludes DC and territories, so we build the full list cleanly:
 STATE_FIPS <- data.frame(
   state_name = c(
     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
@@ -91,7 +92,7 @@ head(output_cambridge_hhs)
 
 # Fulton County, Georgia
 
-```{r}
+```{r include=FALSE}
 # Subset to Georgia
 STATE_NAME <- "Georgia"
 COUNTY_FP <- 121 # Fulton county, where Georgia Tech is
@@ -137,7 +138,7 @@ for (colnames in intersected_colnames) {
 ```
 
 
-```{r}
+```{r include=FALSE}
 # Run line by line to see the unique output
 unique(output_cambridge_hhs$tenur)
 unique(output_cambridge_hhs$HHID)
@@ -218,14 +219,14 @@ List of functions in plot_maps
 
 * [X] plot_study_areas()
 * [X] plot_error_heatmaps()
-* plot_error_map()
-* plot_tract_hhtype_diffs_map()
-* plot_pie()
+* [X] plot_error_map()
+* [ ] plot_tract_hhtype_diffs_map()
+* [ ] plot_pie()
 * [X / Helper] error_heatmap()
 * [Helper] rmse()
 * [Helper] get_rmses()
 * [Helper] process_marginals()
-* [ ] get_error_map_data()
+* [Helper] get_error_map_data()
 
 ## Constants
 ```{r}
@@ -251,7 +252,7 @@ synpop_suffix <- "20220127"
 ```{r}
 # plot_study_areas()
 box::reload(plot_maps)
-plot_maps$plot_study_areas(org_map_pumas, save_pdf=FALSE)
+plot_maps$plot_study_areas(map_pumas, save_pdf=FALSE)
 ```
 
 ```{r}
@@ -273,7 +274,9 @@ plot_maps$plot_error_map("Spatial errors in tenure by houshold income distributi
                synpop_suffix=synpop_suffix,
                gray_hh_pop_under=30,
                gray_indv_pop_under=50,
-               NA_label="too few households")
+               NA_label="too few households",
+               save_pdf=TRUE)
+#synthpop/synthpop_output/2503302/syn_hhs_spatial_2503302.csv
 ```
 
 
