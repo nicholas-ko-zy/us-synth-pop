@@ -209,7 +209,7 @@ Only run again if you don't have the data yet.
 ## Import `plot_maps`
 
 ```{r}
-box::use(./plot_maps[...])
+box::use(./plot_maps)
 ```
 
 
@@ -226,15 +226,55 @@ List of functions in plot_maps
 * plot_tract_hhtype_diffs_map()
 * plot_pie()
 
+
 ```{r}
 # plot_study_areas()
+org_map_pumas <- c("0603701", "0603716", "0603733",
+               "4805000", "4804901", "4804614",
+               "0400134", "0400105", "0400122",
+               "2501400", "2503603", "2503302",
+               "1208900", "1203105", "1203103",
+               "5600200", "5600100", "5600300", "5600400", "5600500")
+box::reload(plot_maps)
+plot_maps$plot_study_areas(org_map_pumas, save_pdf=FALSE)
+```
 
-plot_maps$plot_study_areas(map_pumas)
+```{r}
+# error_heatmap()
+box::reload(plot_maps)
+plot_maps$plot_study_areas(org_map_pumas, save_pdf=FALSE)
 ```
 
 
+# tmap fixes
 
+## tmap
+```{r}
+# .libPaths()
+# # Re-install the v3 branch directly to renv environment
+# renv::purge("tmap")
+# renv::install("r-tmap/tmap@v3")
+# 
+# # Snapshot the environment state to update your renv.lock file
+# renv::snapshot(prompt = FALSE)
+# packageVersion("tmaptools")
+```
 
+## tmaptools
+```{r}
+# # 1. Wipe the current mismatched tmaptools
+# renv::purge("tmaptools")
+# 
+# # 2. Install the legacy version of tmaptools that matches tmap v3
+# # Version 3.1-1 is the stable companion release for tmap v3
+# renv::install("cran/tmaptools@3.1-1")
+# 
+# # 3. Reinstall tmap@v3 just to ensure dependencies hook back together cleanly
+# renv::install("r-tmap/tmap@v3", upgrade = "never")
+# 
+# # 4. Lock this working combination into your renv lockfile
+# renv::snapshot(prompt = FALSE)
+```
 
 
 

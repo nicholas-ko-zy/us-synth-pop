@@ -1,5 +1,5 @@
-print(getwd())
-setwd('./synthpop')
+# print(getwd())
+# setwd('./synthpop')
 box::use(./plot_maps)
 
 org_map_pumas <- c("0603701", "0603716", "0603733",

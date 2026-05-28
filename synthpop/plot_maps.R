@@ -27,7 +27,7 @@ box::use(
 )
 options(dplyr.summarise.inform=F)
 
-plot_study_areas <- function(map_pumas) {
+plot_study_areas <- function(map_pumas, save_pdf=FALSE) {
   our_msas <- c("Los Angeles-Long Beach-Santa Ana, CA",
                 "Phoenix-Mesa-Glendale, AZ",
                 "Houston-Sugar Land-Baytown, TX",
@@ -86,7 +86,7 @@ plot_study_areas <- function(map_pumas) {
                                             "State of WY")))
   
   # dev.new(width=7.2, height=9, noRStudioGD = T)
-  map <- tm_shape(study_area_pumas) + 
+  map <-  tm_shape(study_area_pumas) + 
     tm_polygons(col="density",
                 palette = "RdYlBu",
                 title="PUMA Density",
@@ -95,6 +95,8 @@ plot_study_areas <- function(map_pumas) {
                 legend.is.portrait=F,
                 border.alpha=0.5) +
     tm_compass(position=c("right", "top")) +
+    tm_scale_bar(breaks=c(0, 100, 200),
+                 text.size=0.8) +
     tm_facets(by="NAME10",
               ncol=2) +
     tm_layout(main.title="Study areas",
@@ -109,7 +111,10 @@ plot_study_areas <- function(map_pumas) {
               legend.title.fontface="bold",
               legend.text.size=1,
               outer.margins=c(0, 0.02, 0, 0.02),
-              inner.margins=c(0.06, 0.06, 0.06, 0.06)) 
+              inner.margins=c(0.06, 0.06, 0.06, 0.06))
+  if (save_pdf) {
+    tmap::tmap_save(map, filename = "./plots/study_areas.pdf", width = 7.2, height = 9)            
+  }  
   return(map)
 }
 
@@ -169,9 +174,7 @@ get_rmses <- function(heatmap_data, spatial_level) {
            select(geoid, rmse))
 }
 
-process_marginals <- function(marg_dir, tract_tenur_hhinc, blkgp_tenur_hhsiz,
-                              tract_nwork, tract_hhtype, tract_nwork_ncars,
-                              tract_i_sex_i_age, blkgp_emply, tract_i_inc) {
+process_marginals <- function(marg_dir) {
   local({
   source("process_marg.R", local = parent.env(environment()))
   })
@@ -218,7 +221,18 @@ process_marginals <- function(marg_dir, tract_tenur_hhinc, blkgp_tenur_hhsiz,
            i_inc = recode(i_inc, "age<15"="<=25K")) %>%
     rename(i_inc_prox = i_inc)
   
-  return(NULL)
+  # return(NULL)
+  return(list(
+    tract_tenur_hhinc.l = tract_tenur_hhinc.l,
+    blkgp_tenur_hhsiz.l = blkgp_tenur_hhsiz.l,
+    tract_nwork.l       = tract_nwork.l,
+    tract_hhtype.l      = tract_hhtype.l,
+    tract_nwork_ncars.l = tract_nwork_ncars.l,
+    tract_i_sex_i_age.l = tract_i_sex_i_age.l,
+    blkgp_emply.l       = blkgp_emply.l,
+    tract_i_inc.l       = tract_i_inc.l
+  ))
+ 
 }
 
 plot_error_heatmaps <- function(syn_hhs_spatial_file, syn_indvs_spatial_file, marg_dir) {
