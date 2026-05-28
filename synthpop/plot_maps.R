@@ -23,7 +23,8 @@ box::use(
   tmap[...],
   sf[...],
   viridis[...],
-  R.utils[...]
+  R.utils[...],
+  grDevices[pdf, dev.off],
 )
 options(dplyr.summarise.inform=F)
 
@@ -113,7 +114,7 @@ plot_study_areas <- function(map_pumas, save_pdf=FALSE) {
               outer.margins=c(0, 0.02, 0, 0.02),
               inner.margins=c(0.06, 0.06, 0.06, 0.06))
   if (save_pdf) {
-    tmap::tmap_save(map, filename = "./plots/study_areas.pdf", width = 7.2, height = 9)            
+    tmap::tmap_save(map, filename = "./plots/plot_study_areas.pdf", width = 7.2, height = 9)            
   }  
   return(map)
 }
@@ -195,7 +196,8 @@ process_marginals <- function(marg_dir) {
   tract_hhtype.l <- gather(tract_hhtype, hhtype, marg_ct, -geoid) %>%
     rename(tract=geoid) %>%
     mutate(tract = str_pad(tract, 11, "left", "0"))
-  tract_nwork_ncars.l <<- gather(tract_nwork_ncars, nwork_ncars, marg_ct, -geoid) %>%
+  
+  tract_nwork_ncars.l <- gather(tract_nwork_ncars, nwork_ncars, marg_ct, -geoid) %>%
     rename(tract=geoid) %>%
     mutate(tract = str_pad(tract, 11, "left", "0")) %>%
     mutate(nwork = unlist(strsplit(nwork_ncars, "\\."))[c(T, F)],
@@ -235,7 +237,7 @@ process_marginals <- function(marg_dir) {
  
 }
 
-plot_error_heatmaps <- function(syn_hhs_spatial_file, syn_indvs_spatial_file, marg_dir) {
+plot_error_heatmaps <- function(syn_hhs_spatial_file, syn_indvs_spatial_file, marg_dir, save_pdf=FALSE) {
   syn_hhs <- read.csv(syn_hhs_spatial_file) %>%
     mutate(geoid = str_pad(geoid, 12, "left", "0")) %>%
     mutate(tract = substr(geoid, 1, 11),
@@ -249,33 +251,53 @@ plot_error_heatmaps <- function(syn_hhs_spatial_file, syn_indvs_spatial_file, ma
                                "1-25K"="<=25K",
                                "76-100K"=">75K",
                                ">100K"=">75K"))
-  process_marginals(marg_dir)
-  heatmap1 <- error_heatmap(syn_hhs, tract_tenur_hhinc.l,
-                            quo(tenur_hhinc_prox), quo(tract),
-                            "Tract X Tenure X HH Income Errors")
-  heatmap2 <- error_heatmap(syn_hhs, blkgp_tenur_hhsiz.l,
+    # Capture the packed payload container from the child scope
+  margs <- process_marginals(marg_dir)
+
+  heatmap1 <- error_heatmap(syn_hhs, margs$tract_tenur_hhinc.l,
+                              quo(tenur_hhinc_prox), quo(tract),
+                              "Tract X Tenure X HH Income Errors")
+                              
+  heatmap2 <- error_heatmap(syn_hhs, margs$blkgp_tenur_hhsiz.l,
                             quo(tenur_hhsiz_prox), quo(blkgp),
                             "Block Group X Tenure X HH Size Errors")
-  heatmap3 <- error_heatmap(syn_hhs, tract_nwork.l,
+                            
+  heatmap3 <- error_heatmap(syn_hhs, margs$tract_nwork.l,
                             quo(nwork), quo(tract),
                             "Tract X Num. Workers Errors")
-  heatmap4 <- error_heatmap(syn_hhs, tract_hhtype.l,
+                            
+  heatmap4 <- error_heatmap(syn_hhs, margs$tract_hhtype.l,
                             quo(hhtype), quo(tract),
                             "Tract X HH Type Errors")
-  heatmap5 <- error_heatmap(syn_indvs, tract_i_sex_i_age.l,
+                            
+  heatmap5 <- error_heatmap(syn_indvs, margs$tract_i_sex_i_age.l,
                             quo(i_sex_i_age), quo(tract),
                             "Tract X Sex X Age Errors")
-  heatmap6 <- error_heatmap(syn_indvs, blkgp_emply.l,
+                            
+  heatmap6 <- error_heatmap(syn_indvs, margs$blkgp_emply.l,
                             quo(emply_prox), quo(blkgp),
                             "Block Group X Employment Errors")
-  heatmap8 <- error_heatmap(syn_hhs %>% filter(hhtype != "GQ"), tract_nwork_ncars.l,
+                            
+  heatmap8 <- error_heatmap(syn_hhs %>% filter(hhtype != "GQ"), margs$tract_nwork_ncars.l,
                             quo(ncars), quo(tract),
                             "Tract X Num. Cars Errors")
-  heatmap9 <- error_heatmap(syn_indvs, tract_i_inc.l,
+                            
+  heatmap9 <- error_heatmap(syn_indvs, margs$tract_i_inc.l,
                             quo(i_inc_prox), quo(tract),
                             "Tract X Indv. Income Errors")
+                            
   gl <- list(heatmap1$p, heatmap2$p, heatmap3$p, heatmap4$p, heatmap5$p,
-             heatmap6$p, heatmap8$p, heatmap9$p)
+            heatmap6$p, heatmap8$p, heatmap9$p)
+  grid.arrange(
+    grobs = gl,
+    nrow = 3,
+    layout_matrix = rbind(c(1, 1, 1, 2, 2, 2),
+                          c(3, 3, 4, 4, 7, 7),
+                          c(5, 5, 6, 6, 8, 8))
+  )
+  if (save_pdf) {
+    pdf(file = './plots/plot_error_heatmaps.pdf', width = 50, height = 50)
+  }
   
   grid.arrange(
     grobs = gl,
@@ -306,7 +328,7 @@ get_error_map_data <- function(map_pumas, variable, spatial_level, synpop_suffix
                                  "76-100K"=">75K",
                                  ">100K"=">75K"))
     marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
-    process_marginals(marg_dir)
+    margs <- process_marginals(marg_dir)
     marg_name <- if(variable!="ncars") paste0(spatial_level,"_",variable,".l") else "tract_nwork_ncars.l"
     sym_variable <- if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "emply", "i_inc")) paste0(variable,"_prox") else variable
     heatmap_data <- error_heatmap(if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "nwork", "hhtype", "ncars")) syn_hhs else syn_indvs, 
