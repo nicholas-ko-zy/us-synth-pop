@@ -11,7 +11,7 @@
 # library(viridis)
 
 box::use(
-  utils[read.csv, write.csv],  # <-- Add this to grant the module access
+  utils[read.csv, write.csv],
   dplyr[...],
   tmap[...],
   dplyr[...],
@@ -34,14 +34,14 @@ plot_study_areas <- function(map_pumas) {
                 "Jacksonville, FL")
   us_msas <- st_read("map_data/tl_2010_us_cbsa10/tl_2010_us_cbsa10.shp") %>%
     filter(NAME10 %in% our_msas)
-  
+    
   puma_sfs <- rbind(
-    st_read("map_data/tl_2019_04_puma10/tl_2019_04_puma10.shp"),
-    st_read("map_data/tl_2019_06_puma10/tl_2019_06_puma10.shp"),
-    st_read("map_data/tl_2019_12_puma10/tl_2019_12_puma10.shp"),
-    st_read("map_data/tl_2019_25_puma10/tl_2019_25_puma10.shp"),
-    st_read("map_data/tl_2019_48_puma10/tl_2019_48_puma10.shp"),
-    st_read("map_data/tl_2019_56_puma10/tl_2019_56_puma10.shp")
+    st_read("map_data/tl_2019_04_puma10/tl_2019_04_puma10.shp", quiet = TRUE),
+    st_read("map_data/tl_2019_06_puma10/tl_2019_06_puma10.shp", quiet = TRUE),
+    st_read("map_data/tl_2019_12_puma10/tl_2019_12_puma10.shp", quiet = TRUE),
+    st_read("map_data/tl_2019_25_puma10/tl_2019_25_puma10.shp", quiet = TRUE),
+    st_read("map_data/tl_2019_48_puma10/tl_2019_48_puma10.shp", quiet = TRUE),
+    st_read("map_data/tl_2019_56_puma10/tl_2019_56_puma10.shp", quiet = TRUE)
   ) %>%
     # filter out islands in LA MSA for better visualization
     filter(GEOID10 != "0603768")
@@ -58,7 +58,7 @@ plot_study_areas <- function(map_pumas) {
                               filter(GEOID10 %in% as.character(mapc_pumas)) %>%
                               select(STATEFP10, PUMACE10, GEOID10, geometry) %>%
                               mutate(NAME10 = "Metro Boston, MA *"))
-  # add back the PUMAs in WY
+# add back the PUMAs in WY
   wy_pumas <- c(5600100, 5600200, 5600300, 5600400, 5600500)
   study_area_pumas <- rbind(study_area_pumas, puma_sfs %>% 
                               filter(GEOID10 %in% as.character(wy_pumas)) %>%
@@ -86,8 +86,7 @@ plot_study_areas <- function(map_pumas) {
                                             "State of WY")))
   
   # dev.new(width=7.2, height=9, noRStudioGD = T)
-  
-  tm_shape(study_area_pumas) + 
+  map <- tm_shape(study_area_pumas) + 
     tm_polygons(col="density",
                 palette = "RdYlBu",
                 title="PUMA Density",
@@ -110,7 +109,8 @@ plot_study_areas <- function(map_pumas) {
               legend.title.fontface="bold",
               legend.text.size=1,
               outer.margins=c(0, 0.02, 0, 0.02),
-              inner.margins=c(0.06, 0.06, 0.06, 0.06))  
+              inner.margins=c(0.06, 0.06, 0.06, 0.06)) 
+  return(map)
 }
 
 error_heatmap <- function(synpop, marginal, dim1, dim2, plot_title, limits=NULL) {
@@ -380,7 +380,7 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
               inner.margins=c(0.06, 0.06, 0.06, 0.06)) 
 }
 
-plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities) {
+plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_hhtype) {
   puma_labels <- c(paste0("PUMA ", substr(map_pumas[1:15], 3, 7), " (", round(densities[1:15]), " people/sq.mi.)"),
                    paste0("State of WY (", round(densities[16]), " people/sq.mi.)"))
   
@@ -512,151 +512,151 @@ densities <- c(383.7, 9049.6, 42788.1,
 
 # densities <- c(50, 50)
 
-############################## STUDY AREA MAPS #################################
-
-plot_study_areas(map_pumas)
-
-###################### TRACT LEVEL HHTYPE DIFFERENCES ##########################
-
-plot_tract_hhtype_diffs_map("Tract-level deviation of household type composition from PUMA mean", 
-                            map_pumas, densities)
-
-################################# PIE CHARTS ###################################
-
-var_names <- c("tenur_hhinc", "tenur_hhsiz", "nwork", "hhtype", "i_sex_i_age", "emply", "ncars", "i_inc")
-spatial_levels <- c("tract", "blkgp", "tract", "tract", "tract", "blkgp", "tract", "tract")
-pie_titles <- c("Tenure by Household Income", "Tenure by Household Size", "Number of Workers", "Household Type", 
-                "Sex by Age", "Employment Status", "Number of Cars", "Income")
-for(v in seq_along(var_names)) {
-  for(puma in map_pumas) {
-    plot_pie(pie_titles[v], 
-             variable=var_names[v],
-             spatial_level=spatial_levels[v],
-             puma=puma)
-  }
-}
-
-################################## ERROR MAPS ##################################
-
-synpop_suffix <- "20220127"
-
-##### DOWNLOAD GEOMETRIES #####
-# get and save tract- and block group-level geometries
-# do this once if you do not have geometries downloaded; then, set download_geometries <- FALSE
-if(download_geometries) {
-  if(!dir.exists("map_data/geos")) {
-    dir.create("map_data/geos", recursive=T)
-  }
-  for(pumas in map_pumas){
-    marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
-    my_census_api_key <- "ac6cb3e106c860e52384fe71cf0407a13c25b96c"
-    puma_tract_equiv_file <- "synthpop_data/2010_Census_Tract_to_2010_PUMA.csv"
-    tract_block_equiv_file <- "synthpop_data/tract_block_equiv_2010.Rds"
-    process_pums_file <- "process_pums.R"
-    process_marg_file <- "process_marg.R"
-    source("prepare_data.R")
-    
-    sf_geos.tract <- get_acs(geography="tract", state=substr(tracts[1], 1, 2), table="B11001", output="wide", geometry = TRUE) %>%
-      filter(GEOID %in% tracts) %>%
-      select(GEOID, NAME, geometry) %>%
-      rename(geoid=GEOID) %>%
-      arrange(geoid) %>%
-      data.frame()
-    
-    saveRDS(sf_geos.tract, file=paste0("map_data/geos/",pumas,"_tract_geos.Rds"))
-    
-    sf_geos.blkgp <- get_acs(geography="block group", state=substr(tracts[1], 1, 2), table="B25009", output="wide", geometry = TRUE) %>%
-      filter(GEOID %in% blkgps) %>%
-      select(GEOID, NAME, geometry) %>%
-      rename(geoid=GEOID) %>%
-      arrange(geoid) %>%
-      data.frame()
-    
-    saveRDS(sf_geos.blkgp, file=paste0("map_data/geos/",pumas,"_blkgp_geos.Rds"))
-  }
-}
-
-##### ERROR HEATMAPS #####
-
-hm <- plot_error_heatmaps(syn_hhs_spatial_file="synthpop_output/2503302/syn_hhs_spatial_2503302-example.csv", 
-                          syn_indvs_spatial_file="synthpop_output/2503302/syn_indvs_spatial_2503302-example.csv", 
-                          marg_dir="synthpop_data/acs_marginals/2503302/")
-
-##### CALIBRATION MARGINALS #####
-
-plot_error_map("Spatial errors in tenure by houshold income distribution",
-               map_pumas, densities,
-               variable="tenur_hhinc", 
-               spatial_level="tract", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few households")
-
-plot_error_map("Spatial errors in tenure by houshold size distribution",
-               map_pumas, densities,
-               variable="tenur_hhsiz", 
-               spatial_level="blkgp", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few households")
-
-plot_error_map("Spatial errors in number of workers distribution",
-               map_pumas, densities,
-               variable="nwork", 
-               spatial_level="tract", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few households")
-
-plot_error_map("Spatial errors in household type distribution",
-               map_pumas, densities,
-               variable="hhtype", 
-               spatial_level="tract", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few households")
-
-plot_error_map("Spatial errors in sex by age distribution",
-               map_pumas, densities,
-               variable="i_sex_i_age", 
-               spatial_level="tract", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few individuals")
-
-plot_error_map("Spatial errors in employment distribution",
-               map_pumas, densities,
-               variable="emply", 
-               spatial_level="blkgp", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few individuals")
-
-##### VALIDATION MARGINALS #####
-
-plot_error_map("Spatial errors in number of cars distribution",
-               map_pumas, densities,
-               variable="ncars", 
-               spatial_level="tract", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few households")
-
-plot_error_map("Spatial errors in income distribution",
-               map_pumas, densities,
-               variable="i_inc", 
-               spatial_level="tract", 
-               synpop_suffix=synpop_suffix, 
-               gray_hh_pop_under=30, 
-               gray_indv_pop_under=50, 
-               NA_label="too few individuals")
-
-
-
+# ############################## STUDY AREA MAPS #################################
+# 
+# plot_study_areas(map_pumas)
+# 
+# ###################### TRACT LEVEL HHTYPE DIFFERENCES ##########################
+# 
+# plot_tract_hhtype_diffs_map("Tract-level deviation of household type composition from PUMA mean", 
+#                             map_pumas, densities)
+# 
+# ################################# PIE CHARTS ###################################
+# 
+# var_names <- c("tenur_hhinc", "tenur_hhsiz", "nwork", "hhtype", "i_sex_i_age", "emply", "ncars", "i_inc")
+# spatial_levels <- c("tract", "blkgp", "tract", "tract", "tract", "blkgp", "tract", "tract")
+# pie_titles <- c("Tenure by Household Income", "Tenure by Household Size", "Number of Workers", "Household Type", 
+#                 "Sex by Age", "Employment Status", "Number of Cars", "Income")
+# for(v in seq_along(var_names)) {
+#   for(puma in map_pumas) {
+#     plot_pie(pie_titles[v], 
+#              variable=var_names[v],
+#              spatial_level=spatial_levels[v],
+#              puma=puma)
+#   }
+# }
+# 
+# ################################## ERROR MAPS ##################################
+# 
+# synpop_suffix <- "20220127"
+# 
+# ##### DOWNLOAD GEOMETRIES #####
+# # get and save tract- and block group-level geometries
+# # do this once if you do not have geometries downloaded; then, set download_geometries <- FALSE
+# if(download_geometries) {
+#   if(!dir.exists("map_data/geos")) {
+#     dir.create("map_data/geos", recursive=T)
+#   }
+#   for(pumas in map_pumas){
+#     marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
+#     my_census_api_key <- "ac6cb3e106c860e52384fe71cf0407a13c25b96c"
+#     puma_tract_equiv_file <- "synthpop_data/2010_Census_Tract_to_2010_PUMA.csv"
+#     tract_block_equiv_file <- "synthpop_data/tract_block_equiv_2010.Rds"
+#     process_pums_file <- "process_pums.R"
+#     process_marg_file <- "process_marg.R"
+#     source("prepare_data.R")
+#     
+#     sf_geos.tract <- get_acs(geography="tract", state=substr(tracts[1], 1, 2), table="B11001", output="wide", geometry = TRUE) %>%
+#       filter(GEOID %in% tracts) %>%
+#       select(GEOID, NAME, geometry) %>%
+#       rename(geoid=GEOID) %>%
+#       arrange(geoid) %>%
+#       data.frame()
+#     
+#     saveRDS(sf_geos.tract, file=paste0("map_data/geos/",pumas,"_tract_geos.Rds"))
+#     
+#     sf_geos.blkgp <- get_acs(geography="block group", state=substr(tracts[1], 1, 2), table="B25009", output="wide", geometry = TRUE) %>%
+#       filter(GEOID %in% blkgps) %>%
+#       select(GEOID, NAME, geometry) %>%
+#       rename(geoid=GEOID) %>%
+#       arrange(geoid) %>%
+#       data.frame()
+#     
+#     saveRDS(sf_geos.blkgp, file=paste0("map_data/geos/",pumas,"_blkgp_geos.Rds"))
+#   }
+# }
+# 
+# ##### ERROR HEATMAPS #####
+# 
+# hm <- plot_error_heatmaps(syn_hhs_spatial_file="synthpop_output/2503302/syn_hhs_spatial_2503302-example.csv", 
+#                           syn_indvs_spatial_file="synthpop_output/2503302/syn_indvs_spatial_2503302-example.csv", 
+#                           marg_dir="synthpop_data/acs_marginals/2503302/")
+# 
+# ##### CALIBRATION MARGINALS #####
+# 
+# plot_error_map("Spatial errors in tenure by houshold income distribution",
+#                map_pumas, densities,
+#                variable="tenur_hhinc", 
+#                spatial_level="tract", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few households")
+# 
+# plot_error_map("Spatial errors in tenure by houshold size distribution",
+#                map_pumas, densities,
+#                variable="tenur_hhsiz", 
+#                spatial_level="blkgp", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few households")
+# 
+# plot_error_map("Spatial errors in number of workers distribution",
+#                map_pumas, densities,
+#                variable="nwork", 
+#                spatial_level="tract", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few households")
+# 
+# plot_error_map("Spatial errors in household type distribution",
+#                map_pumas, densities,
+#                variable="hhtype", 
+#                spatial_level="tract", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few households")
+# 
+# plot_error_map("Spatial errors in sex by age distribution",
+#                map_pumas, densities,
+#                variable="i_sex_i_age", 
+#                spatial_level="tract", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few individuals")
+# 
+# plot_error_map("Spatial errors in employment distribution",
+#                map_pumas, densities,
+#                variable="emply", 
+#                spatial_level="blkgp", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few individuals")
+# 
+# ##### VALIDATION MARGINALS #####
+# 
+# plot_error_map("Spatial errors in number of cars distribution",
+#                map_pumas, densities,
+#                variable="ncars", 
+#                spatial_level="tract", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few households")
+# 
+# plot_error_map("Spatial errors in income distribution",
+#                map_pumas, densities,
+#                variable="i_inc", 
+#                spatial_level="tract", 
+#                synpop_suffix=synpop_suffix, 
+#                gray_hh_pop_under=30, 
+#                gray_indv_pop_under=50, 
+#                NA_label="too few individuals")
+# 
+# 
+# 

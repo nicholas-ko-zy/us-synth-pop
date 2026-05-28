@@ -24,7 +24,7 @@ My attempt to understand and reproduce the work done in the synthpop repo by j4s
 # renv::install(c(c("dplyr","tidyr","stringr","R.utils","tidycensus","bnlearn","foreach","doSNOW","ggplot2")))
 
 # 3. Update your lockfile
-renv::snapshot()
+# renv::snapshot()
 ```
 
 # Load Libraries
@@ -43,18 +43,10 @@ cfg <- config::get()
 us_census_api_key <- cfg$us_census_api_key
 ```
 
-```{r}
-# Rscript synthpop.R -puma=<XXYYYYY> [-use_prev_marg] [-marg_dir=<"some/path/">] [-samp_rate=<num>] [-suffix=<"abcdefg">] [-ncores=<num>]
-
-name <- "Eric"
-age <- 42
-message <- glue('Hello, {name}. You are {age}.')
-#> Hello, Eric. You are 42.
-```
 
 ```{r}
 # Base R dataset excludes DC and territories, so we build the full list cleanly:
-state_fips <- data.frame(
+STATE_FIPS <- data.frame(
   state_name = c(
     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
     "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", 
@@ -83,30 +75,12 @@ state_fips <- data.frame(
   stringsAsFactors = FALSE
 )
 
-# Preview the dataframe
+head(STATE_FIPS)
 ```
 
 
-```{r}
-puma_df <- read.csv("synthpop_data/2010_Census_Tract_to_2010_PUMA.csv")
-GA_puma_df <- puma_df[puma_df$STATEFP == FIPS_state_code,]
-GA_puma_codes <- (GA_puma_df %>%
-  group_by(STATEFP, PUMA5CE) %>%
-  summarise(count = n()))$PUMA5CE
-unique(GA_puma_codes)
-```
-
-
-```{r}
-# Federal Information Processing Standard (Federal Information Processing Standard), two-digit numeric ids for US states
-STATE_NAME <- "Georgia"
-COUNTY_FP <- 121 # Fulton county, where Georgia Tech is
-PUMA_CODE <- GA_puma_codes[1]
-FIPS_STATE_CODE <- state_fips[state_fips$state_name == STATE_NAME,]$state_code
-```
-
-
-# Exploring the sample output datasets
+# Cambridge Massachusetts
+Sample synth pop dataset in repo
 
 ```{r}
 output_cambridge_hhs <- read.csv("./synthpop_output/2503302/syn_hhs_spatial_2503302-example.csv")
@@ -114,13 +88,58 @@ output_cambridge_hhs <- read.csv("./synthpop_output/2503302/syn_hhs_spatial_2503
 head(output_cambridge_hhs)
 ```
 
+
+# Fulton County, Georgia
+
 ```{r}
+# Subset to Georgia
+STATE_NAME <- "Georgia"
+COUNTY_FP <- 121 # Fulton county, where Georgia Tech is
+puma_df <- read.csv("synthpop_data/2010_Census_Tract_to_2010_PUMA.csv")
+GA_STATE_CODE <- STATE_FIPS[STATE_FIPS$state_name == STATE_NAME,]$state_code
+
+GA_puma_df <- puma_df[puma_df$STATEFP == GA_STATE_CODE,]
+GA_puma_codes <- (GA_puma_df %>%
+  group_by(STATEFP, PUMA5CE) %>%
+  summarise(count = n()))$PUMA5CE
+
+# Print unique puma codes in GA, to run the synthpop script later
+unique(GA_puma_codes)
+```
+
+
+```{r}
+# Federal Information Processing Standard (Federal Information Processing Standard), two-digit numeric ids for US states
+PUMA_CODE <- GA_puma_codes[1]
+GA_STATE_CODE <- STATE_FIPS[STATE_FIPS$state_name == STATE_NAME,]$state_code
+run_command <- glue('Rscript synthpop.R -puma={GA_STATE_CODE}00{PUMA_CODE}')
+
+# Run the following command in your terminal to generate a synthpop of Fulton County, where Atlanta is a part of
+print(run_command)
+```
+## Output
+
+```{r}
+# Where Atlanta is located
+output_fulton_hhs <- read.csv("./synthpop_output/1300100/syn_hhs_1300100.csv")
+head(output_fulton_hhs, 5)
+```
+
+##  Comparison (Cambridge v. Fulton)
+
+```{r}
+# Intersect columns from 
+intersected_colnames <- intersect(colnames(output_cambridge_hhs), colnames(output_fulton_hhs))
+
+for (colnames in intersected_colnames) {
+  print(colnames)
+}
+```
+
+
+```{r}
+# Run line by line to see the unique output
 unique(output_cambridge_hhs$tenur)
-
-# for (name in names(output_cambridge_hhs)) { 
-#   print(name)
-# }
-
 unique(output_cambridge_hhs$HHID)
 unique(output_cambridge_hhs$tenur)
 unique(output_cambridge_hhs$hhinc)
@@ -144,133 +163,77 @@ unique(output_cambridge_hhs$edu_q)
 unique(output_cambridge_hhs$tenur_prox)
 ```
 
-```{r}
-typeof(names(output_cambridge_hhs))
-```
-
-```{r}
-intersected_colnames <- intersect(colnames(output_cambridge_hhs), colnames(output_fulton_hhs))
-```
-
-```{r}
-for (colnames in intersected_colnames) {
-  print(colnames)
-}
-```
-
-
-```{r}
-library(DataExplorer)
-create_report(output_cambridge_hhs)
-```
-
-
-# Fulton County, Georgia
-
-Where Atlanta is located
-
-```{r}
-output_fulton_hhs <- read.csv("./synthpop_output/1300100/syn_hhs_1300100.csv")
-head(output_fulton_hhs, 5)
-```
-
-```{r}
-dim(output_fulton_hhs)
-```
-
-```{r}
-dim(output_cambridge_hhs)
-```
-
-
-
-```{r}
-create_report(output_fulton_hhs)
-```
-
-
 # Maps
 
+##  Create directories
+
+to store census information. Only run if you don't have the expected data directories.
 ```{r}
-base_path <- "synthpop_data/acs_marginals"
+# base_path <- "synthpop_data/acs_marginals"
+# 
+# org_map_pumas <- c("0603701", "0603716", "0603733",
+#                "4805000", "4804901", "4804614",
+#                "0400134", "0400105", "0400122",
+#                "2501400", "2503603", "2503302",
+#                "1208900", "1203105", "1203103",
+#                "5600200", "5600100", "5600300", "5600400", "5600500")
+# 
+# 
+# for (map_puma in org_map_pumas) {
+#   # Dynamically construct the path: "synthpop_data/acs_marginals/0603701"
+#   full_puma_dir <- file.path(base_path, map_puma)
+#   
+#   if (!dir.exists(full_puma_dir)) {
+#     dir.create(full_puma_dir, recursive = TRUE, showWarnings = FALSE)
+#     cat("Initialized folder:", full_puma_dir, "\n")
+#   }
+# }
+```
 
-org_map_pumas <- c("0603701", "0603716", "0603733",
-               "4805000", "4804901", "4804614",
-               "0400134", "0400105", "0400122",
-               "2501400", "2503603", "2503302",
-               "1208900", "1203105", "1203103",
-               "5600200", "5600100", "5600300", "5600400", "5600500")
-
-
-for (map_puma in org_map_pumas) {
-  # Dynamically construct the path: "synthpop_data/acs_marginals/0603701"
-  full_puma_dir <- file.path(base_path, map_puma)
-  
-  if (!dir.exists(full_puma_dir)) {
-    dir.create(full_puma_dir, recursive = TRUE, showWarnings = FALSE)
-    cat("Initialized folder:", full_puma_dir, "\n")
-  }
-}
+## Download Census Data For Demo
+Only run again if you don't have the data yet.
+```{r}
+# org_map_pumas <- c("0603701", "0603716", "0603733",
+#                "4805000", "4804901", "4804614",
+#                "0400134", "0400105", "0400122",
+#                "2501400", "2503603", "2503302",
+#                "1208900", "1203105", "1203103",
+#                "5600200", "5600100", "5600300", "5600400", "5600500")
+# for (org_puma in org_map_pumas) {
+#   command <- glue('Rscript synthpop_truncated.R -puma={org_puma}')
+#   print(command)
+# }
 ```
 
 
-```{r}
-prepare_data_file <- "prepare_data.R"
-process_pums_file <- "process_pums.R"
-process_marg_file <- "process_marg.R"
-train_bns_file <- "train_bns.R"
-sample_hhs_file <- "sample_hhs.R"
-sample_indvs_file <- "sample_indvs.R"
-select_synpop_file <- "select_synpop.jl"
-assign_spatial_file <- "assign_spatial.jl"
-puma_tract_equiv_file <- "synthpop_data/2010_Census_Tract_to_2010_PUMA.csv"
-tract_block_equiv_file <- "synthpop_data/tract_block_equiv_2010.Rds"
-my_census_api_key <- US_CENSUS_API_KEY
-
-pumas <- org_map_pumas
-source("prepare_data.R")
-```
-
-```{r}
-options(box.path = getwd())
-```
-
-
+## Import `plot_maps`
 
 ```{r}
 box::use(./plot_maps[...])
-
-# Load functions from `plot_map.R`
-# Pass the key variable directly to the active session (do not try to install it globally)
-# tidycensus::census_api_key(my_census_api_key)
-# Sys.setenv(CENSUS_API_KEY = my_census_api_key)
-# Explicitly propagate it to the system environment so child processes (system() calls) can see it
-# source("plot_maps.R")
-source("sum.R")
-
-FULTON_PUMA_CODE <- 1300100
-CAMBRIDGE_PUMA_CODE <- 2503302
-map_pumas <- c(FULTON_PUMA_CODE, CAMBRIDGE_PUMA_CODE)
-
-plot_study_area(map_pumas)
-
 ```
 
+
+List of functions in plot_maps
+
+* plot_study_areas()
+* error_heatmap()
+* rmse()
+* get_rmses()
+* process_marginals()
+* plot_error_heatmaps()
+* get_error_map_data()
+* plot_error_map()
+* plot_tract_hhtype_diffs_map()
+* plot_pie()
 
 ```{r}
-org_map_pumas <- c("0603701", "0603716", "0603733",
-               "4805000", "4804901", "4804614",
-               "0400134", "0400105", "0400122",
-               "2501400", "2503603", "2503302",
-               "1208900", "1203105", "1203103",
-               "5600200", "5600100", "5600300", "5600400", "5600500")
-for (org_puma in org_map_pumas) {
-  command <- glue('Rscript synthpop_truncated.R -puma={org_puma}')
-  print(command)
-}
+# plot_study_areas()
 
-
+plot_maps$plot_study_areas(map_pumas)
 ```
+
+
+
 
 
 
