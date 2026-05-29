@@ -436,11 +436,30 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
   return(map)
 }
 
-plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_hhtype, save_pdf=FALSE) {
-  puma_labels <- c(paste0("PUMA ", substr(map_pumas[1:15], 3, 7), " (", round(densities[1:15]), " people/sq.mi.)"),
-                   paste0("State of WY (", round(densities[16]), " people/sq.mi.)"))
+plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, save_pdf=FALSE) {
+  state_fips_lookup <- c(
+  "06" = "California",
+  "48" = "Texas",
+  "04" = "Arizona",
+  "25" = "Massachusetts",
+  "12" = "Florida"
+)
+  
+  # Build labels
+  puma_labels <- c()
+  for (i in 1:15) {
+    # 1. Isolate the State prefix (first 2 characters)
+    state_prefix <- substr(map_pumas[i], 1, 2)
+    # 2. Isolate the true local 5-digit PUMA identifier code (last 5 characters)
+    short_puma   <- substr(map_pumas[i], 3, 7)
+    # 3. Match against your state dictionary safely
+    state_metro  <- state_fips_lookup[state_prefix]
+    puma_labels[i] <- paste0(state_metro, " (PUMA ", short_puma, " - ", round(densities[i]), " p/sq.mi.)")
+  }
+  puma_labels[16] <- paste0("State of WY (", round(densities[16]), " people/sq.mi.)")
   
   sf_geos.puma <- data.frame()
+
   for(pumas in map_pumas){
     print(pumas)
     marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
@@ -454,8 +473,6 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
     # Clean and explicitly match length up to 11-character tract standard
     tract_hhtype <- tract_hhtype %>%
       mutate(geoid = stringr::str_pad(geoid, width = 11, side = "left", pad = "0"))
-    print(tract_hhtype)
-    break
     # Create a geoid columns as a duplicate of the tract col
     distr_by_tract <- tract_hhtype %>% 
       select(-geoid) %>% 
@@ -470,13 +487,13 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
       data.frame() %>%
       select(hhtype, geoid, everything()) %>%
       mutate(synpop_ct = replace_na(synpop_ct, 0),
-             marg_ct = rep(tract_hhtype %>% 
-                             select(-geoid) %>% 
-                             colSums() %>% 
-                             prop.table() %>%
-                             `*`(100), length(unique(tract_hhtype$geoid))))
+             marg_ct = rep(
+              tract_hhtype %>% select(-geoid) %>% colSums() %>% prop.table() %>% `*`(100), 
+              nrow(tract_hhtype))
+            )
     
-    sf_geos <- readRDS(file=paste0("map_data/geos/",pumas,"_tract_geos.Rds"))
+    sf_geos <- readRDS(file=paste0("map_data/geos/",pumas,"_tract_geos.Rds")) %>% 
+    mutate(geoid = stringr::str_pad(as.character(geoid), width = 11, side = "left", pad = "0"))
     sf_geos <- left_join(sf_geos, get_rmses(distr_by_tract, "tract"), by=c("geoid"))
     sf_geos$puma <- pumas
     
@@ -489,12 +506,12 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
   
   # combine WY PUMAs together and factor PUMA column to ensure plot ordering
   sf_geos.puma.sf$puma <- factor(recode(sf_geos.puma.sf$puma,
-                                        "5600100"="State of WY",
-                                        "5600200"="State of WY",
-                                        "5600300"="State of WY",
-                                        "5600400"="State of WY",
-                                        "5600500"="State of WY"), 
-                                 levels=c(map_pumas[1:15], "State of WY"))
+                                        "5600100"="Wyoming",
+                                        "5600200"="Wyoming",
+                                        "5600300"="Wyoming",
+                                        "5600400"="Wyoming",
+                                        "5600500"="Wyoming"), 
+                                 levels=c(map_pumas[1:15], "Wyoming"))
   
   # dev.new(width=8, height=8, noRStudioGD = T)
   
@@ -511,9 +528,9 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
     tm_facets(by="puma",
               ncol=3) +
     # Old ylab
-    tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
-            size=1.2, 
-            space=1) +
+    # tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
+    #         size=1.2, 
+    #         space=1) +
     # tm_ylab("Boston, MA", 
     #         size=1.2, 
     #         space=1) +
