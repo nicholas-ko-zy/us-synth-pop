@@ -250,13 +250,13 @@ synpop_suffix <- "20220127"
 # Trial Plot Functions
 
 ```{r}
-# plot_study_areas()
+# 1. plot_study_areas()
 box::reload(plot_maps)
 plot_maps$plot_study_areas(map_pumas, save_pdf=FALSE)
 ```
 
 ```{r}
-# plot_error_heatmap()
+# 2. plot_error_heatmap()
 box::reload(plot_maps)
 heatmap <- plot_maps$plot_error_heatmaps(syn_hhs_spatial_file="synthpop_output/2503302/syn_hhs_spatial_2503302-example.csv",
                           syn_indvs_spatial_file="synthpop_output/2503302/syn_indvs_spatial_2503302-example.csv",
@@ -264,7 +264,7 @@ heatmap <- plot_maps$plot_error_heatmaps(syn_hhs_spatial_file="synthpop_output/2
 ```
 
 ```{r}
-# plot_error_map
+# 3. plot_error_map
 map_pumas_subset <- c(2503302)
 box::reload(plot_maps)
 plot_maps$plot_error_map("Spatial errors in tenure by houshold income distribution",
@@ -277,6 +277,11 @@ plot_maps$plot_error_map("Spatial errors in tenure by houshold income distributi
                NA_label="too few households",
                save_pdf=TRUE)
 #synthpop/synthpop_output/2503302/syn_hhs_spatial_2503302.csv
+```
+
+
+```{r}
+# 4. plot_tract_hhtype_diffs_map()
 ```
 
 

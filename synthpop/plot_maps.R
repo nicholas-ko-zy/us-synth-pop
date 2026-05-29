@@ -342,7 +342,7 @@ get_error_map_data <- function(map_pumas, variable, spatial_level, synpop_suffix
     
     
     heatmap_data <- error_heatmap(if(variable %in% c("tenur_hhinc", "tenur_hhsiz", "nwork", "hhtype", "ncars")) syn_hhs else syn_indvs, 
-                                  margs[[marg_name]], # <--- Safe, dynamic alternative to eval(parse)
+                                  margs[[marg_name]],
                                   sym(sym_variable), sym(spatial_level),
                                   "")$heatmap_data %>%
       rename(geoid = !!sym(spatial_level))
@@ -409,7 +409,7 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
                 legend.is.portrait=F) +
     tm_compass(position=c("right", "top")) +
     tm_facets(by="puma",
-              ncol=3) +
+              ncol=1) + # change ncol if there are more areas
     # tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
     #         size=1.2, 
     #         space=1) 
@@ -436,7 +436,7 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
   return(map)
 }
 
-plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_hhtype) {
+plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_hhtype, save_pdf=FALSE) {
   puma_labels <- c(paste0("PUMA ", substr(map_pumas[1:15], 3, 7), " (", round(densities[1:15]), " people/sq.mi.)"),
                    paste0("State of WY (", round(densities[16]), " people/sq.mi.)"))
   
@@ -444,10 +444,19 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
   for(pumas in map_pumas){
     print(pumas)
     marg_dir <- paste0("synthpop_data/acs_marginals/", pumas, "/")
-    process_marginals(marg_dir)
+    margs <- process_marginals(marg_dir)
     
     # using the column names synpop_ct and marg_ct just nominally, so that
     # we can reuse the rmse functions
+    # Safely read and keep GEOID as a character string from the start
+    tract_hhtype <- read.csv(paste0(marg_dir, "tract_hhtype.csv"), colClasses = c("geoid" = "character"))
+    
+    # Clean and explicitly match length up to 11-character tract standard
+    tract_hhtype <- tract_hhtype %>%
+      mutate(geoid = stringr::str_pad(geoid, width = 11, side = "left", pad = "0"))
+    print(tract_hhtype)
+    break
+    # Create a geoid columns as a duplicate of the tract col
     distr_by_tract <- tract_hhtype %>% 
       select(-geoid) %>% 
       as.matrix() %>% 
@@ -491,7 +500,7 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
   
   spatial_name <- "Tract"
   
-  tm_shape(sf_geos.puma.sf) + 
+  map <- tm_shape(sf_geos.puma.sf) + 
     tm_polygons(col="rmse",
                 style="cont",
                 palette="BuPu",
@@ -502,12 +511,12 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
     tm_facets(by="puma",
               ncol=3) +
     # Old ylab
-    # tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
-    #         size=1.2, 
-    #         space=1) 
-    tm_ylab("Boston, MA", 
+    tm_ylab("                        Jacksonville, FL      Boston, MA        Phoenix, AZ       Houston, TX      Los Angeles, CA", 
             size=1.2, 
             space=1) +
+    # tm_ylab("Boston, MA", 
+    #         size=1.2, 
+    #         space=1) +
     tm_layout(main.title=main_title,
               main.title.fontface="bold",
               main.title.size=1.25,
@@ -521,7 +530,10 @@ plot_tract_hhtype_diffs_map <- function(main_title, map_pumas, densities, tract_
               legend.title.fontface="bold",
               legend.text.size=1,
               outer.margins=c(0, 0.02, 0, 0.02),
-              inner.margins=c(0.06, 0.06, 0.06, 0.06)) 
+              inner.margins=c(0.06, 0.06, 0.06, 0.06))
+  if (save_pdf) {
+    tmap::tmap_save(map, filename = "./plots/plot_tract_hhtype_diffs_map.pdf", width = 12, height = 12)            
+  }
 }
 
 plot_pie <- function(main_title, variable, spatial_level, puma) {
