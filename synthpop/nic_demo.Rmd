@@ -218,9 +218,9 @@ List of functions in plot_maps
 
 
 * [X] plot_study_areas()
-* [X] plot_error_heatmaps()
+* [X] plot_tract_hhtype_diffs_map()
 * [X] plot_error_map()
-* [ ] plot_tract_hhtype_diffs_map()
+* [X] plot_error_heatmaps()
 * [ ] plot_pie()
 * [X / Helper] error_heatmap()
 * [Helper] rmse()
@@ -278,10 +278,16 @@ plot_maps$plot_error_map("Spatial errors in tenure by houshold income distributi
                save_pdf=TRUE)
 #synthpop/synthpop_output/2503302/syn_hhs_spatial_2503302.csv
 ```
+```{r}
+map_pumas
+```
 
 
 ```{r}
 # 4. plot_tract_hhtype_diffs_map()
+box::reload(plot_maps)
+# map_pumas_subset <- c(2503302)
+plot_maps$plot_tract_hhtype_diffs_map("Tract-level deviation of household type composition from PUMA mean", map_pumas, densities, save_pdf=TRUE)
 ```
 
 
