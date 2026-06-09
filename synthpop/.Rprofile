@@ -1,38 +1,50 @@
-# 1. EARLY EXIT: If this is a background diagnostic process (like callr or languageserver),
-# exit immediately so it doesn't hang, time out, and crash the workspace sync.
-if (!interactive() || 
-    identical(Sys.getenv("R_DAEMON"), "TRUE") || 
-    any(grep("languageserver", commandArgs(trailingOnly = FALSE)))) {
-  
-  # Allow standard renv activation for background tasks without running profile loops
-  if (file.exists("renv/activate.R")) source("renv/activate.R")
-  
+is_background_daemon <- !interactive() && (
+  identical(Sys.getenv("R_DAEMON"), "TRUE") ||
+  !is.null(getOption("callr.condition_handler_env")) ||
+  identical(Sys.getenv("CALLR_CHILD_SESSION"), "1")
+)
+
+is_rmd_chunk <- !interactive() && !is_background_daemon && (
+  any(grep("rmarkdown|knitr", commandArgs(trailingOnly = FALSE))) ||
+  any(vapply(c("rmarkdown", "knitr"), isNamespaceLoaded, logical(1)))
+)
+
+if (is_background_daemon) {
+  # Strict fast exit
+
 } else {
-  
-  # 2. PROPER INTERACTIVE SESSION (Your Radian Terminal / Notebook Execution)
-  source("renv/activate.R")
-  
+
+  if (file.exists("renv/activate.R")) source("renv/activate.R")
+
   options(vscodeR = TRUE)
-  
-  # Absolute path to your extension's init file
-  vsc_init <- file.path(
-    Sys.getenv("USERPROFILE"), 
-    ".vscode/extensions/reditorsupport.r-2.8.8/R/session/init.R"
+
+  vsc_init <- list.files(
+    file.path(Sys.getenv("USERPROFILE"), ".vscode/extensions"),
+    pattern = "^init\\.R$",
+    recursive = TRUE,
+    full.names = TRUE
   )
-  
-  if (file.exists(vsc_init)) {
-    source(vsc_init, chdir = TRUE, local = TRUE)
-    
-    # Force immediate manual attachment check for R 4.6.0
-    if ("tools:vscode" %in% search()) {
-      .vsc.attach <- get(".vsc.attach", pos = "tools:vscode")
-      .vsc.attach()
+  vsc_init <- vsc_init[grepl("reditorsupport\\.r-", vsc_init)][1]
+
+  if (!is.na(vsc_init) && file.exists(vsc_init)) {
+    source(vsc_init, chdir = TRUE, local = FALSE)
+    if (exists(".First.sys", envir = globalenv())) {
+      .First.sys()
     }
-    message("VS Code Session Watcher: Interactive Environment Connected.")
+
+    if (interactive()) {
+      message("VS Code Session Watcher: Interactive Environment Connected.")
+    } else if (is_rmd_chunk) {
+      message("VS Code Session Watcher: Rmd Notebook Chunk Connected.")
+      if (requireNamespace("knitr", quietly = TRUE)) {
+        knitr::opts_knit$set(envir = .GlobalEnv)
+      }
+    }
   }
 
-  # 3. Your Radian Terminal Console Preferences
-  options(radian.auto_match = FALSE)
-  options(radian.auto_indentation = FALSE)
-  options(radian.complete_while_typing = FALSE)
+  if (interactive()) {
+    options(radian.auto_match = FALSE)
+    options(radian.auto_indentation = FALSE)
+    options(radian.complete_while_typing = FALSE)
+  }
 }
