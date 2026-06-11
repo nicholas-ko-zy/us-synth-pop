@@ -1,0 +1,165 @@
+$ Rscript synthpop.R -puma=2503302                               ,
+Synthetic population generation for the United States.
+Household Pool Size: 263721
+Marginals: ["puma_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv", "blkgp_tenur_hhsiz.csv", "tract_i_sex_i_age.csv", "blkgp_emply.csv"]
+Set parameter WLSAccessID                                                __
+Set parameter WLSSecret
+Set parameter LicenseID to value 2827889
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Gurobi Optimizer version 13.0.2 build v13.0.2rc1 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) N150, instruction set [SSE2|AVX|AVX2]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Optimize a model with 1318708 rows, 527492 columns and 5972935 nonzeros (Min)
+Model fingerprint: 0xea081941
+Model has 50 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [2e-06, 1e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [4e-02, 2e+05]
+
+Presolve removed 1318656 rows and 512408 columns
+Presolve time: 3.30s
+Presolved: 52 rows, 15084 columns, 164438 nonzeros
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 9.420e+02
+ Factor NZ  : 1.098e+03 (roughly 6 MB of memory)
+ Factor Ops : 2.861e+04 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time   0   1.48372240e+04 -1.08418431e+03  3.36e+06 0.00e+00  6.03e+01     3s   1   2.12021538e+02 -8.05747379e+02  4.80e+04 8.88e-16  1.06e+00     3s   2   4.46429705e+00 -2.88090549e+02  9.25e+02 1.33e-15  9.03e-02     3s   3   5.58961232e-01 -1.60240337e+01  2.76e+01 8.88e-16  4.43e-03     3s   4   2.34055126e-01 -4.31515759e+00  5.69e+00 2.66e-15  1.21e-03     3s   5   1.39439917e-01 -2.25194713e+00  2.55e+00 1.78e-15  6.34e-04     3s   6   1.06370175e-01 -1.21685545e+00  1.43e+00 1.78e-15  3.51e-04     3s   7   8.47257369e-02 -6.05853401e-01  7.93e-01 1.78e-15  1.83e-04     3s   8   7.35125264e-02 -3.43784835e-01  4.77e-01 8.88e-16  1.11e-04     3s   9   6.42396122e-02 -9.57527992e-02  2.21e-01 8.88e-16  4.24e-05     4s  10   6.12230495e-02 -1.29918834e-02  1.71e-01 1.78e-15  1.97e-05     4s  11   5.38496584e-02  2.07966687e-02  4.77e-02 8.88e-16  8.76e-06     4s  12   5.14847169e-02  3.82022187e-02  2.29e-02 8.88e-16  3.52e-06     4s
+Barrier performed 12 iterations in 3.61 seconds (3.69 work units)
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     414    4.9056467e-02   0.000000e+00   0.000000e+00      5s
+
+Solved in 414 iterations and 5.21 seconds (4.58 work units)
+Optimal objective  4.905646682e-02
+
+User-callback calls 100, time in user-callback 0.03 sec
+****************************************************
+final objective value = 0.04905646682103601
+163.713378 seconds (436.84 M allocations: 15.688 GiB, 7.61% gc time, 17.10% compilation time: 20% of which was recompilation)
+Block groups: 94
+Tracts: 48
+Households: 61052
+Individuals: 116963
+Marginals: ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv", "blkgp_tenur_hhsiz.csv", "tract_i_sex_i_age.csv", "blkgp_emply.csv"]
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2827889
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+Gurobi Optimizer version 13.0.2 build v13.0.2rc1 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) N150, instruction set [SSE2|AVX|AVX2]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Optimize a model with 11544758 rows, 5741806 columns and 94321162 nonzeros (Min)
+Model fingerprint: 0x75f7a7ff
+Model has 2918 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [1e-03, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e-02, 1e+03]
+
+Presolve removed 0 rows and 0 columns (presolve time = 26s)...
+Presolve removed 11478409 rows and 183156 columns (presolve time = 31s)...
+Presolve removed 11478409 rows and 183471 columns (presolve time = 53s)...
+Presolve removed 11478409 rows and 183471 columns (presolve time = 55s)...
+Presolve removed 11478409 rows and 183471 columns (presolve time = 91s)...
+Presolve removed 11481012 rows and 183471 columns (presolve time = 156s)...
+Presolve removed 11481012 rows and 183471 columns (presolve time = 161s)...
+Presolve removed 11481012 rows and 183471 columns (presolve time = 167s)...
+Presolve removed 11481012 rows and 183471 columns (presolve time = 175s)...
+Presolve removed 11481585 rows and 183471 columns (presolve time = 175s)...
+Presolve removed 11481585 rows and 184044 columns (presolve time = 189s)...
+Presolve removed 11481585 rows and 184044 columns (presolve time = 191s)...
+Presolve removed 11481585 rows and 184044 columns (presolve time = 203s)...
+Presolve removed 11481585 rows and 184044 columns
+Presolve time: 205.92s
+Presolved: 63173 rows, 5557762 columns, 45470198 nonzeros
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+
+Barrier performed 0 iterations in 223.16 seconds (50.01 work units)
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Ordering time: 4.73s
+
+Barrier statistics:
+ AA' NZ     : 2.638e+07
+ Factor NZ  : 2.934e+07 (roughly 2.5 GB of memory)
+ Factor Ops : 1.517e+10 (roughly 2 seconds per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time   0   1.80453971e+09 -4.97336492e+03  1.39e+07 4.44e-16  6.30e+02   282s   1   9.78632401e+08  1.75293133e+12  7.59e+06 2.94e+00  3.46e+02   299s   2   3.95109934e+08  2.32807436e+12  3.15e+06 2.31e+00  1.44e+02   311s   3   1.17075434e+08  2.59972710e+13  1.01e+06 1.59e+00  4.60e+01   326s   4   3.72878145e+07  2.77578248e+13  3.44e+05 1.28e+00  1.56e+01   341s   5   9.03737245e+06  4.71040520e+13  8.99e+04 9.12e-01  4.09e+00   352s   6   4.51907090e+06 -1.35058950e+13  4.55e+04 6.25e-01  2.09e+00   361s   7   3.08912874e+06  4.91837284e+13  3.14e+04 3.71e-01  1.45e+00   372s   8   1.74541386e+06  5.88640123e+14  1.81e+04 2.93e-01  8.33e-01   384s   9   3.38608879e+05  3.76702081e+14  3.25e+03 1.97e-01  1.65e-01   395s  10   3.11607616e+05 -3.80735641e+14  2.98e+03 1.77e-01  1.50e-01   404s  11   2.93013544e+05 -7.06615644e+14  2.78e+03 1.68e-01  1.41e-01   413s  12   2.09821094e+05  1.11937926e+15  1.93e+03 1.51e-01  1.02e-01   425s  13   6.84564998e+04 -1.51554164e+15  5.64e+02 6.92e-02  3.37e-02   439s  14   4.54113225e+04  4.74801482e+15  4.80e+02 4.91e-02  2.14e-02   454s  15   4.05926268e+04  1.36153571e+16  5.32e+02 3.52e-02  1.67e-02   468s  16   4.00598730e+04  1.82097143e+16  6.28e+02 3.43e-02  1.62e-02   479s  17   3.03443739e+04  1.85153000e+16  5.92e+02 3.29e-02  1.33e-02   488s  18   1.80453971e+09 -4.97336492e+03  1.39e+07 4.44e-16  6.30e+02   512s  19   1.81176326e+09  6.67496686e+06  1.39e+07 3.95e+00  7.07e+02   527s  20   1.83394938e+09  1.66296688e+07  1.39e+07 3.95e+00  4.77e+02   541s  21   1.86626520e+09  4.76768098e+07  1.39e+07 3.95e+00  3.79e+02   556s  22   1.96490521e+09  8.36104332e+07  1.39e+07 3.95e+00  4.05e+02   571s  23   2.15965809e+09  1.23561469e+08  1.39e+07 3.95e+00  4.45e+02   586s  24   2.27603561e+09  1.64918726e+08  1.39e+07 3.95e+00  4.20e+02   600s  25   2.37852361e+09  2.17270548e+08  1.39e+07 3.95e+00  4.26e+02   613s  26   2.43164360e+09  3.25562829e+08  1.39e+07 3.95e+00  4.54e+02   626s  27   2.59433793e+09  4.17935252e+08  1.39e+07 3.95e+00  4.84e+02   639s  28   2.71119879e+09  5.48489745e+08  1.39e+07 3.95e+00  5.29e+02   652s  29   2.87191684e+09  6.48748677e+08  1.39e+07 3.95e+00  5.71e+02   673s  30   3.00880000e+09  7.50196159e+08  1.39e+07 3.95e+00  6.12e+02   689s  31   3.08738995e+09  8.43957360e+08  1.39e+07 3.95e+00  6.47e+02   704s  32   3.18536154e+09  9.24608667e+08  1.39e+07 3.95e+00  6.81e+02   720s  33   3.36418579e+09  1.13134847e+09  1.39e+07 3.95e+00  7.62e+02   733s  34   3.47776965e+09  1.32675094e+09  1.39e+07 3.95e+00  8.42e+02   747s  35   4.03738572e+09  1.49636542e+09  1.39e+07 3.95e+00  9.69e+02   760s  36   4.42385558e+09  1.62935303e+09  1.39e+07 3.95e+00  1.12e+03   775s  37   4.65234736e+09  1.83514734e+09  1.39e+07 3.95e+00  1.27e+03   789s  38   4.79270782e+09  1.99013878e+09  1.39e+07 3.95e+00  1.46e+03   805s  39   4.92406835e+09  2.37270608e+09  1.39e+07 3.95e+00  1.87e+03   822s  40   5.11193951e+09  2.52079498e+09  1.39e+07 3.95e+00  2.28e+03   837s  41   5.27514796e+09  2.75070347e+09  1.39e+07 3.95e+00  3.07e+03   853s  42   5.44581313e+09  2.96884982e+09  1.39e+07 3.95e+00  4.42e+03   867s  43*  5.41119221e+09  3.15692279e+09  3.53e+04 9.86e-02  5.76e-04   881s  44*  3.82511292e+10  5.59723051e+09  1.33e+03 2.40e-03  2.76e-06   896s  45*  1.15570565e+12  4.90295794e+12  9.96e+00 1.89e-05  4.33e-08   908s  46*  8.37592737e+15  3.85101649e+16  1.13e-04 3.93e-08  4.40e-12   918s  47*  3.31267518e+20  2.14017799e+21  1.70e-09 6.53e-07  9.74e-17   928s
+Barrier performed 47 iterations in 927.95 seconds (201.86 work units)
+Infeasible model
+
+
+Solved with barrier
+
+Solved in 0 iterations and 929.58 seconds (205.17 work units)
+Infeasible or unbounded model
+
+User-callback calls 6433, time in user-callback 0.36 sec
+****************************************************
+ERROR: LoadError: Result index of attribute MathOptInterface.ObjectiveValue(1) out of bounds. There are currently 0 solution(s) in the model.
+Stacktrace:
+  [1] check_result_index_bounds
+    @ C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\attributes.jl:238 [inlined]
+  [2] get(model::Gurobi.Optimizer, attr::MathOptInterface.ObjectiveValue)    @ Gurobi C:\Users\nicho\.julia\packages\Gurobi\K2XSK\src\MOI_wrapper\MOI_wrapper.jl:3301
+  [3] get(b::MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, attr::MathOptInterface.ObjectiveValue)
+    @ MathOptInterface.Bridges C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\Bridges\bridge_optimizer.jl:1247
+  [4] _get_model_attribute(model::MathOptInterface.Utilities.CachingOptimizer{MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, MathOptInterface.Utilities.UniversalFallback{MathOptInterface.Utilities.Model{Float64}}}, attr::MathOptInterface.ObjectiveValue)
+    @ MathOptInterface.Utilities C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\Utilities\cachingoptimizer.jl:834
+  [5] get
+    @ C:\Users\nicho\.julia\packages\MathOptInterface\EMtxt\src\Utilities\cachingoptimizer.jl:897 [inlined]
+  [6] _moi_get_result(model::MathOptInterface.Utilities.CachingOptimizer{MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, MathOptInterface.Utilities.UniversalFallback{MathOptInterface.Utilities.Model{Float64}}}, args::MathOptInterface.ObjectiveValue)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\optimizer_interface.jl:1200
+  [7] get(model::Model, attr::MathOptInterface.ObjectiveValue)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\optimizer_interface.jl:1220
+  [8] objective_value(model::Model; result::Int64)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\objective.jl:122  [9] objective_value(model::Model)
+    @ JuMP C:\Users\nicho\.julia\packages\JuMP\EHXNP\src\objective.jl:118 [10] macro expansion
+    @ C:\Users\nicho\Documents\git\us-synth-pop\synthpop\assign_spatial.jl:134 [inlined]
+ [11] macro expansion
+    @ .\timing.jl:697 [inlined]
+ [12] top-level scope
+    @ C:\Users\nicho\Documents\git\us-synth-pop\synthpop\assign_spatial.jl:353
+ [13] include(mod::Module, _path::String)
+    @ Base .\Base.jl:306
+ [14] exec_options(opts::Base.JLOptions)
+    @ Base .\client.jl:317
+ [15] _start()
+    @ Base .\client.jl:550
+in expression starting at C:\Users\nicho\Documents\git\us-synth-pop\synthpop\assign_spatial.jl:8
+Synthetic population generation process for PUMA 2503302 completed.
+Total time: 51.14 mins

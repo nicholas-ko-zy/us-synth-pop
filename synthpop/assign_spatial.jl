@@ -1,5 +1,5 @@
-ENV["GUROBI_HOME"] = ARGS[9]
-ENV["GRB_LICENSE_FILE"] = ARGS[10]
+ENV["GUROBI_HOME"] = ARGS[9] # \"C:\\gurobi1302\\win64\"
+ENV["GRB_LICENSE_FILE"] = ARGS[10] # ./gurobi.lic
 
 using Gurobi, JuMP, CSV, DataFrames, Random, RLEVectors, StatsBase
 
@@ -7,14 +7,15 @@ Random.seed!(1033)
 
 @time begin
 
-const CURR_PUMA = ARGS[1]
-const SYN_HHS_FILE = ARGS[2]
-const SYN_HHS_SPATIAL_FILE = ARGS[3]
-const SYN_INDVS_FILE = ARGS[4]
-const SYN_INDVS_SPATIAL_FILE = ARGS[5]
-const PUMA_TRACT_EQUIV_FILE = ARGS[6]
-const MARG_DIR = ARGS[7]
-const GUROBI_LOGFILE = ARGS[8]
+# Nic: Added the example file paths inside
+const CURR_PUMA = ARGS[1] # 0603700
+const SYN_HHS_FILE = ARGS[2] # synthpop_output/0603700/syn_hhs_0603700.csv 
+const SYN_HHS_SPATIAL_FILE = ARGS[3] # synthpop_output/0603700/syn_hhs_spatial_0603700.csv
+const SYN_INDVS_FILE = ARGS[4] # synthpop_output/0603700/syn_indvs_0603700.csv
+const SYN_INDVS_SPATIAL_FILE = ARGS[5] # synthpop_output/0603700/syn_indvs_spatial_0603700.csv
+const PUMA_TRACT_EQUIV_FILE = ARGS[6] # synthpop_data/2010_Census_Tract_to_2010_PUMA.csv
+const MARG_DIR = ARGS[7] # synthpop_data/acs_marginals/0603700/
+const GUROBI_LOGFILE = ARGS[8] # synthpop_gurobi_log.txt
 const TRACT_MARG_FILES = ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv"]
 const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 const MARG_COLS = [11, 21, 4, 22]

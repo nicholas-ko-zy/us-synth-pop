@@ -9,10 +9,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-
 # Introduction
 
 My attempt to understand and reproduce the work done in the synthpop repo by j4sonli.
+
+TODO: Look into infeasible model message. 
+https://support.gurobi.com/hc/en-us/articles/360029969391-How-do-I-determine-why-my-model-is-infeasible
 
 # Set up Environment
 
@@ -32,7 +34,6 @@ My attempt to understand and reproduce the work done in the synthpop repo by j4s
 # Load Libraries
 ```{r}
 library(glue)
-library(config)
 library(dplyr)
 library(ggplot2)
 ```

@@ -9,6 +9,7 @@ suppressPackageStartupMessages({
   library(doSNOW)
   library(config)
 })
+# parse(file = "synthpop.R", keep.source = TRUE)
 
 options(dplyr.summarise.inform=F)
 
@@ -29,6 +30,14 @@ args <- commandArgs(trailingOnly=T, asValues=T)
 if(length(args) == 0 || (nchar(args$puma) != 7 || grepl("\\D", args$puma))){
   stop("You must supply a numeric 7-digit STATE+PUMA code via the -puma= option.", call. = F)
 }
+# # override to run from debugger
+# if (length(args) == 0) {
+#   message("No CLI arguments detected. Injecting mock parameters for VS Code Debugger...")
+#   args <- list(
+#     puma          = "0603700"       # Target Los Angeles PUMA (example)
+#   )
+# }
+
 pumas <- args$puma
 
 use_prev_marg <- F
@@ -132,13 +141,13 @@ assign_spatial_cmd <- paste0('"', julia_path,'" "', assign_spatial_file, '" ',
 
 ##### RUN PROCEDURE #####
 
-source(prepare_data_file)
+# source(prepare_data_file)
 
-source(train_bns_file)
+# source(train_bns_file)
 
-source(sample_hhs_file)
+# source(sample_hhs_file)
 
-source(sample_indvs_file)
+# source(sample_indvs_file)
 
 select_synpop_return <- system(select_synpop_cmd)
 
