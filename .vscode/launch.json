@@ -23,7 +23,7 @@
             "request": "launch",
             "debugMode": "file",
             "workingDirectory": "${workspaceFolder}",
-            "file": "${file}"
+            "file": "${file}",
         },
         {
             "type": "R-Debugger",

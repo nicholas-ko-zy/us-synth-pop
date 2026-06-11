@@ -53,3 +53,6 @@ rsconnect/
 # Ignore config file containing my API key
 synthpop/config.yml
 synthpop/gurobi.lic
+
+# Big csv
+synthpop/synthpop_output/2503302/indv_pool_2503302.csv
