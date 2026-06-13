@@ -1,7 +1,7 @@
 # Notes
 
 ## TODOs
-- [ ] Look into systematising the spatial errors in plot 3 (spatial error heatmap) using error metrics like Moran's I.
+- [ ] Look into systematising the spatial errors in plot 3 (spatial error heatmap) using error metrics like Moran's I. `plot_error_map`
 - [ ] Replicate the Gurobi model (Julia) using an open-source optimisation solver (Python)
     + [ ] Extract the input files to run `select_synpop.jl` and `assign_spatial.jl` independently
     + [ ] Find a working census tract that successfully runs the full pipeline
@@ -41,3 +41,116 @@ Would it help to gather all the files in the Julia file then replicate it in a P
 - Julia modules
     + select_synpop_file <- "select_synpop.jl"
     + assign_spatial_file <- "assign_spatial.jl"
+
+## `plot_maps.R`
+
+### `plot_error_map`
+- `puma_labels`: Stores the plot names for 15 of the puma codes + state of WY, and their population densities.
+
+- `sf_geos.puma` <- Calls the function `get_error_map_data`, which calls `get_rmses`. Get the map data based on the map_pumas, since I only added Suffolk County, MA, it only gave me the geometries of all in that county. Smallest spatial resolution is the census tract level.
+
+![](img/plot_error_map_sf_geos_puma.png)
+
+- The marg_ct (marginal counts) are taken from the `error_heatmap()` function,
+
+![](img/plot_error_map_heatmap_data.png)
+
+Each census tract level contains a `hh_pop` and a `indv_pop` column, with pop count inside that cell.
+
+- There is a step to remove empty geometries as a safety net.
+
+- `sf_geos.puma.sf`: Applies `st_sf` to the `sf_geos.puma` df. `st_sf` coerces the dataframe into a `sf` object, which is a standard object in R to store spatial vector data.
+
+![](img/plot_error_map_sf_geos_pumas_sf.png)
+
+- For more detailed analysis of how the bulk of the data gets processed, look into `get_error_map_data()`
+
+
+# `get_error_map_data()`
+
+Args
+- `variable`: "tenur_hhinc"
+- `spatial_level`: "tract"
+
+**Steps:** (Using census tract 2503302 as an example)
+- Process synopop files
+- Read these two files (replace the census code with something else, note that there is a synpop_suffix for distinguishing runs)
+    + `syn_hhs_file`: "synthpop_output/2503302/syn_hhs_spatial_2503302-20220127.csv"
+    + `syn_indvs_file`: "synthpop_output/2503302/syn_indvs_spatial_2503302-20220127.csv"
+    + Remark: `synpop_suffix`: "20220127"
+- Load and preprocess synpop and marginal dataframes
+    + `syn_hhs`
+    ![](img/get_error_map_data_syn_hhs.png)
+    + `syn_indvs`
+    ![](img/get_error_map_data_syn_indvs_head.png)
+
+    ![](img/get_error_map_data_syn_indvs_tail.png)
+
+- Process marginal files
+- `marg_dir`: "synthpop_data/acs_marginals/2503302/"
+- `margs`: List of 8 postprocessed marginal dataframes
+    1. `tract_tenur_hhinc.1`
+
+        ![](img/margs_tract_tenur_hhinc_1.png)
+
+    2. `blkgp_tenur_hhsiz.1`
+
+        ![](img/margs_blk_gp_tenur_hhsiz_1.png)
+
+    3. `tract_nwork.1`
+
+        ![](img/margs_tract_nwork_1.png)
+
+    4. `tract_hhtype.1`
+
+        ![](img/margs_tract_hhtype_1.png)
+
+    5. `tract_nwork_ncars.1`
+
+        ![](img/margs_tract_nwork_ncars_1.png)
+
+    6. `tract_i_sex_i_age.1`
+
+        ![](img/margs_tract_i_sex_i_age_1.png)
+
+    7. `blkgp_emply.1`
+
+        ![](img/margs_blkgp_emply_1.png)
+
+    8. `tract_i_inc.1`
+
+        ![](img/margs_tract_i_inc_1.png)
+    
+- Assign the marg name variable, `marg_name`: "tract_tenur_hhinc.l"
+- Assign `sym_variable`: "tenur_hhinc_prox"
+- Assign `heatmap_data`, which calls `error_heatmap`:
+    + `error_heatmap()` > `pop`
+
+        ![](img/error_heatmap_pop.png)
+    + `error_heatmap()` > `marg`
+
+        ![](img/error_heatmap_marg.png)
+
+    + `error_heatmap()` > `heatmap_data`
+
+        ![](img/error_heatmap_heatmap_data.png)
+
+    + ![](img/plot_error_map_heatmap_data.png)
+
+- Assign sf_geo data for plotting map data, data taken from `map_data/geos/[YOUR_PUMA_NUMBER]_[YOUR_SPATIAL_LEVEL]_geps.Rds` 
+- Remark: `.Rds` files are like Python `.pkl` files
+- `hh_marg_target`: "tract_hhtype.l"
+- `hh_pops`: Count of households from the marginal files
+
+    ![](img/get_error_map_data_hh_pops.png)
+
+- `indv_marg_target`: "tract_i_sex_i_age.l"
+- `indv_pops`: Count of individuals from the marginal files
+
+    ![](img/get_error_map_data_indv_pops.png)
+
+- `sf_geos`: Left join of sf_geos and hh_pops
+- `sf_geos.puma`: Row bind of puma `sf_geos.puma` and `sf_geos`.
+- Remark: ^ Strangely dataviewer shows only `geoid` and `NAME` cols for both `sf_geos` and `sf_geos.puma`.
+
+
