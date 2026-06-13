@@ -87,7 +87,7 @@ train_bns_file <- "train_bns.R"
 sample_hhs_file <- "sample_hhs.R"
 sample_indvs_file <- "sample_indvs.R"
 select_synpop_file <- "select_synpop.jl"
-assign_spatial_file <- "assign_spatial.jl"
+assign_spatial_file <- "copy_assign_spatial.jl"
 
 hh_pool_file <- paste0("synthpop_output/", pumas, "/hh_pool_", pumas, output_suffix, ".csv")
 indv_pool_file <- paste0("synthpop_output/", pumas, "/indv_pool_", pumas, output_suffix, ".csv")

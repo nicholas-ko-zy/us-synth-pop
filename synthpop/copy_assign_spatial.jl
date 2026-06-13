@@ -1,5 +1,5 @@
-ENV["GUROBI_HOME"] = ARGS[9] # \"C:\\gurobi1302\\win64\"
-ENV["GRB_LICENSE_FILE"] = ARGS[10] # ./gurobi.lic
+ENV["GUROBI_HOME"] = ARGS[9]
+ENV["GRB_LICENSE_FILE"] = ARGS[10]
 
 using Gurobi, JuMP, CSV, DataFrames, Random, RLEVectors, StatsBase
 
@@ -7,15 +7,15 @@ Random.seed!(1033)
 
 @time begin
 
-# Nic: Added the example file paths inside
-const CURR_PUMA = ARGS[1] # 0603700
-const SYN_HHS_FILE = ARGS[2] # synthpop_output/0603700/syn_hhs_0603700.csv 
-const SYN_HHS_SPATIAL_FILE = ARGS[3] # synthpop_output/0603700/syn_hhs_spatial_0603700.csv
-const SYN_INDVS_FILE = ARGS[4] # synthpop_output/0603700/syn_indvs_0603700.csv
-const SYN_INDVS_SPATIAL_FILE = ARGS[5] # synthpop_output/0603700/syn_indvs_spatial_0603700.csv
-const PUMA_TRACT_EQUIV_FILE = ARGS[6] # synthpop_data/2010_Census_Tract_to_2010_PUMA.csv
-const MARG_DIR = ARGS[7] # synthpop_data/acs_marginals/0603700/
-const GUROBI_LOGFILE = ARGS[8] # synthpop_gurobi_log.txt
+const CURR_PUMA = ARGS[1]
+const SYN_HHS_FILE = ARGS[2]
+const SYN_HHS_SPATIAL_FILE = ARGS[3]
+const SYN_INDVS_FILE = ARGS[4]
+const SYN_INDVS_SPATIAL_FILE = ARGS[5]
+const PUMA_TRACT_EQUIV_FILE = ARGS[6]
+const MARG_DIR = ARGS[7]
+const GUROBI_LOGFILE = ARGS[8]
+
 const TRACT_MARG_FILES = ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv"]
 const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 const MARG_COLS = [11, 21, 4, 22]
@@ -33,11 +33,11 @@ blkgp_marg_df = CSV.read(string(MARG_DIR, BLKGP_MARG_FILES[1]), DataFrame)
 blkgp_marg_df = filter(row -> lpad(string(row.geoid), 12, "0")[1:11] in TRACT_GEOIDS, blkgp_marg_df)
 const BLKGP_GEOIDS = lpad.(string.(blkgp_marg_df.geoid), 12, "0")
 
-# create tract-block group mapping
+# Create tract-block group mapping
 const tract_blkgp = [findall(tract -> tract == tract_geoid, SubString.(BLKGP_GEOIDS, 1, 11)) for tract_geoid in TRACT_GEOIDS]
 
 ## Process marginals
-indv_index = length(vcat(TRACT_MARG_FILES, BLKGP_MARG_FILES))+1
+indv_index = length(vcat(TRACT_MARG_FILES, BLKGP_MARG_FILES)) + 1
 const m = length(BLKGP_GEOIDS)
 marginals = []
 levelss = []
@@ -46,9 +46,7 @@ for marg_file in MARG_FILES
         marg_df = CSV.read("$MARG_DIR$marg_file", DataFrame)
         marg_df = filter(row -> lpad(string(row.geoid), (marg_file in vcat(TRACT_MARG_FILES, INDV_TRACT_MARG_FILES) ? 11 : 12), "0") in (marg_file in vcat(TRACT_MARG_FILES, INDV_TRACT_MARG_FILES) ? TRACT_GEOIDS : BLKGP_GEOIDS), marg_df)
         select!(marg_df, Not(:geoid))
-        # convert df into array of arrays
         marg = [col[:] for col in eachcol(Matrix(marg_df))]
-
         push!(marginals, marg)
         push!(levelss, names(marg_df))
 end
@@ -68,8 +66,8 @@ const n = length(pop)
 syn_indvs = CSV.read(SYN_INDVS_FILE, DataFrame)
 n_indvs = DataFrames.nrow(syn_indvs)
 syn_hhs_hhsizs = rle(syn_indvs.HHID)[2]
-# precompute individual variable level counts for each household; factors for
-#     household-level variables can all be 1 or whatever
+
+# Precompute individual variable level counts for each household
 indv_factors = Any[]
 for lvls in levelss[1:(indv_index-1)]
         push!(indv_factors, [[1 for _ in 1:n] for _ in 1:length(lvls)])
@@ -92,32 +90,38 @@ println("Marginals: ", MARG_FILES)
 model = Model(Gurobi.Optimizer)
 set_optimizer_attribute(model, "LogFile", GUROBI_LOGFILE)
 
+# Low-RAM Profile Tuning Controls
+set_optimizer_attribute(model, "Method", 1)         # Forces Dual Simplex (Saves massive memory over Barrier)
+set_optimizer_attribute(model, "Threads", 4)        # Avoids thread over-allocation context thrashing
+set_optimizer_attribute(model, "Presolve", 1)       # Enforces baseline matrix simplification routines
+set_optimizer_attribute(model, "PreSparsify", 1)    # Aggressively strips non-zero structural overhead
+
 ## Variables
-@variable(model, x[1:n*m]) # define variable x
+@variable(model, x[1:n*m]) 
 n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
-@variable(model, y[1:n_cells]) # define absolute value helper variable y
+@variable(model, y[1:n_cells]) 
 
 ## Objective
 @objective(model, Min, sum(y))
 
 ## Constraints
-@constraint(model, con_lb[i=1:n*m], 0 <= x[i]) # lower bound constraint
-@constraint(model, con_ub[i=1:n*m], x[i] <= 1) # upper bound constraint
+@constraint(model, con_lb[i=1:n*m], 0 <= x[i]) 
+@constraint(model, con_ub[i=1:n*m], x[i] <= 1) 
 @constraint(model, con_rowsum[i=1:n], sum(x[m*(i-1)+j] for j in 1:m) == 1)
 @constraint(model, con_colsum[j=1:m], sum(x[m*(i-1)+j] for i in 1:n) == blkgp_hh_pops[j])
 
-# add marginal cell constraints to enforce absolute value
+# Add marginal cell constraints to enforce absolute value
 marg_cell_i = 1
 for (marg_i, (marg_col, marg, lvls, indv_facs)) in enumerate(zip(vcat(MARG_COLS, INDV_MARG_COLS), marginals, levelss, indv_factors))
         cell_weight = length(lvls) * length(marg[1])
         for (lvl_i, (lvl, ifs)) in enumerate(zip(lvls, indv_facs))
-                if length(marg[1]) == m # block group marginal
+                if length(marg[1]) == m # Block group marginal
                         for j in 1:m
                                 @constraint(model, y[marg_cell_i] >= (sum(ifs[i] * x[m*(i-1)+j] for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*blkgp_hh_pops[j])
                                 @constraint(model, y[marg_cell_i] >= -(sum(ifs[i] * x[m*(i-1)+j] for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*blkgp_hh_pops[j])
                                 global marg_cell_i += 1
                         end
-                else # tract marginal
+                else # Tract marginal
                         for j in 1:length(tract_hh_pops)
                                 @constraint(model, y[marg_cell_i] >= (sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
                                 @constraint(model, y[marg_cell_i] >= -(sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
@@ -128,23 +132,47 @@ for (marg_i, (marg_col, marg, lvls, indv_facs)) in enumerate(zip(vcat(MARG_COLS,
 end
 
 ## Optimize
-status=optimize!(model)
+optimize!(model)
 
 println("****************************************************")
-println("final objective value =", objective_value(model))
+term_status = termination_status(model)
+println("Solver terminated with status: ", term_status)
 
-## assign households to optimized tracts
-sol_matrix = transpose(reshape(value.(x), (m,n)))
-blkgp_assignments = [BLKGP_GEOIDS[argmax(row)] for row in eachrow(sol_matrix)]
-blkgp_by_hhid = DataFrame(HHID = [row[1] for row in pop],
-                          geoid = blkgp_assignments)
+# Intercept execution safely if Gurobi resolves matrix successfully
+if term_status in [MOI.OPTIMAL, MOI.LOCALLY_SOLVED, MOI.FEASIBLE_POINT]
+    println("Final objective value = ", objective_value(model))
+    
+    ## Assign households to optimized tracts
+    sol_matrix = transpose(reshape(value.(x), (m, n)))
+    blkgp_assignments = [BLKGP_GEOIDS[argmax(row)] for row in eachrow(sol_matrix)]
+    blkgp_by_hhid = DataFrame(HHID = [row[1] for row in pop], geoid = blkgp_assignments)
 
-syn_hhs_spatial = leftjoin(syn_hhs, blkgp_by_hhid, on=:HHID)
-select!(syn_hhs_spatial, Not(:tenur_hhinc_prox))
-select!(syn_hhs_spatial, Not(:tenur_hhsiz_prox))
-CSV.write(SYN_HHS_SPATIAL_FILE, syn_hhs_spatial)
+    syn_hhs_spatial = leftjoin(syn_hhs, blkgp_by_hhid, on=:HHID)
+    if "tenur_hhinc_prox" in names(syn_hhs_spatial) select!(syn_hhs_spatial, Not(:tenur_hhinc_prox)) end
+    if "tenur_hhsiz_prox" in names(syn_hhs_spatial) select!(syn_hhs_spatial, Not(:tenur_hhsiz_prox)) end
+    CSV.write(SYN_HHS_SPATIAL_FILE, syn_hhs_spatial)
 
-syn_indvs_spatial = leftjoin(syn_indvs, blkgp_by_hhid, on=:HHID)
-CSV.write(SYN_INDVS_SPATIAL_FILE, syn_indvs_spatial)
+    syn_indvs_spatial = leftjoin(syn_indvs, blkgp_by_hhid, on=:HHID)
+    CSV.write(SYN_INDVS_SPATIAL_FILE, syn_indvs_spatial)
+    println("Spatial allocation files generated successfully.")
+
+else
+    if term_status == MOI.INFEASIBLE
+        println("Model is infeasible! Computing Irreducible Infeasible Set (IIS)...")
+        
+        # Calculate conflict arrays inside JuMP context
+        compute_conflict!(model)
+        
+        # Write structural conflict maps out to an .ilp text file
+        conflict_file = replace(GUROBI_LOGFILE, ".txt" => "_conflict.ilp")
+        write_to_file(model, conflict_file)
+        
+        println("IIS conflict matrix written successfully to: ", conflict_file)
+    else
+        println("Optimization execution suspended or timed out with unhandled status.")
+    end
+    
+    error("Optimization failed to resolve a viable matrix structure. Review logs.")
+end
 
 end

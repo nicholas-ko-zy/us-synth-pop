@@ -325,6 +325,18 @@ plot_maps$plot_tract_hhtype_diffs_map("Tract-level deviation of household type c
 
 
 
+# Moran's I
+```{r}
+# Reference: https://mgimond.github.io/simple_moransI_example/
+library(sf)
+library(spdep)
+library(tmap)
+```
 
 
+## Load Data
+```{r}
+# Load the shapefile
+s <- readRDS(url("https://github.com/mgimond/Data/raw/gh-pages/Exercises/nhme.rds"))
+```
 

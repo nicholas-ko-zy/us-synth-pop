@@ -376,8 +376,11 @@ get_error_map_data <- function(map_pumas, variable, spatial_level, synpop_suffix
 
 plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_level, synpop_suffix, 
                            gray_hh_pop_under, gray_indv_pop_under, NA_label, save_pdf=FALSE) {
+  # Assign labels to the 15 PUMAs (TODO: Make this flexible, not hardcoded)
   puma_labels <- c(paste0("PUMA ", substr(map_pumas[1:15], 3, 7), " (", round(densities[1:15]), " people/sq.mi.)"),
                    paste0("State of WY (", round(densities[16]), " people/sq.mi.)"))
+  # Call get_error_map_data which gives the rmse, hh_pop and indiv_pop
+  # for each unique geoid tagged to a census tract id
   sf_geos.puma <- get_error_map_data(map_pumas,
                                      variable=variable,
                                      spatial_level=spatial_level,
