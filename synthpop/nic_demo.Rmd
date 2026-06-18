@@ -328,15 +328,189 @@ plot_maps$plot_tract_hhtype_diffs_map("Tract-level deviation of household type c
 # Moran's I
 ```{r}
 # Reference: https://mgimond.github.io/simple_moransI_example/
-library(sf)
-library(spdep)
+library(sf) # Simple features: For manipulating vector spatial data in R
+library(spdep) # Provides the Moran's I functuions; spdep: Spatial dependence
 library(tmap)
 ```
 
 
 ## Load Data
 ```{r}
-# Load the shapefile
+# Load the shapefile, from .rds (R's ver of a Python pickle file)
 s <- readRDS(url("https://github.com/mgimond/Data/raw/gh-pages/Exercises/nhme.rds"))
 ```
 
+```{r}
+# Save `s` to shapefile format
+st_write(s, "morans_i/data/nhme.shp")
+```
+
+```{r}
+# Load `nhme` data from local file
+s_local <- st_read("morans_i/data/nhme.shp")
+s_local
+```
+
+```{r}
+names(s_local)
+```
+
+## EDA
+
+Moran's I is becomes less useful if there are outliers / if the data is heavily skewed. 
+So it's good practice to check for the distribution of the data at the start.
+
+- Histogram
+- Boxplot
+
+```{r}
+# Histogram
+hist(s$Income, main=NULL)
+
+# Boxplot
+boxplot(s$Income, horizontal=FALSE)
+```
+
+The boxplot shows one dot as an outlier. Gimond's tutorial
+accepts this and doesn't change the data moving forward.
+
+## Creating the map
+
+```{r}
+tm_shape(s) + tm_fill(col="Income", style="quantile", n=8, palette="Greens") +
+              tm_legend(outside=TRUE)
+```
+
+## Moran's I Analysis
+
+### Step 1
+- Define neighbouring polygons
+- 'Neigbouring' could mean
+  + Contiguous polygons (polygons adjacent to one another, no gaps)
+  + Polygons within a certain distance threshold
+  + Non-spatial definition, i.e. social, political, cultural neighbours.
+- In the next step, the Gimond adopts a 'contiguous' definition, accepting polygons that share at least one vertex
+- Polygon adjacency definitions (Resource: https://www.biomedware.com/files/documentation/spacestat/Data_Preparation/adj/Polygon_contiguities.htm)
+  + Queen case: If your polygon's vertex touches my (current position's) polygon, we're neighbours
+  + Rook case: Your polygon needs to share a border (not just vertex) with my (current position's) polygon, to be defined as neighbours.
+  ![Rook vs Queen Case of Polygon adjacency](img/rook_v_queen.png)
+
+```{r}
+nb <- poly2nb(s, queen=TRUE)
+# The polygon ids that are 'neighbours' of polygon id 1
+# In this case, each polygon is one county
+nb[1]
+```
+
+### Step 2
+- Assign weights to the neighbours
+- Gimond assigns equal weight to each neighbouring polygon's mean income values
+```{r}
+# lw stands for list weights
+# lw object has the following attributes
+# - style
+# - neighbours
+# - weights
+lw <- nb2listw(nb, style="W", zero.policy=TRUE)
+lw$style
+lw$neighbours[1] # list of neighbours for index 1
+lw$weights[1] # list of weights for index 1
+```
+
+- On neighbour weights: If a polygon has 5 neighbours, each neighbour will have a weight of 1/5 or 0.2.
+- The weight will be used to compute the mean neighbour values as in
+
+```
+0.2(neighbor1) + 0.2(neighbor2) + 0.2(neighbor3) + 0.2(neighbor4) + 0.2(neighbor5)
+```
+
+### Step 3 (Optional)
+- Computed the (weighted) neighbour mean income values
+- Note from Gimond: 
+  > NOTE: This step does not need to be performed when running the moran or moran.test functions outlined in Steps 4 and 5. This step is only needed if you wish to generate a scatter plot between the income values and their lagged counterpart.
+
+```{r}
+# Compute the average neighbour income value for each polygon
+# Spatially lagged values: Weighted average or sum of a 
+# variable's value across neighbouring locations
+# ^ account for geographic dependencies
+inc.lag <- lag.listw(lw, s$Income)
+inc.lag
+```
+
+- Plot least squares regression
+- The plot compares a row's (polygon's) mean income with the spatially average income of its neighbours as defined in the weights matrix
+```{r}
+plot(inc.lag ~ s$Income, pch=16, asp=1)
+M1 <- lm(inc.lag ~ s$Income)
+abline(M1, col="blue")
+```
+
+- The slope of the line in the ordinary-least-squares model is Moran's I coefficient
+```{r}
+coef(M1)[2]
+```
+
+### Step 4
+- Computing the Moran's I statistic
+```{r}
+I <- moran(s$Income, lw, length(nb), Szero(lw))[1]
+I
+```
+- Gibbon: "Recall that the Moran’s I value is the slope of the line that best fits the relationship between neighboring income values and each polygon’s income in the dataset."
+
+### Step 5
+- Performing a hypothesis test
+- $H_0$ : “the income values are randomly distributed across counties following a completely random process”
+- $H_1$ : "There is a spatial element to the distribution of mean income in the counties"
+- Two methods to perform hypothesis test
+  + Analytical method
+  + Monte Carlo method
+
+1. Analytical method
+- Use the `moran.test` function; one-sided hypothesis test.
+- Recall that the motivations for one vs. two sided test
+  + One-sided: An increase or decrease (single directional change)
+  + Two-sided: A change in either direction (bidirectional change)
+```{r}
+moran.test(s$Income,lw, alternative="greater")
+```
+- ^ Output log states that the p-value is close to 0.
+- Documentation for `moran.test`
+```R
+moran.test(x, listw, randomisation=TRUE, zero.policy=attr(listw, "zero.policy"),
+           alternative="greater", rank = FALSE, na.action=na.fail, spChk=NULL,
+           adjust.n=TRUE, drop.EI2=FALSE)
+```
+- The `alternative` parameter can take the following arguments
+  + `greater`, $\mu > x$
+  + `less`, $\mu < x$
+  + `two.sided` $\mu \neq x$
+
+```{r}
+moran.test(s$Income,lw, alternative="two.sided")
+```
+
+- Recall that p-value is the probablity of observing a more extreme test statistic (favouring $H_1$).
+- See YSC3249 Notes, Lecture 9
+- TODO: Look into normality assumption, and use of the `randomisation` parameter in the package
+
+
+2. Monte Carlo Method
+- Analytical approach to Moran's I may be sensitive to irregularly distributed polygons.
+- Use the `moran.mc(n)` function to run an MC simulation, where `n` is the number of simulations.
+```{r}
+MC<- moran.mc(s$Income, lw, nsim=999, alternative="greater")
+
+# View results (including p-value)
+MC
+```
+
+```{r}
+data(oldcol)
+coords.OLD <- cbind(COL.OLD$X, COL.OLD$Y)
+nb2listw(COL.nb, style="W")
+COL.nb
+lw
+lw <- nb2listw(nb, style="W", zero.policy=TRUE) # replace COL.nb with lw?
+```
