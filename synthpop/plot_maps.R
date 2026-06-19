@@ -375,7 +375,7 @@ get_error_map_data <- function(map_pumas, variable, spatial_level, synpop_suffix
 }
 
 plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_level, synpop_suffix, 
-                           gray_hh_pop_under, gray_indv_pop_under, NA_label, save_pdf=FALSE) {
+                           gray_hh_pop_under, gray_indv_pop_under, NA_label, save_pdf=FALSE, save_s=FALSE) {
   # Assign labels to the 15 PUMAs (TODO: Make this flexible, not hardcoded)
   puma_labels <- c(paste0("PUMA ", substr(map_pumas[1:15], 3, 7), " (", round(densities[1:15]), " people/sq.mi.)"),
                    paste0("State of WY (", round(densities[16]), " people/sq.mi.)"))
@@ -389,7 +389,9 @@ plot_error_map <- function(main_title, map_pumas, densities, variable, spatial_l
   sf_geos.puma.sf <- st_sf(sf_geos.puma) %>%
     filter(!st_is_empty(geometry)) %>%
     mutate(rmse = ifelse(indv_pop >= gray_indv_pop_under & hh_pop >= gray_hh_pop_under, rmse, NA))
-  
+  if (save_s) {
+    saveRDS(sf_geos.puma.sf, file = "rds_data/sf_geos.puma.sf.rds")
+  }
   # combine WY PUMAs together and factor PUMA column to ensure plot ordering
   sf_geos.puma.sf$puma <- factor(recode(sf_geos.puma.sf$puma,
                                         "5600100"="State of WY",

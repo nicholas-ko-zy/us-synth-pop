@@ -276,7 +276,7 @@ plot_maps$plot_error_map("Spatial errors in tenure by houshold income distributi
                gray_hh_pop_under=30,
                gray_indv_pop_under=50,
                NA_label="too few households",
-               save_pdf=TRUE)
+               save_pdf=FALSE)
 #synthpop/synthpop_output/2503302/syn_hhs_spatial_2503302.csv
 ```
 ```{r}
@@ -290,7 +290,6 @@ box::reload(plot_maps)
 # map_pumas_subset <- c(2503302)
 plot_maps$plot_tract_hhtype_diffs_map("Tract-level deviation of household type composition from PUMA mean", map_pumas, densities, save_pdf=TRUE)
 ```
-
 
 
 # tmap fixes
@@ -399,7 +398,7 @@ tm_shape(s) + tm_fill(col="Income", style="quantile", n=8, palette="Greens") +
 nb <- poly2nb(s, queen=TRUE)
 # The polygon ids that are 'neighbours' of polygon id 1
 # In this case, each polygon is one county
-nb[1]
+typeof(nb)
 ```
 
 ### Step 2
@@ -455,9 +454,16 @@ coef(M1)[2]
 - Computing the Moran's I statistic
 ```{r}
 I <- moran(s$Income, lw, length(nb), Szero(lw))[1]
-I
 ```
 - Gibbon: "Recall that the Moran’s I value is the slope of the line that best fits the relationship between neighboring income values and each polygon’s income in the dataset."
+
+```{r}
+# print(s$Income)
+# print(length(lw))
+# print(length(nb))
+# print(length(Szero(lw)))
+# print(I)
+```
 
 ### Step 5
 - Performing a hypothesis test
@@ -488,13 +494,25 @@ moran.test(x, listw, randomisation=TRUE, zero.policy=attr(listw, "zero.policy"),
   + `two.sided` $\mu \neq x$
 
 ```{r}
-moran.test(s$Income,lw, alternative="two.sided")
+# First arg: Attribute you want to test for
+# Second arg: List of weights
+# Alternative: greater, lesser, two.sided hypothesis test
+moran.test(s$Income, lw, alternative="two.sided")
 ```
 
 - Recall that p-value is the probablity of observing a more extreme test statistic (favouring $H_1$).
 - See YSC3249 Notes, Lecture 9
 - TODO: Look into normality assumption, and use of the `randomisation` parameter in the package
 
+```{r}
+# spdep, hyp test doc: https://r-spatial.github.io/spdep/reference/moran.test.html
+# data(oldcol)
+# coords.OLD <- cbind(COL.OLD$X, COL.OLD$Y)
+# nb2listw(COL.nb, style="W")
+# COL.nb
+# lw
+# lw <- nb2listw(nb, style="W", zero.policy=TRUE) # replace COL.nb with lw?
+```
 
 2. Monte Carlo Method
 - Analytical approach to Moran's I may be sensitive to irregularly distributed polygons.
@@ -507,10 +525,225 @@ MC
 ```
 
 ```{r}
-data(oldcol)
-coords.OLD <- cbind(COL.OLD$X, COL.OLD$Y)
-nb2listw(COL.nb, style="W")
-COL.nb
-lw
-lw <- nb2listw(nb, style="W", zero.policy=TRUE) # replace COL.nb with lw?
+# Plot the Null distribution (note that this is a density plot instead of a histogram)
+# ^ to help visualise the distribution of Moran's I values had
+# incomes been randomly distributed.
+# The black line shows our observed statistic falls way right of the
+# distribution => income values are clustered
+plot(MC)
+```
+
+Gimond suggests another way to visualise (on a map) how a typical your patterns are
+is to compare randomly distributed patterns side-by-side from your observed spatial distribution
+of your demographic attribute (or whatever attribute you're interested in)
+
+```{r}
+set.seed(131)
+s$rand1 <- sample(s$Income, length(s$Income), replace = FALSE)
+s$rand2 <- sample(s$Income, length(s$Income), replace = FALSE)
+s$rand3 <- sample(s$Income, length(s$Income), replace = FALSE)
+
+tm_shape(s) + tm_fill(col=c("Income", "rand1", "rand2", "rand3"),
+                      style="quantile", n=8, palette="Greens", legend.show = FALSE) +
+              tm_facets( nrow=1)
+```
+
+Left-most: Observed plot
+Right-three-plots: Randomly distributed plots
+
+## Moran's I, Example 2
+
+- Full work flow given below
+- Uses Monte Carlo approach to determine if homicide rates are spatially correlated
+```{r}
+set.seed(2354)
+# Load the shapefile
+s_florida <- readRDS(url("https://github.com/mgimond/Data/raw/gh-pages/Exercises/fl_hr80.rds"))
+
+# Save file
+# st_write(s_florida, "morans_i/data/florida.shp")
+
+# Define the neighbors (use queen case)
+nb <- poly2nb(s_florida, queen=TRUE)
+
+# Compute the neighboring average homicide rates
+lw <- nb2listw(nb, style="W", zero.policy=TRUE)
+
+# Run the MC simulation version of the Moran's_florida I test
+M1 <- moran.mc(s_florida$HR80, lw, nsim=9999, alternative="greater")
+
+# Plot the results
+plot(M1)
+
+# Display the resulting statistics
+M1
+```
+
+- Plotting the map
+```{r}
+names(s_florida)
+```
+
+```{r}
+tm_shape(s_florida) + 
+  tm_fill(col="HR80", style="quantile", n=8, palette="Reds") +
+  tm_legend(outside=TRUE)
+```
+
+## Moran's I (`synpop`)
+
+```{r}
+library(sf)
+library(spdep) 
+library(tmap)
+```
+
+```{r}
+sf_geos.puma.sf <- readRDS("rds_data/sf_geos.puma.sf.rds")
+head(sf_geos.puma.sf)
+```
+
+### EDA
+- TODO...Do I need to do anything to resolve the outlier??
+
+```{r}
+# Histogram
+MAIN <- "RMSE (Census v. SynPop); Suffolk County, MA"
+HIST_X_LAB <- "RMSE"
+hist(sf_geos.puma.sf$rmse, main=MAIN, xlab=HIST_X_LAB)
+
+# Boxplot
+BOXPLOT_Y_LAB <- "RMSE"
+BOXPLOT_X_LAB <- "Suffolk County, MA"
+boxplot(sf_geos.puma.sf$rmse, horizontal=FALSE, main=MAIN, ylab=BOXPLOT_Y_LAB, xlab=BOXPLOT_X_LAB)
+```
+
+
+### Define Neighbours
+
+- All variables will have the `_sp` suffix, which stands for `synthpop`
+
+```{r}
+library(tidyr)
+sf_geos.puma.sf_noNAs <- sf_geos.puma.sf %>%
+                          drop_na()
+print(length(sf_geos.puma.sf_noNAs$rmse))
+print(length(sf_geos.puma.sf$rmse))
+```
+
+
+```{r}
+# Create neighbour list
+nb_sp <- poly2nb(sf_geos.puma.sf, queen=TRUE)
+nb_sp #48 census plots
+
+nb_sp_noNAs <- poly2nb(sf_geos.puma.sf_noNAs, queen=TRUE)
+```
+
+```{r}
+# Create lw (list weights) object
+# TODO: Read documentation to understand what each param controls
+# https://r-spatial.github.io/spdep/reference/nb2listw.html
+lw_sp <- nb2listw(nb_sp, style="W", zero.policy=TRUE)
+lw_sp
+
+lw_sp_noNAs <- nb2listw(nb_sp_noNAs, style="W", zero.policy=TRUE)
+```
+
+### Compute Moran's I statistic
+
+```{r}
+I_sp <- moran(sf_geos.puma.sf$rmse, lw_sp, length(nb_sp), Szero(lw_sp))
+print(sf_geos.puma.sf$rmse)
+I_sp
+
+I_sp_noNAs <- moran(sf_geos.puma.sf_noNAs$rmse, lw_sp_noNAs, length(nb_sp_noNAs), Szero(lw_sp_noNAs))
+I_sp_noNAs$I #0.19, so there's not much clustering of the rmses?
+# K: sample kurtosis of x, a measure of how heavy tailed.
+# For reference the normal distribution has a kurtosis of 3
+# https://r-spatial.github.io/spdep/reference/moran.html
+I_sp_noNAs$K
+```
+
+
+### Plot Map
+
+```{r}
+names(sf_geos.puma.sf_noNAs)
+```
+
+```{r}
+sf_geos.puma.sf_noNAs$rand1 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+sf_geos.puma.sf_noNAs$rand2 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+sf_geos.puma.sf_noNAs$rand3 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+
+sf_geos.puma.sf_noNAs$rand3[0:10]
+sf_geos.puma.sf_noNAs$rmse[0:10]
+
+# tm_shape(sf_geos.puma.sf_noNAs) + 
+#   tm_fill(col=c("rmse", "rand1", "rand2", "rand3"),
+#           style="quantile", n=8, palette="Greens", legend.show=TRUE) +
+#   tm_facets(nrow=1)
+library(tmap)
+
+# 1. Set tmap to plot mode
+tmap_mode("plot")
+
+map_plot <- tm_shape(sf_geos.puma.sf_noNAs) + 
+  # Use a named vector for 'col' to instantly create clean subtitles for each map
+  tm_fill(col = c("RMSE Analysis" = "rmse", 
+                  "Random Simulation 1" = "rand1", 
+                  "Random Simulation 2" = "rand2", 
+                  "Random Simulation 3" = "rand3"),
+          style = "quantile", 
+          n = 8, 
+          palette = "Greens", 
+          legend.show = TRUE) +
+  # Keep them side-by-side on one row
+  tm_facets(nrow = 1) +
+  # Fix the legend position and scale to prevent overlaps
+  tm_layout(
+    legend.outside = TRUE,          # Forces the legend completely off the map panels
+    legend.outside.position = "right", # Places it cleanly on the right side
+    panel.show = TRUE,              # Ensures panel borders/headers are distinct
+    panel.labels = c("Synpop v. Marginals (RMSE)", "Control A", "Control B", "Control C"), # Alternative way to force clean subtitles
+    inner.margins = c(0.05, 0.05, 0.05, 0.05), # Adds a buffer inside the panels so shapes don't hit the edges
+    asp = NA
+  )
+
+tmap_save(map_plot, 
+          filename = "plots/rmse_v_gaussian.pdf", 
+          width = 16,   # Width in inches (gives the 4 maps room to spread out)
+          height = 5)   # Height in inches
+```
+
+```{r}
+map_plot <- tm_shape(sf_geos.puma.sf_noNAs) + 
+  # 1. Keep 'col' as a clean vector. This keeps your legend data consistent.
+  tm_fill(col = c("rmse", "rand1", "rand2", "rand3"),
+          style = "quantile", 
+          n = 8, 
+          palette = "Greens", 
+          legend.show = TRUE) +
+  # 2. Force tmap to combine them into one single legend block on the right
+  tm_facets(nrow = 1, free.scales = FALSE) +
+  # 3. Clean up the structural layout
+  tm_layout(
+    # Set the overarching title header for the single, unified legend block
+    legend.title.size = 1.2,
+    title="RMSE",
+    # Legend breakout parameters
+    legend.outside = TRUE,          
+    legend.outside.position = "right", 
+    
+    # Facet panel titles (these will sit elegantly right above each of your 4 maps)
+    panel.show = TRUE,              
+    panel.labels = c("Synpop v. Marginals (RMSE)", "Control A", "Control B", "Control C"), 
+    
+    inner.margins = c(0.02, 0.02, 0.02, 0.02), 
+    asp = 0 # Removess map compression/white bars in horizontal layout
+  )
+map_plot
+# Save high-res vector file
+tmap_save(map_plot, filename = "plots/map_plot_2.pdf", width = 16, height = 5)
 ```

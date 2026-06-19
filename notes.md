@@ -154,3 +154,216 @@ Args
 - Remark: ^ Strangely dataviewer shows only `geoid` and `NAME` cols for both `sf_geos` and `sf_geos.puma`.
 
 
+# Moran's I
+
+Constants/Parameters Defined
+- **Spatial resolution of polygons** (i.e. Singapore's case: Region > Planning Area > Subzone)
+- **Neighbour definition** (how polygons define their neighbours? Contiguous, Distance, Non-spatial? Rook, Queen?)
+- **Spatial weight matrix, $w$**
+    + (all weights of each polygon's list of neighbours must sum to 1, can reweigh if you have special insight i.e. pop density?) <- Apparently I is quite sensitive to the weights.
+- 
+
+**Reference**: https://mgimond.github.io/simple_moransI_example/
+
+**What you'll need**
+- R Libraries 
+    + `sf`: To manipulate spatial data
+    + `spdep`: To calculate Moran's I with hypothesis testing
+    + `tmap`: For plotting map visualisations
+- sf object (Like a geodataframe) with
+    + Spatial attributes
+    + Regular attributes (i.e. Age, Income, Housing Age etc)
+
+**Pre-Moran's I Analysis Check**
+- Take note of outliers, which might mess with your hypothesis testing
+- Paraphrased from Gimond:
+    > Moran's I is becomes less useful if there are outliers / if the data is heavily skewed. So it's good practice to check for the distribution of the data at the start.
+- Methods to check for outliers (visual inspection)
+    + Histogram
+    + Boxplot
+
+```R
+# Histogram
+hist(s$Income, main=NULL)
+# Boxplot
+boxplot(s$Income, horizontal=FALSE)
+```
+
+**Moran's I Analysis** 
+1. Define neighbouring polygons
+    + Neighbour definitions
+        + Contiguous polygons (polygons adjacent to one another, no gaps)
+        + Polygons within a certain distance threshold
+            - Queen Case: If your polygon's vertex touches my (current position's) polygon, we're neighbours
+            - Rook Case: Your polygon needs to share a border (not just vertex) with my (current position's) polygon, to be defined as neighbours.
+        + Non-spatial definition, i.e. social, political, cultural neighbours.
+
+```R
+# `poly2nb` comes from the spdep package
+nb <- poly2nb(s, queen=TRUE)
+# The polygon ids that are 'neighbours' of polygon id 1
+# In this case, each polygon is one county
+nb[1]
+```
+- ^ Creates a list, each element in the list is one row of your spatial dataframe (a polygon).
+- Each element contains the list of neighbours
+
+2. Assign weights to the each polygon's neighbours.
+
+Size of weight matrix, $w$, is a square matrix, but it will have zeroes in in $w_{ij}$ where polygon $i$ is not neighbours with polygon $j$.
+
+From the [Moran's I Wikipedia page](https://en.wikipedia.org/wiki/Moran%27s_I):
+> The idea is to construct a matrix that accurately reflects your assumptions about the particular spatial phenomenon in question. A common approach is to give a weight of 1 if two zones are neighbors, and 0 otherwise, though the definition of 'neighbors' can vary. Another common approach might be to give a weight of 1 to k nearest neighbors, 0 otherwise. An alternative is to use a distance decay function for assigning weights. Sometimes the length of a shared edge is used for assigning different weights to neighbors. The selection of spatial weights matrix should be guided by theory about the phenomenon in question. The value of is quite sensitive to the weights and can influence the conclusions you make about a phenomenon, especially when using distances.
+
+You can use equal weights as in:
+
+```
+0.2(neighbor1) + 0.2(neighbor2) + 0.2(neighbor3) + 0.2(neighbor4) + 0.2(neighbor5)
+```
+
+```R
+# Using the nb2listw from the spdep
+# `lw` has type `listw` object
+lw <- nb2listw(nb, style="W", zero.policy=TRUE)
+```
+
+- Documentation for `nb2listw`
+```R
+nb2listw(neighbours, glist=NULL, style="W", zero.policy=NULL)
+listw2U(listw)
+```
+- **neighbours**
+    
+    an object of class nb
+
+- **glist**
+
+    list of general weights corresponding to neighbours
+
+- **style**
+
+    style can take values “W”, “B”, “C”, “U”, “minmax” and “S”
+
+    + "W": Row standardised, sums over all neighbours to 1
+    + "B": Basic binary coding
+    + "C" Globally standardised (all pairs sum to n)
+    + "U": "C" divided by number of neighbours 
+    + "S": Variance-stabalizing coding scheme proposed by Tiefelsdorf et al. 1999, p. 167-168 
+
+- **zero.policy**
+
+    default NULL, use global option value; if FALSE stop with error for any empty neighbour sets, if TRUE permit the weights list to be formed with zero-length weights vectors
+
+- **listw**
+    
+    a listw object created for example by nb2listw
+
+
+
+3. (Optional) Compuate the weighted target attribute you are testing for
+- Computed the (weighted) neighbour mean income values
+- Note from Gimond: 
+  > NOTE: This step does not need to be performed when running the moran or moran.test functions outlined in Steps 4 and 5. This step is only needed if you wish to generate a scatter plot between the income values and their lagged counterpart.
+
+4. Compute Moran's I statistics
+$$I = \frac{n}{\sum_{i=1}^{n}\sum_{j=1}^{n}w_{ij}}
+\frac{\sum_{i=1}^{n}\sum_{j=1}^{n}w_{ij}(x_i-\bar{x})(x_j-\bar{x})}{\sum_{i=1}^{n}(x_i - \bar{x})^2}$$
+
+```R
+# Using the `moran()` function from the `spdep` package
+I <- moran(s$Income, lw, length(nb), Szero(lw))[1]
+
+# x - s$Income
+# lw - listw
+# n - length(nb)
+# S0 - Szero(lw) <- If there are 67 regions and if all sum to 1 then S0 = 67
+```
+
+```R
+# From the documentation
+moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
+```
+
+- **x**
+
+    a numeric vector the same length as the neighbours list in listw
+
+- **listw**
+
+    a listw object created for example by nb2listw
+
+- **n**
+
+    number of zones
+
+- **S0**
+
+    global sum of weights
+
+- **zero.policy**
+
+    default attr(listw, "zero.policy") as set when listw was created, if attribute not set, use global option value; if TRUE assign zero to the lagged value of zones without neighbours, if FALSE assign NA
+
+- **NAOK**
+
+    if 'TRUE' then any 'NA' or 'NaN' or 'Inf' values in x are passed on to the foreign function. If 'FALSE', the presence of 'NA' or 'NaN' or 'Inf' values is regarded as an error.
+
+5. Performing a hypothesis test
+
+    i.e. 
+
+    - $H_0$ : “the income values are randomly distributed across counties following a completely random process”
+    - $H_1$ : "There is a spatial element to the distribution of mean income in the counties"
+    - Two methods to perform hypothesis test
+        + Analytical method
+        + Monte Carlo method
+
+    5.1 Analytical method
+    - Use the `moran.test` function; one-sided hypothesis test.
+    - Recall that the motivations for one vs. two sided test
+    + One-sided: An increase or decrease (single directional change)
+    + Two-sided: A change in either direction (bidirectional change)
+    ```R
+    moran.test(s$Income,lw, alternative="greater")
+    ```
+    - ^ Output log states that the p-value is close to 0.
+    - Documentation for `moran.test`
+    ```R
+    moran.test(x, listw, randomisation=TRUE, zero.policy=attr(listw, "zero.policy"),
+            alternative="greater", rank = FALSE, na.action=na.fail, spChk=NULL,
+            adjust.n=TRUE, drop.EI2=FALSE)
+    ```
+    - The `alternative` parameter can take the following arguments
+    + `greater`, $\mu > x$
+    + `less`, $\mu < x$
+    + `two.sided` $\mu \neq x$
+
+    ```R
+    # First arg: Attribute you want to test for
+    # Second arg: List of weights
+    # Alternative: greater, lesser, two.sided hypothesis test
+    moran.test(s$Income, lw, alternative="two.sided")
+    ```
+
+    5.2 Monte Carlo Method
+    - Analytical approach to Moran's I may be sensitive to irregularly distributed polygons.
+    - Use the `moran.mc(n)` function to run an MC simulation, where `n` is the number of simulations.
+    ```R
+    MC<- moran.mc(s$Income, lw, nsim=999, alternative="greater")
+
+    # View results (including p-value)
+    MC
+    ```
+
+    ```R
+    # Plot the Null distribution (note that this is a density plot instead of a histogram)
+    # ^ to help visualise the distribution of Moran's I values had
+    # incomes been randomly distributed.
+    # The black line shows our observed statistic falls way right of the
+    # distribution => income values are clustered
+    plot(MC)
+    ```
+
+    Gimond suggests another way to visualise (on a map) how a typical your patterns are
+    is to compare randomly distributed patterns side-by-side from your observed spatial distribution
+    of your demographic attribute (or whatever attribute you're interested in)
