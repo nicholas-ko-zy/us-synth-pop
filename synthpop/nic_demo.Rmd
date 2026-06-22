@@ -653,9 +653,9 @@ lw_sp_noNAs <- nb2listw(nb_sp_noNAs, style="W", zero.policy=TRUE)
 ### Compute Moran's I statistic
 
 ```{r}
-I_sp <- moran(sf_geos.puma.sf$rmse, lw_sp, length(nb_sp), Szero(lw_sp))
-print(sf_geos.puma.sf$rmse)
-I_sp
+# I_sp <- moran(sf_geos.puma.sf$rmse, lw_sp, length(nb_sp), Szero(lw_sp))
+# print(sf_geos.puma.sf$rmse)
+# I_sp
 
 I_sp_noNAs <- moran(sf_geos.puma.sf_noNAs$rmse, lw_sp_noNAs, length(nb_sp_noNAs), Szero(lw_sp_noNAs))
 I_sp_noNAs$I #0.19, so there's not much clustering of the rmses?
@@ -672,14 +672,19 @@ I_sp_noNAs$K
 names(sf_geos.puma.sf_noNAs)
 ```
 
+
 ```{r}
-sf_geos.puma.sf_noNAs$rand1 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
-sf_geos.puma.sf_noNAs$rand2 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
-sf_geos.puma.sf_noNAs$rand3 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+# Run again if you want to recreate random values
+# set.seed(42)
+# sf_geos.puma.sf_noNAs$rand1 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+# sf_geos.puma.sf_noNAs$rand2 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+# sf_geos.puma.sf_noNAs$rand3 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
 
-sf_geos.puma.sf_noNAs$rand3[0:10]
-sf_geos.puma.sf_noNAs$rmse[0:10]
+# sf_geos.puma.sf_noNAs$rand3[0:10]
+# sf_geos.puma.sf_noNAs$rmse[0:10]
+```
 
+```{r}
 # tm_shape(sf_geos.puma.sf_noNAs) + 
 #   tm_fill(col=c("rmse", "rand1", "rand2", "rand3"),
 #           style="quantile", n=8, palette="Greens", legend.show=TRUE) +
