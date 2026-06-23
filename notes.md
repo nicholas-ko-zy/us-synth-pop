@@ -367,3 +367,11 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
     Gimond suggests another way to visualise (on a map) how a typical your patterns are
     is to compare randomly distributed patterns side-by-side from your observed spatial distribution
     of your demographic attribute (or whatever attribute you're interested in)
+
+# LaTeX For Google Slides
+
+$N = \{n | n = [i, j, \ldots, k]\} \text{    } \text{for } n \in N$ 
+
+$i, j, \ldots k \in \text{neighbourhood}(n)$
+
+$$\sum_{i=1}^{n}\frac{\sum_{j=1}^{n}w_{ij}(x_j - \bar{x})}{(x_i - \bar{x})} = \frac{\sum_{j=1}^{n}w_{1j}(x_j - \bar{x})}{(x_1 - \bar{x})} + \frac{\sum_{j=1}^{n}w_{2j}(x_j - \bar{x})}{(x_2 - \bar{x})} + \ldots + \frac{\sum_{j=1}^{n}w_{nj}(x_j - \bar{x})}{(x_n - \bar{x})}$$

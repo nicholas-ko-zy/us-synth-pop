@@ -666,6 +666,68 @@ I_sp_noNAs$K
 ```
 
 
+```{r}
+sf_geos.puma.sf_noNAs$rmse
+# Hypothesis test
+moran.test(sf_geos.puma.sf_noNAs$rmse, lw_sp_noNAs, alternative="two.sided")
+
+# Calculate Moran's I for gaussian-sampled RMSE
+set.seed(42)
+sf_geos.puma.sf_noNAs$rand1 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+sf_geos.puma.sf_noNAs$rand2 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+sf_geos.puma.sf_noNAs$rand3 <- sample(sf_geos.puma.sf_noNAs$rmse, length(sf_geos.puma.sf_noNAs$rmse), replace = FALSE)
+
+sf_geos.puma.sf_noNAs$rand3[0:10]
+sf_geos.puma.sf_noNAs$rmse[0:10]
+head(sf_geos.puma.sf_noNAs)
+```
+
+```{r}
+sf_geos.puma.sf_noNAs[["rmse"]]
+```
+
+```{r}
+for (i in 1:10) {
+  print(i)
+}
+```
+
+```{r}
+length(nb_sp_noNAs)
+length(lw_sp_noNAs)
+```
+
+```{r}
+# Running monte carlo simulations, shuffling the rmse values across the different regions
+shuffle_rmse <- function(df, target_col, n_perm, lw, nb) {
+  target_array <- df[[target_col]]
+  Is <- c()
+  for (i in 1:n_perm)  {
+    sampled_array <- sample(target_array, length(target_array), replace = FALSE)
+    # print(sampled_array)
+    sampled_I <- moran(sampled_array, lw, length(nb), Szero(lw))$I
+    # Push new values into the stack
+    Is <- c(Is, sampled_I)
+  }
+  return (Is)
+}
+```
+
+```{r}
+set.seed(42)
+gaussian_Is_99 <- shuffle_rmse(sf_geos.puma.sf_noNAs, "rmse", 99, lw_sp_noNAs, nb_sp_noNAs)
+gaussian_Is_99_df <- data.frame(I=gaussian_Is_99)
+gaussian_Is_99_df
+
+
+# hist(gaussian_Is_99, main="Gaussian Distributed Moran's I of RMSE Values", xlab="Moran's I", vline=I_sp_noNAs$I)
+ggplot(gaussian_Is_99_df, aes(x = I)) +
+  geom_histogram() +
+  # geom_vline(data=xintercept=I_sp_noNAs$I, colour="red")
+  #data = vlines,aes(xintercept = xint,colour = grp <- follow this format for plotting
+
+```
+
 ### Plot Map
 
 ```{r}
