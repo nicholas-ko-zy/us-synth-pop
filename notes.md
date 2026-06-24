@@ -1,7 +1,7 @@
 # Notes
 
 ## TODOs
-- [ ] Look into systematising the spatial errors in plot 3 (spatial error heatmap) using error metrics like Moran's I. `plot_error_map`
+- [X] Look into systematising the spatial errors in plot 3 (spatial error heatmap) using error metrics like Moran's I. `plot_error_map`
 - [ ] Replicate the Gurobi model (Julia) using an open-source optimisation solver (Python)
     + [ ] Extract the input files to run `select_synpop.jl` and `assign_spatial.jl` independently
     + [ ] Find a working census tract that successfully runs the full pipeline
@@ -259,7 +259,6 @@ listw2U(listw)
     a listw object created for example by nb2listw
 
 
-
 3. (Optional) Compuate the weighted target attribute you are testing for
 - Computed the (weighted) neighbour mean income values
 - Note from Gimond: 
@@ -375,3 +374,6 @@ $N = \{n | n = [i, j, \ldots, k]\} \text{    } \text{for } n \in N$
 $i, j, \ldots k \in \text{neighbourhood}(n)$
 
 $$\sum_{i=1}^{n}\frac{\sum_{j=1}^{n}w_{ij}(x_j - \bar{x})}{(x_i - \bar{x})} = \frac{\sum_{j=1}^{n}w_{1j}(x_j - \bar{x})}{(x_1 - \bar{x})} + \frac{\sum_{j=1}^{n}w_{2j}(x_j - \bar{x})}{(x_2 - \bar{x})} + \ldots + \frac{\sum_{j=1}^{n}w_{nj}(x_j - \bar{x})}{(x_n - \bar{x})}$$
+
+
+$$n$$

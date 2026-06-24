@@ -36,6 +36,7 @@ https://support.gurobi.com/hc/en-us/articles/360029969391-How-do-I-determine-why
 library(glue)
 library(dplyr)
 library(ggplot2)
+library(latex2exp)
 ```
 
 
@@ -687,12 +688,6 @@ sf_geos.puma.sf_noNAs[["rmse"]]
 ```
 
 ```{r}
-for (i in 1:10) {
-  print(i)
-}
-```
-
-```{r}
 length(nb_sp_noNAs)
 length(lw_sp_noNAs)
 ```
@@ -713,19 +708,32 @@ shuffle_rmse <- function(df, target_col, n_perm, lw, nb) {
 }
 ```
 
+
 ```{r}
 set.seed(42)
 gaussian_Is_99 <- shuffle_rmse(sf_geos.puma.sf_noNAs, "rmse", 99, lw_sp_noNAs, nb_sp_noNAs)
 gaussian_Is_99_df <- data.frame(I=gaussian_Is_99)
 gaussian_Is_99_df
 
+# unname it so I can access the array easier
+two_tailed_alpha_pt05 <- unname(quantile(gaussian_Is_99_df$I, probs = c(0.025, 0.975)))
 
 # hist(gaussian_Is_99, main="Gaussian Distributed Moran's I of RMSE Values", xlab="Moran's I", vline=I_sp_noNAs$I)
 ggplot(gaussian_Is_99_df, aes(x = I)) +
   geom_histogram() +
-  # geom_vline(data=xintercept=I_sp_noNAs$I, colour="red")
-  #data = vlines,aes(xintercept = xint,colour = grp <- follow this format for plotting
+  # Plotting the observed I value
+  geom_vline(aes(xintercept = I_sp_noNAs$I),
+             colour="red") + 
+  # Plotting the 0.025 two tailed confidence interval (alpha = 0.05)
+  sapply(two_tailed_alpha_pt05, function(xint) geom_vline(aes(xintercept = xint))) +
+  theme_bw(base_size=22) + 
+  ggtitle(TeX(r"(Normally Distributed Moran's I Value ($\alpha = 0.05$))")) +
+  xlab("Simulated I (99 Trials)")
 
+
+  #data = vlines,aes(xintercept = xint,colour = grp <- follow this format for plotting
+gaussian_Is_99_df
+I_sp_noNAs$I
 ```
 
 ### Plot Map
