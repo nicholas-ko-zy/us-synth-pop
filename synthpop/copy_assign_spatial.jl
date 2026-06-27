@@ -1,8 +1,8 @@
 ENV["GUROBI_HOME"] = ARGS[9]
 ENV["GRB_LICENSE_FILE"] = ARGS[10]
 
-using Gurobi, JuMP, CSV, DataFrames, Random, RLEVectors, StatsBase
-
+using Gurobi, JuMP, CSV, DataFrames, Random, RLEVectors, StatsBase, Serialization
+test_var = 1
 Random.seed!(1033)
 
 @time begin
@@ -22,6 +22,19 @@ const MARG_COLS = [11, 21, 4, 22]
 const INDV_TRACT_MARG_FILES = ["tract_i_sex_i_age.csv"]
 const INDV_BLKGP_MARG_FILES = ["blkgp_emply.csv"]
 const INDV_MARG_COLS = [19, 20]
+
+# Uncomment if you want to serialize variables for debugging
+# const CURR_PUMA = "2503302"
+# const SYN_HHS_FILE = "synthpop_output/2503302/syn_hhs_2503302.csv"
+# const SYN_HHS_SPATIAL_FILE = "synthpop_output/2503302/syn_hhs_spatial_2503302.csv"
+# const SYN_INDVS_FILE = "synthpop_output/2503302/syn_indvs_2503302.csv"
+# const SYN_INDVS_SPATIAL_FILE = "synthpop_output/2503302/syn_indvs_spatial_2503302.csv"
+# const PUMA_TRACT_EQUIV_FILE = "synthpop_data/2010_Census_Tract_to_2010_PUMA.csv"
+# const MARG_DIR = "synthpop_data/acs_marginals/2503302/"
+# const GUROBI_LOGFILE = "synthpop_gurobi_log.txt"
+# ENV["GUROBI_HOME"] = "C:/gurobi1302/win64"
+# ENV["GRB_LICENSE_FILE"] = "gurobi.lic"
+
 
 ## Get tracts and block groups
 puma_tract_equiv = CSV.read(PUMA_TRACT_EQUIV_FILE, DataFrame)
@@ -85,6 +98,30 @@ println("Households: ", n)
 println("Individuals: ", n_indvs)
 println("Marginals: ", MARG_FILES)
 
+# Serialise variables here for debugging
+# serialize("./data/assign_spatial/puma_tract_equiv.jls", puma_tract_equiv)
+# serialize("./data/assign_spatial/curr_geo.jls", curr_geo)
+# serialize("./data/assign_spatial/TRACT_GEOIDS.jls", TRACT_GEOIDS)
+# serialize("./data/assign_spatial/blkgp_marg_df.jls", blkgp_marg_df)
+# serialize("./data/assign_spatial/BLKGP_GEOIDS.jls", BLKGP_GEOIDS)
+# serialize("./data/assign_spatial/tract_blkgp.jls", tract_blkgp)
+# serialize("./data/assign_spatial/indv_index.jls", indv_index)
+# serialize("./data/assign_spatial/m.jls", m)
+# serialize("./data/assign_spatial/MARG_FILES.jls", MARG_FILES)
+# serialize("./data/assign_spatial/marginals.jls", marginals)
+# serialize("./data/assign_spatial/levelss.jls", levelss)
+# serialize("./data/assign_spatial/tract_hh_pops.jls", tract_hh_pops)
+# serialize("./data/assign_spatial/blkgp_hh_pops.jls", blkgp_hh_pops)
+# serialize("./data/assign_spatial/tract_indv_pops.jls", tract_indv_pops)
+# serialize("./data/assign_spatial/blkgp_indv_pops.jls", blkgp_indv_pops)
+# serialize("./data/assign_spatial/syn_hhs.jls", syn_hhs)
+# serialize("./data/assign_spatial/puma_df.jls", puma_df)
+# serialize("./data/assign_spatial/pop.jls", pop)
+# serialize("./data/assign_spatial/n.jls", n)
+# serialize("./data/assign_spatial/syn_indvs.jls", syn_indvs)
+# serialize("./data/assign_spatial/n_indvs.jls", n_indvs)
+# serialize("./data/assign_spatial/syn_hhs_hhsizs.jls", syn_hhs_hhsizs)
+# serialize("./data/assign_spatial/indv_factors.jls", indv_factors)
 #######################################################
 ## Define optimization model
 model = Model(Gurobi.Optimizer)

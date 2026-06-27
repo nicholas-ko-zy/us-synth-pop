@@ -2,6 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "julia",
+            "request": "launch",
+            "name": "Debug Julia File",
+            "program": "${file}",
+            "stopOnEntry": false
+        },
+        {
+            "type": "python",
+            "request": "launch",
+            "name": "Debug Python File",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "type": "R-Debugger",
             "name": "Launch R-Workspace",
             "request": "launch",
