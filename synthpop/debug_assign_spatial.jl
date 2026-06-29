@@ -27,8 +27,17 @@ syn_hhs_hhsizs = deserialize("./data/assign_spatial/syn_hhs_hhsizs.jls")
 indv_factors = deserialize("./data/assign_spatial/indv_factors.jls")
 
 ##
-marginals[1]
+marginals
 const MARG_DIR = "synthpop_data/acs_marginals/2503302/"
+const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
+const TRACT_MARG_FILES = ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv"]
+const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 marg_file = "tract_hhtype.csv"
 CSV.read("$MARG_DIR$marg_file", DataFrame)
 
+length(pop)
+m
+marginals
+puma_tract_equiv
+curr_geo
+blkgp_marg_df_raw = CSV.read(string(MARG_DIR, BLKGP_MARG_FILES[1]), DataFrame)

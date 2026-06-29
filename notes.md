@@ -161,7 +161,6 @@ Constants/Parameters Defined
 - **Neighbour definition** (how polygons define their neighbours? Contiguous, Distance, Non-spatial? Rook, Queen?)
 - **Spatial weight matrix, $w$**
     + (all weights of each polygon's list of neighbours must sum to 1, can reweigh if you have special insight i.e. pop density?) <- Apparently I is quite sensitive to the weights.
-- 
 
 **Reference**: https://mgimond.github.io/simple_moransI_example/
 
@@ -366,6 +365,325 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
     Gimond suggests another way to visualise (on a map) how a typical your patterns are
     is to compare randomly distributed patterns side-by-side from your observed spatial distribution
     of your demographic attribute (or whatever attribute you're interested in)
+
+# `assign_spatial.jl`
+- Assign command line arguments to Julia variables
+```Julia
+"\"C:/Users/nicho/AppData/Local/Microsoft/WindowsApps/julia.exe\" \"assign_spatial.jl\" 2503302 synthpop_output/2503302/syn_hhs_0603700.csv synthpop_output/2503302/syn_hhs_spatial_0603700.csv synthpop_output/2503302/syn_indvs_0603700.csv synthpop_output/2503302/syn_indvs_spatial_0603700.csv synthpop_data/2010_Census_Tract_to_2010_PUMA.csv synthpop_data/acs_marginals/2503302/ synthpop_gurobi_log.txt \"C:\\gurobi1302\\win64\" ./gurobi.lic"
+```
+
+| Constant                               | Example                                               |
+|:---------------------------------------|:------------------------------------------------------|
+| const CURR_PUMA = ARGS[1]              | 2503302                                               |
+| const SYN_HHS_FILE = ARGS[2]           | synthpop_output/2503302/syn_hhs_0603700.csv           |
+| const SYN_HHS_SPATIAL_FILE = ARGS[3]   | synthpop_output/2503302/syn_hhs_spatial_0603700.csv   |
+| const SYN_INDVS_FILE = ARGS[4]         | synthpop_output/2503302/syn_indvs_0603700.csv         |
+| const SYN_INDVS_SPATIAL_FILE = ARGS[5] | synthpop_output/2503302/syn_indvs_spatial_0603700.csv |
+| const PUMA_TRACT_EQUIV_FILE = ARGS[6]  | synthpop_data/2010_Census_Tract_to_2010_PUMA.csv      |
+| const MARG_DIR = ARGS[7]               | synthpop_data/acs_marginals/2503302/                  |
+| const GUROBI_LOGFILE = ARGS[8]         | synthpop_gurobi_log.txt                               |
+| ENV["GUROBI_HOME"] = ARGS[9]           | \"C:\\gurobi1302\\win64\"                             |
+| ENV["GRB_LICENSE_FILE"] = ARGS[10]     | ./gurobi.lic                                          |
+
+- Remark: Const `const num = 2`-> Type is fixed and variable cannot be reassigned unlike normal assignment `num = 2`
+
+- Variables I need to save to file
+    + `puma_tract_equiv`
+
+        Description: A map for matching 'Tract ID' to 'PUMA ID'? Contains
+        all the PUMAs IDs, duplicated state and county codes.
+
+        `![](./img/assign_spatial/puma_tract_equiv.png)
+
+    + `curr_geo`
+
+        Description: Contains the geoid data for the geographic area under consideration (i.e Suffolk County, MA only for our example, state id: 25, county id: 25)
+
+        ![](./img/assign_spatial/curr_geo.png)
+
+        - Image above shows post-filtering
+        - `curr_geo` is a filtered version of `puma_tract_equiv`, filter is the 
+        STATEFP == CURR_PUMA[1:2] and PUMA5CE == CURR_PUMA[3:7]
+        - In our example, 2503302, that's 
+            + `STATEFP = 25`
+            + `CURR_PUMA = 03302` (I guess the leading zero gets dropped)
+    + `TRACT_GEOIDS`
+
+        Description: Master reference dataframe for all the tract (lowest-spatial) resolution IDs. Created from manipulating `curr_geo`, gluing the column values together to form a single column tract ID (called `1` for some reason) columm in `TRACT_GEOIDS`.
+
+        ![](./img/assign_spatial/TRACT_GEOIDS.png)
+
+        + Manipulates `curr_geo` above, to glue the state, county and tract id into one
+        string, with the necessary "0" padding
+        + i.e. First row of `curr_geo`
+            - STATEFP: 25
+            - COUNTYFP: 25
+            - TRACTCE: 10500
+        + First row of `TRACT_GEOIDS`, after gluing, leading zero added for COUNTYFP, TRACTCE
+            - 25025010500
+
+    + `blkgp_marg_df` (Note: It undergoes one transform in line 33)
+
+        Description: The blockgroup marginals dataframe, which goes through several
+        dataframe transforms.
+
+        + Raw version
+
+            ![](./img/assign_spatial/blkgp_marg_df_raw.png)
+
+        + Transformed version
+
+            ![](./img/assign_spatial/blkgp_marg_df.png)
+
+        Looks the same because MA's state code is `25`, (double digit), but if you use `06` then you have to left pad with 0. 
+
+    + `BLKGP_GEOIDS`
+
+        Description: The `GEOIDs` column of `blkgp_marg_df` with the right zero-padding applied.
+
+        ![](./img/assign_spatial/BLKGP_GEOIDS.png)
+
+    + `tract_blkgp`
+
+        Description: The index pointers, pointing to `BLKGP_GEOIDS`, for each row of `TRACT_GEOIDS`.
+
+        ![](./img/assign_spatial/tract_blkgp.png)
+
+        + i.e. `BLKGP_GEOIDS`'s row 1,2,3's first 11 characters (drop last digit) match the first row of `TRACT_GEOIDS`
+
+    + `indv_index`
+
+        `5`
+
+        Description: Sum of files (listed below) plus 1: 4 + 1 = 5
+
+        ```Julia
+        const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
+        const TRACT_MARG_FILES = ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv"]
+        ```
+
+    + `m`
+
+        `94`
+        
+        Description: The number of rows in `BLKGP_GEOIDS`
+
+
+    + `MARG_FILES`
+
+        Description: A `6-element Vector{String}` of the filenames for all the marginal dataframes.
+        
+        ![](./img/assign_spatial/MARG_FILES.png)
+
+        1. "tract_hhtype.csv"
+        2. "tract_tenur_hhinc.csv"
+        3. "tract_nwork.csv"
+        4. "blkgp_tenur_hhsiz.csv"
+        5. "tract_i_sex_i_age.csv"
+        6. "blkgp_emply.csv"
+
+    + `marginals`
+        
+        Description:
+        - 6-element vector, one vector contains an array ver of the .csv dataframes
+        - i.e. The first element vector is `tract_hhtype.csv`, then
+        `marginals[1]` is the array version of the dataframe below
+
+        _Original `tract_hhtype.csv`, now the first element of `marginals`, i.e. `marginal[1]`_
+
+        ![](./img/assign_spatial/tract_hhtype.png)
+
+        Loops through `MARG_FILES`
+
+        1. "tract_hhtype.csv"
+        2. "tract_tenur_hhinc.csv"
+        3. "tract_nwork.csv"
+        4. "blkgp_tenur_hhsiz.csv"
+        5. "tract_i_sex_i_age.csv"
+        6. "blkgp_emply.csv"
+
+        Note to self: If I reduce the number of `MARG_FILES` used, won't that
+        reduce the number of target cells I have and thereby reduce the complexity of the LP?
+
+        ```
+        # First element of `marginals` (derived from of acs_marginals/[CENSUS_ID]/tract_hhtype.csv)
+        5-element Vector{Vector{Int64}}:
+        [329, 578, 303, 475, 346, 478, 606, 480, 303, 174  …  447, 413, 366, 368, 486, 609, 19, 0, 0, 0]
+        [72, 204, 18, 15, 25, 109, 183, 33, 14, 27  …  76, 172, 24, 241, 262, 272, 0, 0, 0, 0]
+        [1076, 1030, 795, 682, 933, 832, 1150, 1197, 664, 280  …  581, 1031, 500, 491, 1119, 745, 13, 0, 0, 0]
+        [282, 234, 264, 175, 147, 306, 324, 423, 383, 179  …  633, 396, 231, 359, 415, 278, 0, 0, 0, 0]
+        [828, 0, 393, 121, 326, 122, 11, 0, 84, 0  …  20, 2, 10, 0, 390, 269, 0, 0, 0, 0]
+        ```
+    + `levelss`
+
+        Description: First initialised as an empty array, then later in the for-loop of lines 45 to 54, it contains all the categories of the each marginal df.
+
+        Preview: 
+
+        ![](./img/assign_spatial/levelss.png)
+
+        Recall the marginal files and now you have their respective levels
+
+        1. "tract_hhtype.csv"
+        2. "tract_tenur_hhinc.csv"
+        3. "tract_nwork.csv"
+        4. "blkgp_tenur_hhsiz.csv"
+        5. "tract_i_sex_i_age.csv"
+        6. "blkgp_emply.csv"
+        
+    + `tract_hh_pops`
+
+        Description: 
+
+    + `blkgp_hh_pops`
+
+        Description: 
+
+    + `tract_indv_pops`
+
+        Description: 
+
+    + `blkgp_indv_pops`
+
+        Description: 
+
+    + `syn_hhs`
+
+        Description: 
+
+    + `puma_df`
+
+        Description: 
+
+    + `pop`
+    + `n` (Line 64: `const n = length(pop)`)
+    + `syn_indvs`
+    + `n_indvs`
+    + `syn_hhs_hhsizs`
+    + `indv_factors`
+
+
+## Code breakdown
+
+In the original `assign_spatial.jl` file, there are 150 lines of code.
+
+| Lines | Summary of what it does                                                                                                                                                                 |
+|:------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1-25  | <ul><li>Set random seed</li><li>Set global variables</li><ul/>                                                                                                                          |
+| 26-30 | <ul><li>Sync the national census code dataframe `puma_tract_equiv` with the currently considered geodata, `current_geo`; Uses a filter function.</li><li>Set global variables</li><ul/> |
+| 31-35 | Data-cleaning for `blkgp_marg_df`, i.e. Add a zero to the left to ensure the leading zero doesn't get dropped when the string value is coerced to numeric                               |
+| 36-38|Assign var `tract_blkgp`: Get the row indices of `BLKGP_GEOIDS` whose first 11 chars match the current row of `TRACT_GEOIDS` => `tract_blkgp` has the same number of rows as `TRACT_GEOIDS`, and contains the index pointers to the `BLKGP_GEOIDS` rows that belong to `TRACT_GEOIDS` Bigger picture, the GEOIDS will lead you back to the marginal value (ground-truth counts of housing type)|
+|39-55|<ul><li>Initialisation of variables</li><li>There is a for-loop that loops throgh `MARG_FILES` to build `marginals` (vectorised form of all the marginal dfs) and `levels` (the categories of all the marginals we're interested in)</li><ul/>|
+|Stopped at line 56||
+
+
+ 
+
+- [X] 1- 25
+
+
+## Possible Sources of Error
+- Line 37: Gurobi may need every single tract to have at least one block group nested inside it to avoid an algebraic error (like dividing by zero), may want to drop any empty tracts from your list before feeding this array to JuMP.
+
+![](./img/assign_spatial/tract_blkgp.png)
+
+
+## Model
+
+### Decision Variables
+
+$n$: Total population 
+
+```Julia
+const n = length(pop) # 61052
+```
+
+$m$: Total number of geoids (lowest spatial resolution, one level below census tract id)
+
+```Julia
+const m = length(BLKGP_GEOIDS) # 94
+```
+
+<table>
+  <tr>
+    <th>Julia</th>
+    <th>Mathematical Expression</th>
+  </tr>
+  <tr>
+    <td>
+
+```Julia
+@variable(model, x[1:n*m]) # define variable x
+# For census tract 2503302, that's a 61052 x 94 matrix
+```
+</td>
+    <td>
+
+$$\forall \, j, \, d, \, 0 \leq X_{j, d} \leq 1$$
+</td>
+  </tr>
+  <tr>
+    <td>
+
+```Julia
+# n_cells: The sum of categories for all marginals 
+n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
+@variable(model, y[1:n_cells]) # define absolute value helper variable y
+```
+</td>
+    <td>
+
+
+</td>
+  </tr>
+</table>
+
+
+
+```Julia
+@variable(model, x[1:n*m]) # define variable x
+n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
+@variable(model, y[1:n_cells]) # define absolute value helper variable y
+```
+
+
+```Julia
+
+## Objective
+@objective(model, Min, sum(y))
+
+## Constraints
+@constraint(model, con_lb[i=1:n*m], 0 <= x[i]) # lower bound constraint
+@constraint(model, con_ub[i=1:n*m], x[i] <= 1) # upper bound constraint
+@constraint(model, con_rowsum[i=1:n], sum(x[m*(i-1)+j] for j in 1:m) == 1)
+@constraint(model, con_colsum[j=1:m], sum(x[m*(i-1)+j] for i in 1:n) == blkgp_hh_pops[j])
+
+# add marginal cell constraints to enforce absolute value
+marg_cell_i = 1
+for (marg_i, (marg_col, marg, lvls, indv_facs)) in enumerate(zip(vcat(MARG_COLS, INDV_MARG_COLS), marginals, levelss, indv_factors))
+        cell_weight = length(lvls) * length(marg[1])
+        for (lvl_i, (lvl, ifs)) in enumerate(zip(lvls, indv_facs))
+                if length(marg[1]) == m # block group marginal
+                        for j in 1:m
+                                @constraint(model, y[marg_cell_i] >= (sum(ifs[i] * x[m*(i-1)+j] for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*blkgp_hh_pops[j])
+                                @constraint(model, y[marg_cell_i] >= -(sum(ifs[i] * x[m*(i-1)+j] for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*blkgp_hh_pops[j])
+                                global marg_cell_i += 1
+                        end
+                else # tract marginal
+                        for j in 1:length(tract_hh_pops)
+                                @constraint(model, y[marg_cell_i] >= (sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
+                                @constraint(model, y[marg_cell_i] >= -(sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
+                                global marg_cell_i += 1
+                        end
+                end
+        end
+end
+
+## Optimize
+status=optimize!(model)
+```
+
+
 
 # LaTeX For Google Slides
 
