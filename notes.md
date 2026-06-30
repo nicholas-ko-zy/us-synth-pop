@@ -522,7 +522,7 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
 
         ![](./img/assign_spatial/levelss.png)
 
-        Recall the marginal files and now you have their respective levels
+        Recall the marginal files and now you have their respective levels (categories)
 
         1. "tract_hhtype.csv"
         2. "tract_tenur_hhinc.csv"
@@ -533,33 +533,115 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
         
     + `tract_hh_pops`
 
-        Description: 
+        Description: Does a row sum of `tract_hhtype` (40 x 6 dataframe). Stores it in a n-long vector, for n many tracts in the marginal dataframe.
+
+        Example:
+        ```Julia
+        # Creates a vector that stores the row sums across each unique geoid row
+        const tract_hh_pops = sum(marginals[1], dims=1)[1]
+        ```
+
+        `tract_hhtype.csv`
+
+        ![](./img/assign_spatial/marg_files/tract_hhtype.png)
 
     + `blkgp_hh_pops`
 
-        Description: 
+        Description: A vector containing the sums across the rows of `blkgp_tenur_hhsiz` (94 x 14 dataframe), where one row represents a unique geoid.
+
+        Example: Since there are 94 geoids in `blkgp_tenur_hhsize`, you get 94 summed values.
+
+        `blkgp_tenur_hhsiz.csv`
+
+        ![](./img/assign_spatial/marg_files/blkgp_tenur_hhsiz.png)
 
     + `tract_indv_pops`
 
-        Description: 
+        Description: A vector containing the sums across the rows of `tract_i_sex_i_age` (40 x 11 dataframe), where one row represents a unique geoid.
+
+        Example: There are a total of 40 rows (geoids) in `tract_i_sex_i_age`, so you get a vector of 40 sums across the each row.
+
+        `tract_i_sex_i_age.csv`
+
+        ![](./img/assign_spatial/marg_files/tract_i_sex_i_age.png)
+
 
     + `blkgp_indv_pops`
 
-        Description: 
+        Description: A vector containing the sums across the rows of `blkgp_emply` (94 x 5 dataframe), where one row represents a unique geoid.
+
+        `blkgp_emply.csv`
+
+        ![](./img/assign_spatial/marg_files/blkgp_emply.png)
 
     + `syn_hhs`
 
-        Description: 
+        Description: Reads the synthetic household file from this directory (replace the census id with whatever was passed in the command line argument) 
+        
+        Example: `"synthpop_output/2503302/syn_hhs_2503302.csv"`
+
+        ![](/img/assign_spatial/syn_hhs.png)
 
     + `puma_df`
 
-        Description: 
+        Description: Filters `syn_hhs` to keep only those with PUMA codes equal to `CURR_PUMA`. 
+
+        Uses:
+        + A `filter` function to turn the `puma` column values into strings, passes a conditional check that they must be 7-digits and equal to `CURR_PUMA`
+            - `string(row.puma)`: Converts the numeric PUMA value from the DataFrame row into a string. If a PUMA code has a leading zero (like California's "0603700"), CSV.read often drops it and interprets it as the integer 603700.
+
+            - `lpad(..., 7, "0")`: Pads the string with leading zeros until it is exactly 7 characters long (the standard length of a full US PUMA code including its state prefix). This restores "603700" back to its proper FIPS format: "0603700".
+
+        ```Julia
+        puma_df = filter(row -> lpad(string(row.puma), 7, "0") == CURR_PUMA, syn_hhs)
+        ```
+
+        ![](./img/assign_spatial/puma_df.png)
 
     + `pop`
+
+        Description: Creates a 2D nested array from `puma_df`.
+        
+        Example: For census tract `2503302`, pop is a 61052-long vector, since the `puma_df` had size `61052 x 23`.
+
+        ![](./img/assign_spatial/pop.png)
+
+        i.e. `pop[1]` contains a 23-vector with values of every column (23 of them) for the first row.
+
     + `n` (Line 64: `const n = length(pop)`)
+
+        Description: Length of `pop`.
+
+        Example: If `pop` is a 61502-vector, the `n` is 61502.
+
     + `syn_indvs`
+
+        Description: Reads the synthetic household file from this directory (replace the census id with whatever was passed in the command line argument)
+
+        Example: `"synthpop_output/2503302/syn_indvs_2503302.csv"`
+
+        ![](./img/assign_spatial/syn_indvs.png)
+
     + `n_indvs`
+
+        Description: The number of rows in `syn_indvs`, where one row is 1 synthetic individual.
+
+        Example: Size of `syn_indvs` for census id `2503302` is `(116963, 20)`, so `n_indvs` is `116963`.
+
     + `syn_hhs_hhsizs`
+
+        Description: Run-length encoding of the household ids (`HHID`) in `syn_indvs`, see the screenshot preview of `syn_indvs`, and you'll notice that the synthetic individuals are bundled in groups of `HHIDS`.
+
+        Brief primer on run-length encoding (RLE): 
+
+        - Input: `rle([1,1,1,2,2,3,3,3,3,2,2,2])`
+
+        - Output: `([1, 2, 3, 2], [3, 2, 4, 3])`
+
+        - Output is a double, whose first element is the first number in the original array, and the second element is the length of that first number. i.e. `1` runs for length of `3` before switching to `2` which runs for length`2` and so on...
+
+        
+
     + `indv_factors`
 
 
@@ -574,12 +656,53 @@ In the original `assign_spatial.jl` file, there are 150 lines of code.
 | 31-35 | Data-cleaning for `blkgp_marg_df`, i.e. Add a zero to the left to ensure the leading zero doesn't get dropped when the string value is coerced to numeric                               |
 | 36-38|Assign var `tract_blkgp`: Get the row indices of `BLKGP_GEOIDS` whose first 11 chars match the current row of `TRACT_GEOIDS` => `tract_blkgp` has the same number of rows as `TRACT_GEOIDS`, and contains the index pointers to the `BLKGP_GEOIDS` rows that belong to `TRACT_GEOIDS` Bigger picture, the GEOIDS will lead you back to the marginal value (ground-truth counts of housing type)|
 |39-55|<ul><li>Initialisation of variables</li><li>There is a for-loop that loops throgh `MARG_FILES` to build `marginals` (vectorised form of all the marginal dfs) and `levels` (the categories of all the marginals we're interested in)</li><ul/>|
-|Stopped at line 56||
+|56-60| Assign variable for marginal target values: <ul><li>`tract_hh_pops`</li><li>`blkgp_hh_pops`</li><li>`tract_indv_pops`</li><li>`blkgp_indv_pops`</li></ul> These variables above are row-sums (across all the catorgories) of the marginal dataframes: <ul><li>`tract_hhtype.csv`</li><li>`blkgp_tenur_hhsiz.csv`</li><li>`tract_i_sex_i_age.csv`</li><li>`blkgp_indv_pops`</li></ul>|
+| 61-67  | Assign variables for the synthetic HOUSEHOLDs data: <ul><li>`syn_hhs`</li><li>`puma_df`</li><li>`pop`</li><li>`n`</li></ul>|
+| 68-72  | Assign variables for the synthetic INDIVIDUALS data: <ul><li>`syn_indvs`</li><li>`n_indvs`</li><li>`syn_hhs_hhsizs`</li></ul>|
+|73-76|Initialise `indv_factors` array. **First for-loop**: Fills `indv_factors` with 1s, the number of 1s is the number of synthetic individuals, `n`. The number of 1-arrays is determined by the number of categories in the marginals data under consideration, i.e. levels[1] contains the cateogires of `tract_tenur_hhinc`, which has 5 categories, so there are 5 1-arrays, each 1-array of length `n`.|
+|||
 
 
- 
+```Julia
+# Second for-loop lines 77-82
+for (indv_marg_col, lvls) in zip(INDV_MARG_COLS, levelss[indv_index:length(levelss)])
+        with_counts = combine(groupby(syn_indvs, :HHID), indv_marg_col => hh_values -> Tuple(count(val->val==l, hh_values) for l in lvls))
+        counts_mat = [[v for v in vals] for vals in with_counts[!,2]]
+        counts_mat = [[row[col] for row in counts_mat] for col in 1:size(counts_mat[1])[1]]
+        push!(indv_factors, counts_mat)
+end
 
-- [X] 1- 25
+```
+
+- It groups your individual data by Household ID (:HHID).
+
+- For each household, it iterates through every possible level (l in lvls) of that specific category and counts how many individuals inside that specific household match that level.
+
+- If a category is Employment_Status and the levels are [Employed, Unemployed], a household with two working parents and one child might return a profile tuple like (2, 0).
+
+Walkthrough of second loop (lines 77-82)
+
+Iterables:
+
+- `INDV_MARG_COLS = [19, 20]`
+
+- `levelss[indv_index:length(levelss)]`: Refers to the last two marginal dataframes:
+    - `tract_i_sex_i_age`
+    - `blkgp_emply`
+
+First loop:
+
+- `indv_marg_col = 19`
+- `lvls = ["Male.<18", "Male.18-35", "Male.36-50", "Male.51-70", "Male.>70", "Female.<18", "Female.18-35", "Female.36-50", "Female.51-70", "Female.>70"]` which are all the categories of `tract_i_sex_i_age`, total of 10 levels in this marginal data.
+- `with_counts`: Aggregates the counts for the levels. Each household (unique HHID) has a 10-array with the count of how many people in that household belong to a specific level in the `trac_i_sex_i_age` marginal.
+
+    ![](./img/assign_spatial/with_counts.png)
+- First `counts_mat`: Converts `with_counts` into a nested array format. I guess it's takin the second column of `with_counts`.
+i.e. `[(1,0,1,0,0...,0), (0,0,0,0...,0), ...,(0,0,0,0...,0)]`
+- Second `counts_mat`: Transpose the `counts_mat` so that each row is the levels category of the marginal data, instead of the synthetic household. 
+- Push `counts_mat` to `indv_factors`
+![](./img/assign_spatial/indv_factors_transposed_counts_mat.png)
+
 
 
 ## Possible Sources of Error

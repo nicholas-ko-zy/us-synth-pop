@@ -32,6 +32,10 @@ const MARG_DIR = "synthpop_data/acs_marginals/2503302/"
 const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 const TRACT_MARG_FILES = ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv"]
 const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
+const INDV_TRACT_MARG_FILES = ["tract_i_sex_i_age.csv"]
+const INDV_BLKGP_MARG_FILES = ["blkgp_emply.csv"]
+const INDV_MARG_COLS = [19, 20]
+
 marg_file = "tract_hhtype.csv"
 CSV.read("$MARG_DIR$marg_file", DataFrame)
 
@@ -41,3 +45,44 @@ marginals
 puma_tract_equiv
 curr_geo
 blkgp_marg_df_raw = CSV.read(string(MARG_DIR, BLKGP_MARG_FILES[1]), DataFrame)
+tract_hh_pops
+MARG_FILES[1]
+
+
+# 1. "tract_hhtype.csv"
+tract_hhtype = CSV.read("$MARG_DIR$(TRACT_MARG_FILES[1])", DataFrame)
+sum(Vector(tract_hhtype[1, propertynames(tract_hhtype)[2:ncol(tract_hhtype)]]))
+sum(marginals[1], dims=1)[1]
+
+# 2. "tract_tenur_hhinc.csv"
+tract_tenur_hhinc = CSV.read("$MARG_DIR$(TRACT_MARG_FILES[2])", DataFrame)
+
+# 3. "tract_nwork.csv"
+tract_nwork = CSV.read("$MARG_DIR$(TRACT_MARG_FILES[3])", DataFrame)
+
+# 4. "blkgp_tenur_hhsiz.csv"
+blkgp_tenur_hhsiz = CSV.read("$MARG_DIR$(BLKGP_MARG_FILES[1])", DataFrame)
+# Sanity check that first row sums to the same first element of the blkgp_hh_pops[1] vector
+blkgp_hh_pops[1] == sum(Vector(blkgp_tenur_hhsiz[1, propertynames(blkgp_tenur_hhsiz)[2:ncol(blkgp_tenur_hhsiz)]]))
+
+# 5. "tract_i_sex_i_age.csv"
+tract_i_sex_i_age = CSV.read("$MARG_DIR$(INDV_TRACT_MARG_FILES[1])", DataFrame)
+
+# 6. "blkgp_emply.csv"
+blkgp_emply = CSV.read("$MARG_DIR$(INDV_BLKGP_MARG_FILES[1])", DataFrame)
+
+size(tract_i_sex_i_age)
+length(marginals)
+
+Matrix(puma_df)
+pop_1 = pop[61052]
+size(syn_indvs)
+indv_factors[1][1]
+
+indv_factors_dummy = Any[]
+for (indv_marg_col, lvls) in zip(INDV_MARG_COLS, levelss[indv_index:length(levelss)])
+        with_counts = combine(groupby(syn_indvs, :HHID), indv_marg_col => hh_values -> Tuple(count(val->val==l, hh_values) for l in lvls))
+        counts_mat = [[v for v in vals] for vals in with_counts[!,2]]
+        counts_mat = [[row[col] for row in counts_mat] for col in 1:size(counts_mat[1])[1]]
+        push!(indv_factors_dummy, counts_mat)
+end
