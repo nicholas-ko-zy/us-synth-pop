@@ -99,7 +99,7 @@ set_optimizer_attribute(model, "LogFile", GUROBI_LOGFILE)
 ## Variables
 @variable(model, x[1:n*m]) # define variable x
 n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
-sum(length(lvl) for lvl in marginals[2])
+sum(length(lvl) for lvl in marginals[1])
 @variable(model, y[1:n_cells]) # define absolute value helper variable y
 
 ## Objective
