@@ -1,3 +1,6 @@
+ENV["GUROBI_HOME"] = "C:/gurobi1302/win64/"
+ENV["GRB_LICENSE_FILE"] = joinpath(@__DIR__, "gurobi.lic")
+
 ## 
 using Gurobi, JuMP, CSV, DataFrames, Random, RLEVectors, StatsBase, Serialization
 
@@ -26,8 +29,8 @@ n_indvs = deserialize("./data/assign_spatial/n_indvs.jls")
 syn_hhs_hhsizs = deserialize("./data/assign_spatial/syn_hhs_hhsizs.jls")
 indv_factors = deserialize("./data/assign_spatial/indv_factors.jls")
 
-##
-marginals
+## Environment Variables / Constants 
+
 const MARG_DIR = "synthpop_data/acs_marginals/2503302/"
 const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 const TRACT_MARG_FILES = ["tract_hhtype.csv", "tract_tenur_hhinc.csv", "tract_nwork.csv"]
@@ -35,13 +38,14 @@ const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 const INDV_TRACT_MARG_FILES = ["tract_i_sex_i_age.csv"]
 const INDV_BLKGP_MARG_FILES = ["blkgp_emply.csv"]
 const INDV_MARG_COLS = [19, 20]
+const GUROBI_LOGFILE = "synthpop_gurobi_log.txt"
 
 marg_file = "tract_hhtype.csv"
 CSV.read("$MARG_DIR$marg_file", DataFrame)
 
 length(pop)
 m
-marginals
+marginals[1]
 puma_tract_equiv
 curr_geo
 blkgp_marg_df_raw = CSV.read(string(MARG_DIR, BLKGP_MARG_FILES[1]), DataFrame)
@@ -77,7 +81,7 @@ length(marginals)
 Matrix(puma_df)
 pop_1 = pop[61052]
 size(syn_indvs)
-indv_factors[1][1]
+indv_factors[5][1][1]
 
 indv_factors_dummy = Any[]
 for (indv_marg_col, lvls) in zip(INDV_MARG_COLS, levelss[indv_index:length(levelss)])
@@ -86,3 +90,23 @@ for (indv_marg_col, lvls) in zip(INDV_MARG_COLS, levelss[indv_index:length(level
         counts_mat = [[row[col] for row in counts_mat] for col in 1:size(counts_mat[1])[1]]
         push!(indv_factors_dummy, counts_mat)
 end
+###################################################################
+
+# Define JuMP model
+model = Model(Gurobi.Optimizer)
+set_optimizer_attribute(model, "LogFile", GUROBI_LOGFILE)
+
+## Variables
+@variable(model, x[1:n*m]) # define variable x
+n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
+sum(length(lvl) for lvl in marginals[2])
+@variable(model, y[1:n_cells]) # define absolute value helper variable y
+
+## Objective
+@objective(model, Min, sum(y))
+
+## Constraints
+@constraint(model, con_lb[i=1:n*m], 0 <= x[i]) # lower bound constraint
+@constraint(model, con_ub[i=1:n*m], x[i] <= 1) # upper bound constraint
+@constraint(model, con_rowsum[i=1:n], sum(x[m*(i-1)+j] for j in 1:m) == 1)
+@constraint(model, con_colsum[j=1:m], sum(x[m*(i-1)+j] for i in 1:n) == blkgp_hh_pops[j])

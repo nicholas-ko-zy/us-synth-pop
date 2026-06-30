@@ -3547,3 +3547,7 @@ Solved in 4354407 iterations and 4384.82 seconds (2054.98 work units)
 Infeasible or unbounded model
 
 User-callback calls 894, time in user-callback 0.17 sec
+
+Gurobi 13.0.2 (win64) logging started Tue Jun 30 23:55:12 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"

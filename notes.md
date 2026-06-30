@@ -640,10 +640,41 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
 
         - Output is a double, whose first element is the first number in the original array, and the second element is the length of that first number. i.e. `1` runs for length of `3` before switching to `2` which runs for length`2` and so on...
 
-        
 
     + `indv_factors`
 
+        Description: A nested array of 6-elements, one for every marginal data type. Within each element are the levels for that marginal, i.e. 5 levels for the first marginal data etc.
+
+        Within each marginal level, there is a n-sized array with the count representing the number of individuals in that household that possess that marginal levels. 
+
+        For instance:
+        `indv_factors[5][1][1] #1`
+        - `indv_factors[5]`: Looking at the marginal data: `tract_i_sex_i_age`
+        - `indv_factors[5][1]`: Looking at the level `Male.<18` of `tract_i_sex_i_age`
+        - `indv_factors[5][1][1]`: Looking at household index 1's number of `Male.<18`
+        
+
+## Line-by-line breakdown of LP
+
+- Line 96
+
+    ```Julia
+    @variable(model, x[1:n*m]) # define variable x
+    ```
+     ![](./img/assign_spatial/LP/96.png)
+     - n: Number of households (unique household ids HHIDs), 61051
+     - m: Number of blockgroups (spatial area to assign households), 94
+     - Create a binary decision variable $x_{\text{HHID-blockgroup}} = 1$, this household belongs to this blockground
+
+- Line 97
+
+    ```Julia
+    n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
+    ```
+
+    - `n_cells`: 2918; Total sum of marginal categories * number of rows for every marginal dataset.
+    - i.e. `marginals[1]` has 40 rows and 5 columns, then the first term in the outer-most sum is 200. `sum(length(lvl) for lvl in marginals[1])`
+    - 200 + 520 + ...
 
 ## Code breakdown
 
@@ -660,8 +691,7 @@ In the original `assign_spatial.jl` file, there are 150 lines of code.
 | 61-67  | Assign variables for the synthetic HOUSEHOLDs data: <ul><li>`syn_hhs`</li><li>`puma_df`</li><li>`pop`</li><li>`n`</li></ul>|
 | 68-72  | Assign variables for the synthetic INDIVIDUALS data: <ul><li>`syn_indvs`</li><li>`n_indvs`</li><li>`syn_hhs_hhsizs`</li></ul>|
 |73-76|Initialise `indv_factors` array. **First for-loop**: Fills `indv_factors` with 1s, the number of 1s is the number of synthetic individuals, `n`. The number of 1-arrays is determined by the number of categories in the marginals data under consideration, i.e. levels[1] contains the cateogires of `tract_tenur_hhinc`, which has 5 categories, so there are 5 1-arrays, each 1-array of length `n`.|
-|||
-
+|73-90| **Second for-loop**: See details of it below. Outputs `indv_factors` which is a nested array that contains 6 elements, one for every marginal dataframe, and the categories inside, and inside the categories, a n-sized array with the count of that category's value in index of the household, see `indv_factors` for details.|
 
 ```Julia
 # Second for-loop lines 77-82
@@ -671,7 +701,6 @@ for (indv_marg_col, lvls) in zip(INDV_MARG_COLS, levelss[indv_index:length(level
         counts_mat = [[row[col] for row in counts_mat] for col in 1:size(counts_mat[1])[1]]
         push!(indv_factors, counts_mat)
 end
-
 ```
 
 - It groups your individual data by Household ID (:HHID).
@@ -690,7 +719,7 @@ Iterables:
     - `tract_i_sex_i_age`
     - `blkgp_emply`
 
-First loop:
+First iteration of second loop:
 
 - `indv_marg_col = 19`
 - `lvls = ["Male.<18", "Male.18-35", "Male.36-50", "Male.51-70", "Male.>70", "Female.<18", "Female.18-35", "Female.36-50", "Female.51-70", "Female.>70"]` which are all the categories of `tract_i_sex_i_age`, total of 10 levels in this marginal data.
@@ -703,6 +732,9 @@ i.e. `[(1,0,1,0,0...,0), (0,0,0,0...,0), ...,(0,0,0,0...,0)]`
 - Push `counts_mat` to `indv_factors`
 ![](./img/assign_spatial/indv_factors_transposed_counts_mat.png)
 
+| Lines | Summary of what it does                                                                                                                                                                 |
+|:------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|91-94| Define JuMP (Julia for Mathematical Programming) model <ul><li>`GUROBI` model, links to license file</li><li>`GUROBI_LOGFILE`</li></ul>|
 
 
 ## Possible Sources of Error
