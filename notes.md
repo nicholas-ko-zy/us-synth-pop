@@ -555,6 +555,14 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
 
         ![](./img/assign_spatial/marg_files/blkgp_tenur_hhsiz.png)
 
+        $$\downarrow \text{: After row sum}$$
+
+        `blkgp_hh_pops`
+
+        <p align="center">
+            <img src="./img/assign_spatial/blkgp_hh_pops.png" />
+        </p>
+
     + `tract_indv_pops`
 
         Description: A vector containing the sums across the rows of `tract_i_sex_i_age` (40 x 11 dataframe), where one row represents a unique geoid.
@@ -664,7 +672,10 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
      ![](./img/assign_spatial/LP/96.png)
      - n: Number of households (unique household ids HHIDs), 61051
      - m: Number of blockgroups (spatial area to assign households), 94
-     - Create a binary decision variable $x_{\text{HHID-blockgroup}} = 1$, this household belongs to this blockground
+     - Create a binary decision variable $x_{\text{HID-Blockgroup}} = 1$, this household belongs to this blockground
+     - Later on (by inference from rowsum, colsum constraints): 
+        + Rows: HID
+        + Cols: Blockgroup
 
 - Line 97
 
@@ -672,9 +683,86 @@ moran(x, listw, n, S0, zero.policy=attr(listw, "zero.policy"), NAOK=FALSE)
     n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
     ```
 
-    - `n_cells`: 2918; Total sum of marginal categories * number of rows for every marginal dataset.
+    - `n_cells`: 2918; Total sum of (marginal categories * number of rows) for every marginal dataset.
     - i.e. `marginals[1]` has 40 rows and 5 columns, then the first term in the outer-most sum is 200. `sum(length(lvl) for lvl in marginals[1])`
     - 200 + 520 + ...
+    - What it means: `n_cell` represents all the possible combinations of row to categories in each marginal dataframe. i.e. Row 1 is geoid `25025010500`, and it can have 5 different target values, one target for each cateogry.
+
+- Line 98 
+
+    ```Julia
+    @variable(model, y[1:n_cells]) # define absolute value helper variable y
+    ```
+    ![](./img/assign_spatial/LP/98.png)
+
+    - Create a vector with `n-cells` many decision variables `y`. 
+    - `j4sonli` describes `y` as a "absolute value helper variable"
+    - Remains to be seen how it will 'help'...
+
+- Line 99-100 (blank)
+
+- Line 101
+
+    ```Julia
+    @objective(model, Min, sum(y))
+    ```
+    ![](./img/assign_spatial/LP/101.png)
+
+    - Sets the objective of the model as minimising the sum of `y` (All 2918 of it)
+    - I suppose the sum of `y` would be the difference between the target marginal values and the actual marginal values (by geoid)
+
+- Line 102-103 (Blank)
+
+- Line 104
+
+    ```Julia
+    @constraint(model, con_lb[i=1:n*m], 0 <= x[i]) # lower bound constraint
+    ```
+
+    ![](./img/assign_spatial/LP/104.png)
+
+    - "A HID-Blockgroup pair cannot be negative constraint"
+    - A vectorised constraint that sets the lower-bound of $x[i]$ to be greater than or equal to 0. Cannot have a negative count of a HID-Blockgroup pair. Total pairs: $n * m$.
+
+- Line 105
+
+    ```Julia
+    @constraint(model, con_ub[i=1:n*m], x[i] <= 1) # upper bound constraint
+    ```
+
+    ![](./img/assign_spatial/LP/105.png)
+
+    - "Every household can only be assigned to one blockgroup constraint"
+    - A vectorised constraint that sets the upperbound at 1 for each possible HID-Blockgroup pair; to prevent duplication => No unique household can be in two blockgroups at the same time. (teleport)
+
+- Line 106
+
+    ```Julia
+    @constraint(model, con_rowsum[i=1:n], sum(x[m*(i-1)+j] for j in 1:m) == 1)
+    ```
+
+    ![](./img/assign_spatial/LP/106.png)
+
+    - "Every household must be assigned to one block-group constraint"
+    - Another vectorised constraint that insists that the each household is at least assigned to one blockgroup, of which there are $m=94$.
+
+- Line 107
+    ```Julia
+    @constraint(model, con_colsum[j=1:m], sum(x[m*(i-1)+j] for i in 1:n) == blkgp_hh_pops[j])
+    ```
+
+    ![](./img/assign_spatial/LP/107.png)
+
+    - "The sum of households in every blockgroup must be equal to the total blockgroup household control total in `blkgp_hh_pops` constraint"
+    - Recall what `blkgp_hh_pops` contains:
+
+        ![](./img/assign_spatial/blkgp_hh_pops.png)
+
+        $\implies$ Sum of all households in the blockgroup must hit the target...(no ifs, buts or maybe)
+    - Note to self: Might need to relax this constraint...
+
+- 
+
 
 ## Code breakdown
 
@@ -726,6 +814,7 @@ First iteration of second loop:
 - `with_counts`: Aggregates the counts for the levels. Each household (unique HHID) has a 10-array with the count of how many people in that household belong to a specific level in the `trac_i_sex_i_age` marginal.
 
     ![](./img/assign_spatial/with_counts.png)
+
 - First `counts_mat`: Converts `with_counts` into a nested array format. I guess it's takin the second column of `with_counts`.
 i.e. `[(1,0,1,0,0...,0), (0,0,0,0...,0), ...,(0,0,0,0...,0)]`
 - Second `counts_mat`: Transpose the `counts_mat` so that each row is the levels category of the marginal data, instead of the synthetic household. 
@@ -735,6 +824,101 @@ i.e. `[(1,0,1,0,0...,0), (0,0,0,0...,0), ...,(0,0,0,0...,0)]`
 | Lines | Summary of what it does                                                                                                                                                                 |
 |:------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |91-94| Define JuMP (Julia for Mathematical Programming) model <ul><li>`GUROBI` model, links to license file</li><li>`GUROBI_LOGFILE`</li></ul>|
+
+
+marg cell for-loop logic
+
+- Line 110 
+
+    ```Julia
+    marg_cell_i = 1
+    ```
+
+    - Initialise `marg_cell_i` as 1., index of the marginal cell for the decision variable `y` later inside the loop.
+
+- Line 111 
+
+    ```Julia
+    for (marg_i, (marg_col, marg, lvls, indv_facs)) in enumerate(zip(vcat(MARG_COLS, INDV_MARG_COLS), marginals, levelss, indv_factors))
+    ```
+    |No.| Variable | Value|
+    |:----|:------|:------------|
+    |1|`marg_col`| `vcat(MARG_COLS, INDV_MARG_COLS)`|
+    |2|`marg`| `marginals`|
+    |3|`lvls`|`levelss`|
+    |4|`indv_facs`|`indv_factors`|
+
+    - `vcat(MARG_COLS, INDV_MARG_COLS)`
+    - First iteration variables
+        + `marg_i` = 1
+        + `marg_col` = 11
+        + `marg` = [[329, 578, ...]]
+            i.w. first element of `marginals` 
+        + `lvls` = ["MC", "NS", "SM", "NF", "GQ"]
+        + `indv_facs`: Big 1s matrix, from `indv_factors`
+
+- Line 112
+
+    ```Julia
+    cell_weight = length(lvls) * length(marg[1])
+    ```
+
+    - `length(lvls)` = 5; Number of categories in this marg data
+    - `length(margs[1])` = 40; Number of geographic areas in the marg data
+    - $\implies$ `cell_weight` = 200
+    - `cell_weight` is use later for normalisation, so that each loop contributes to only max 1 pt of error.
+
+- Line 113
+
+    ```Julia
+    for (lvl_i, (lvl, ifs)) in enumerate(zip(lvls, indv_facs))
+    ```
+
+    - Inner loop
+    - Loops through
+        + The elements in `lvls` which are the marg categories `lvl_i` in `lvls`
+        + The elements in `indv_faccs` which are the count values for the many many geographic areas for that specific marginal category
+    
+- Line 114
+    ```Julia
+    if length(marg[1]) == m # block group margina
+    ```
+
+    - Within the inner-loop, check what spatial resolution this control total is depending on the number of elements in `marg[1]` the first category of marg, if it has 94 elements, the marginal data is for block-groups, otherwise it is for censust tracts.
+
+- Line 120-121
+
+    ```Julia
+    else # tract marginal
+        for j in 1:length(tract_hh_pops)
+    ```
+
+    - Else-inner-loop
+    - Iterable: The total number census tracts, i.e. the length of `tract_hh_pops` <- contains the control totals for each tract
+    - In other words, each iteration of this loop is looking at each unique tract.
+
+- Line 122
+
+    ```Julia
+    @constraint(model, y[marg_cell_i] >= (sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
+    ```
+
+    - For each unique tract, add a constraint that constrains the `marg_cell_i`th `y` decision variable to 
+    - Recall that `marg_cell_i` is the index of 2918; Total sum of (marginal categories * number of rows (geographic area)) for every marginal dataset.
+    - RHS of inequality: 
+        $$ \frac{\sum_j (\sum_i a_{ij} - b_j)}{c}$$
+
+        + $\sum_{j} a_{ij}$: `(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl)`; This is the estimate number of poeple/households with the specific marg category in tract `j`,
+        + $b_j$: `marg[lvl_i][j])`: The actual census total, subtracted from the estimated number
+
+        + $c$: `(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j]`; The normalisation and scaling factor
+
+    - Julia MP expression of $a_{i1} - b_1$:
+
+        ![](./img/assign_spatial/LP/a_i1-b_1.png)
+
+
+
 
 
 ## Possible Sources of Error

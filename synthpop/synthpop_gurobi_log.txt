@@ -3551,3 +3551,35 @@ User-callback calls 894, time in user-callback 0.17 sec
 Gurobi 13.0.2 (win64) logging started Tue Jun 30 23:55:12 2026
 
 Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Wed Jul  1 17:27:34 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Wed Jul  1 23:09:58 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Wed Jul  1 23:20:39 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Wed Jul  1 23:25:11 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Thu Jul  2 14:38:29 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Thu Jul  2 15:11:50 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Thu Jul  2 15:33:38 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"
+
+Gurobi 13.0.2 (win64) logging started Thu Jul  2 15:39:08 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log.txt"

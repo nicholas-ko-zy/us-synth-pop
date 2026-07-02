@@ -1,0 +1,4 @@
+
+Gurobi 13.0.2 (win64) logging started Thu Jul  2 16:40:35 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log_debug.txt"

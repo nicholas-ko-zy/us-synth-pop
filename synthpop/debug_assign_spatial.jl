@@ -38,6 +38,7 @@ const BLKGP_MARG_FILES = ["blkgp_tenur_hhsiz.csv"]
 const INDV_TRACT_MARG_FILES = ["tract_i_sex_i_age.csv"]
 const INDV_BLKGP_MARG_FILES = ["blkgp_emply.csv"]
 const INDV_MARG_COLS = [19, 20]
+const MARG_COLS = [11, 21, 4, 22]
 const GUROBI_LOGFILE = "synthpop_gurobi_log.txt"
 
 marg_file = "tract_hhtype.csv"
@@ -99,7 +100,6 @@ set_optimizer_attribute(model, "LogFile", GUROBI_LOGFILE)
 ## Variables
 @variable(model, x[1:n*m]) # define variable x
 n_cells = sum(sum(length(lvl) for lvl in marg) for marg in marginals)
-sum(length(lvl) for lvl in marginals[1])
 @variable(model, y[1:n_cells]) # define absolute value helper variable y
 
 ## Objective
@@ -110,3 +110,25 @@ sum(length(lvl) for lvl in marginals[1])
 @constraint(model, con_ub[i=1:n*m], x[i] <= 1) # upper bound constraint
 @constraint(model, con_rowsum[i=1:n], sum(x[m*(i-1)+j] for j in 1:m) == 1)
 @constraint(model, con_colsum[j=1:m], sum(x[m*(i-1)+j] for i in 1:n) == blkgp_hh_pops[j])
+
+
+# add marginal cell constraints to enforce absolute value
+marg_cell_i = 1
+for (marg_i, (marg_col, marg, lvls, indv_facs)) in enumerate(zip(vcat(MARG_COLS, INDV_MARG_COLS), marginals, levelss, indv_factors))
+        cell_weight = length(lvls) * length(marg[1])
+        for (lvl_i, (lvl, ifs)) in enumerate(zip(lvls, indv_facs))
+                if length(marg[1]) == m # block group marginal
+                        for j in 1:m
+                                @constraint(model, y[marg_cell_i] >= (sum(ifs[i] * x[m*(i-1)+j] for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*blkgp_hh_pops[j])
+                                @constraint(model, y[marg_cell_i] >= -(sum(ifs[i] * x[m*(i-1)+j] for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*blkgp_hh_pops[j])
+                                global marg_cell_i += 1
+                        end
+                else # tract marginal
+                        for j in 1:length(tract_hh_pops)
+                                @constraint(model, y[marg_cell_i] >= (sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
+                                @constraint(model, y[marg_cell_i] >= -(sum(sum(ifs[i] * x[m*(i-1)+k] for k in tract_blkgp[j]) for (i,hh) in enumerate(pop) if marg_i>=indv_index || hh[marg_col]==lvl) - marg[lvl_i][j])/(1+marg[lvl_i][j])/cell_weight*tract_hh_pops[j])
+                                global marg_cell_i += 1
+                        end
+                end
+        end
+end
