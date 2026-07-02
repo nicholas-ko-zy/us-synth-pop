@@ -1,0 +1,26 @@
+
+Gurobi 13.0.2 (win64) logging started Fri Jul  3 00:34:31 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log_smoketest.txt"
+
+Gurobi 13.0.2 (win64) logging started Fri Jul  3 01:04:23 2026
+
+Set parameter LogFile to value "synthpop_gurobi_log_smoketest.txt"
+Gurobi Optimizer version 13.0.2 build v13.0.2rc1 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) N150, instruction set [SSE2|AVX|AVX2]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Academic license 2827889 - for non-commercial use only - registered to e0___@u.nus.edu
+Optimize a model with 11544852 rows, 5741806 columns and 100060050 nonzeros (Min)
+Model fingerprint: 0x90b1d5b8
+Model has 2918 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [1e-03, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e-02, 3e+03]
+
+Out of memory
+
+User-callback calls 17, time in user-callback 3.74 sec

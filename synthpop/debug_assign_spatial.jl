@@ -28,7 +28,7 @@ syn_indvs = deserialize("./data/assign_spatial/syn_indvs.jls")
 n_indvs = deserialize("./data/assign_spatial/n_indvs.jls")
 syn_hhs_hhsizs = deserialize("./data/assign_spatial/syn_hhs_hhsizs.jls")
 indv_factors = deserialize("./data/assign_spatial/indv_factors.jls")
-
+# foreach(println, names(syn_hhs))
 ## Environment Variables / Constants 
 
 const MARG_DIR = "synthpop_data/acs_marginals/2503302/"

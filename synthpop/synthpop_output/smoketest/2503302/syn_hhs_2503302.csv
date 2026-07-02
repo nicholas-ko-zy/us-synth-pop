@@ -1,0 +1,1001 @@
+HHID,tenur,hhinc,nwork,ncars,nchil,hhsiz,true_hhsiz,true_nwork,true_nchil,hhtype,puma,i_age,i_sex,race_,i_eth,i_inc,emply,indus,edu_q,tenur_hhinc_prox,tenur_hhsiz_prox,tenur_prox
+1,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+2,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+3,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+4,Rented,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+5,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+6,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+7,Owned free and clear,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+8,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+9,Rented,51-75K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+10,Owned free and clear,>150K,1,0,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+11,Owned with mortgage or loan,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+12,Rented,26-50K,3+,0,0,6+,7,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.6+,Rented
+13,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+14,Owned free and clear,51-75K,0,1,0,4,4,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+15,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+16,Rented,76-100K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+17,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+18,Rented,26-50K,3+,0,0,6+,7,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.6+,Rented
+19,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+20,Rented,26-50K,1,2+,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+21,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+22,Owned with mortgage or loan,>150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+23,Rented,>150K,3+,1,0,6+,8,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.6+,Rented
+24,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+25,Owned with mortgage or loan,>150K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+26,Owned free and clear,26-50K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.26-50K,Owned.2,Owned
+27,Owned with mortgage or loan,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+28,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+29,Rented,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+30,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+31,Rented,101-150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+32,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+33,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+34,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+35,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+36,Owned with mortgage or loan,101-150K,3+,2+,1,5,5,4,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.5,Owned
+37,Owned free and clear,>150K,3+,1,0,6+,7,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+38,Owned with mortgage or loan,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+39,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+40,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+41,Owned with mortgage or loan,1-25K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+42,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+43,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+44,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+45,Rented,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+46,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+47,Rented,51-75K,2,0,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+48,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+49,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+50,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+51,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+52,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+53,Owned with mortgage or loan,51-75K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+54,Rented,>150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+55,Owned with mortgage or loan,>150K,3+,1,0,6+,6,5,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+56,Owned with mortgage or loan,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+57,Rented,76-100K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+58,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+59,Owned free and clear,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+60,Owned free and clear,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+61,Rented,51-75K,1,0,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+62,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+63,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+64,Owned free and clear,51-75K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+65,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+66,Rented,51-75K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+67,Owned free and clear,101-150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+68,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+69,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+70,Owned free and clear,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+71,Rented,76-100K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+72,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+73,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+74,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+75,Rented,51-75K,2,2+,1,4,4,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+76,Rented,1-25K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.3,Rented
+77,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+78,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+79,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+80,Rented,26-50K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+81,Owned free and clear,>150K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+82,Owned with mortgage or loan,51-75K,3+,1,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+83,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+84,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+85,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+86,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+87,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+88,Owned free and clear,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+89,Owned free and clear,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+90,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+91,Owned free and clear,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+92,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+93,Owned with mortgage or loan,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+94,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+95,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+96,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+97,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+98,Rented,101-150K,1,1,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+99,Owned free and clear,1-25K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+100,Rented,1-25K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.3,Rented
+101,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+102,Owned with mortgage or loan,51-75K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+103,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+104,Owned free and clear,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+105,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+106,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+107,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+108,Rented,26-50K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+109,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+110,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+111,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+112,Rented,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+113,Rented,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+114,Rented,>150K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+115,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+116,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+117,Owned free and clear,>150K,2,2+,0,6+,8,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+118,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+119,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+120,Rented,26-50K,2,2+,0,6+,8,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.6+,Rented
+121,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+122,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+123,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+124,Owned with mortgage or loan,1-25K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+125,Owned with mortgage or loan,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+126,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+127,Rented,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+128,Rented,>150K,2,0,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+129,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+130,Rented,101-150K,3+,0,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+131,Rented,26-50K,3+,0,0,6+,7,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.6+,Rented
+132,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+133,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+134,Owned free and clear,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+135,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+136,Rented,101-150K,3+,0,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+137,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+138,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+139,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+140,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+141,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+142,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+143,Owned with mortgage or loan,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+144,Rented,1-25K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.4,Rented
+145,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+146,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+147,Rented,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+148,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+149,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+150,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+151,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+152,Owned free and clear,>150K,3+,2+,1,6+,6,4,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+153,Rented,101-150K,3+,0,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+154,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+155,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+156,Owned free and clear,101-150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+157,Rented,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+158,Rented,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+159,Owned with mortgage or loan,>150K,1,2+,3+,6+,7,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+160,Rented,26-50K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+161,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+162,Rented,51-75K,3+,0,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+163,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+164,Rented,101-150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+165,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+166,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+167,Rented,101-150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+168,Owned free and clear,1-25K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+169,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+170,Rented,26-50K,3+,1,2+,6+,7,4,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.6+,Rented
+171,Owned with mortgage or loan,51-75K,2,2+,0,6+,7,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.6+,Owned
+172,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+173,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+174,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+175,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+176,Owned with mortgage or loan,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+177,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+178,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+179,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+180,Rented,101-150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+181,Rented,>150K,2,1,0,4,4,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+182,Rented,1-25K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.4,Rented
+183,Rented,76-100K,3+,1,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.4,Rented
+184,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+185,Owned free and clear,>150K,0,1,0,5,5,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+186,Owned with mortgage or loan,>150K,1,2+,3+,6+,8,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+187,Owned with mortgage or loan,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+188,Rented,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+189,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+190,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+191,Owned with mortgage or loan,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+192,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+193,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+194,Rented,51-75K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+195,Rented,>150K,2,0,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+196,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+197,Owned with mortgage or loan,101-150K,3+,1,3+,6+,7,4,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.6+,Owned
+198,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+199,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+200,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+201,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+202,Rented,76-100K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+203,Rented,101-150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+204,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+205,Rented,101-150K,2,2+,2+,6+,8,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.6+,Rented
+206,Rented,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+207,Owned free and clear,51-75K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+208,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+209,Owned with mortgage or loan,>150K,2,1,2+,6+,8,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+210,Owned with mortgage or loan,>150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+211,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+212,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+213,Rented,51-75K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+214,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+215,Rented,76-100K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+216,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+217,Rented,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+218,Rented,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+219,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+220,Owned free and clear,51-75K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+221,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+222,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+223,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+224,Owned with mortgage or loan,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+225,Rented,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+226,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+227,Rented,<=0K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.2,Rented
+228,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+229,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+230,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+231,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+232,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+233,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+234,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+235,Owned free and clear,>150K,3+,2+,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+236,Owned free and clear,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+237,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+238,Owned free and clear,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+239,Owned free and clear,1-25K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+240,Owned with mortgage or loan,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+241,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+242,Owned free and clear,51-75K,0,1,0,4,4,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+243,Rented,1-25K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.5,Rented
+244,Owned with mortgage or loan,>150K,2,2+,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+245,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+246,Rented,1-25K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.4,Rented
+247,Owned with mortgage or loan,>150K,1,1,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+248,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+249,Owned free and clear,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+250,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+251,Rented,26-50K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.3,Rented
+252,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+253,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+254,Rented,101-150K,3+,0,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+255,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+256,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+257,Rented,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+258,Rented,101-150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+259,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+260,Rented,26-50K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+261,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+262,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+263,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+264,Owned with mortgage or loan,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+265,Owned with mortgage or loan,101-150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+266,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+267,Owned free and clear,>150K,1,1,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+268,Rented,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+269,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+270,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+271,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+272,Owned free and clear,1-25K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+273,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+274,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+275,Rented,26-50K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+276,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+277,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+278,Rented,101-150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+279,Owned free and clear,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+280,Owned with mortgage or loan,101-150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+281,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+282,Owned with mortgage or loan,>150K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+283,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+284,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+285,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+286,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+287,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+288,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+289,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+290,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+291,Rented,1-25K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.4,Rented
+292,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+293,Rented,76-100K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+294,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+295,Rented,76-100K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+296,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+297,Owned free and clear,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+298,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+299,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+300,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+301,Rented,101-150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+302,Owned with mortgage or loan,>150K,3+,2+,0,5,5,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+303,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+304,Owned with mortgage or loan,101-150K,3+,2+,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+305,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+306,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+307,Rented,76-100K,3+,2+,2+,5,5,3,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.5,Rented
+308,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+309,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+310,Owned with mortgage or loan,1-25K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+311,Rented,>150K,3+,2+,0,5,5,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+312,Rented,76-100K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.4,Rented
+313,Owned with mortgage or loan,>150K,0,1,0,5,5,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+314,Rented,>150K,3+,0,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+315,Owned with mortgage or loan,>150K,2,1,2+,6+,7,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+316,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+317,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+318,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+319,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+320,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+321,Rented,26-50K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+322,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+323,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+324,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+325,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+326,Owned free and clear,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+327,Rented,76-100K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+328,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+329,Rented,101-150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+330,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+331,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+332,Rented,51-75K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+333,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+334,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+335,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+336,Rented,1-25K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.2,Rented
+337,Owned free and clear,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+338,Owned with mortgage or loan,101-150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+339,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+340,Rented,76-100K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+341,Owned free and clear,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+342,Owned free and clear,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+343,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+344,Rented,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+345,Rented,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+346,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+347,Rented,26-50K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+348,Owned with mortgage or loan,>150K,2,1,2+,6+,7,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+349,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+350,Owned with mortgage or loan,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+351,Rented,26-50K,1,1,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+352,Owned with mortgage or loan,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+353,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+354,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+355,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+356,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+357,Owned with mortgage or loan,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+358,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+359,Owned free and clear,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+360,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+361,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+362,Rented,26-50K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+363,Rented,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+364,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+365,Rented,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+366,Rented,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+367,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+368,Owned with mortgage or loan,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+369,Rented,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+370,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+371,Rented,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+372,Rented,26-50K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+373,Rented,26-50K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+374,Owned free and clear,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+375,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+376,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+377,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+378,Rented,76-100K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+379,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+380,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+381,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+382,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+383,Owned with mortgage or loan,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+384,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+385,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+386,Rented,51-75K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+387,Owned free and clear,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+388,Owned free and clear,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+389,Owned free and clear,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+390,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+391,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+392,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+393,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+394,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+395,Rented,51-75K,2,2+,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.5,Rented
+396,Owned with mortgage or loan,76-100K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+397,Owned free and clear,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+398,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+399,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+400,Rented,101-150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+401,Owned with mortgage or loan,51-75K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+402,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+403,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+404,Rented,76-100K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+405,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+406,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+407,Owned with mortgage or loan,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+408,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+409,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+410,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+411,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+412,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+413,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+414,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+415,Owned with mortgage or loan,>150K,3+,2+,0,5,5,5,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+416,Rented,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+417,Owned with mortgage or loan,>150K,3+,1,0,6+,7,5,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+418,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+419,Owned free and clear,76-100K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+420,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+421,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+422,Rented,76-100K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.4,Rented
+423,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+424,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+425,Owned with mortgage or loan,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+426,Rented,76-100K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+427,Rented,26-50K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+428,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+429,Rented,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+430,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+431,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+432,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+433,Owned free and clear,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+434,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+435,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+436,Rented,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+437,Owned with mortgage or loan,51-75K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+438,Owned with mortgage or loan,>150K,3+,2+,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+439,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+440,Owned with mortgage or loan,101-150K,3+,2+,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+441,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+442,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+443,Owned free and clear,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+444,Owned free and clear,1-25K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+445,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+446,Rented,76-100K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+447,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+448,Owned free and clear,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+449,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+450,Rented,76-100K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+451,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+452,Owned with mortgage or loan,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+453,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+454,Owned free and clear,101-150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+455,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+456,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+457,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+458,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+459,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+460,Rented,1-25K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.4,Rented
+461,Owned free and clear,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+462,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+463,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+464,Owned with mortgage or loan,101-150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+465,Owned free and clear,51-75K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+466,Owned with mortgage or loan,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+467,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+468,Rented,51-75K,2,2+,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.5,Rented
+469,Rented,51-75K,2,0,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+470,Rented,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+471,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+472,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+473,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+474,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+475,Owned with mortgage or loan,101-150K,3+,2+,0,6+,7,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.6+,Owned
+476,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+477,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+478,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+479,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+480,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+481,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+482,Rented,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+483,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+484,Owned free and clear,76-100K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+485,Owned with mortgage or loan,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+486,Rented,76-100K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+487,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+488,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+489,Rented,26-50K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.3,Rented
+490,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+491,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+492,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+493,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+494,Owned free and clear,101-150K,1,1,3+,5,5,1,4,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.5,Owned
+495,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+496,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+497,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+498,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+499,Rented,>150K,3+,2+,0,5,5,5,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+500,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+501,Owned free and clear,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+502,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+503,Owned free and clear,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.26-50K,Owned.2,Owned
+504,Owned with mortgage or loan,>150K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+505,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+506,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+507,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+508,Rented,26-50K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+509,Owned free and clear,1-25K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+510,Owned with mortgage or loan,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+511,Rented,101-150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+512,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+513,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+514,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+515,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+516,Rented,51-75K,3+,1,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+517,Rented,76-100K,1,0,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+518,Rented,26-50K,1,0,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.3,Rented
+519,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+520,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+521,Owned with mortgage or loan,101-150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+522,Owned free and clear,101-150K,1,1,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+523,Owned free and clear,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+524,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+525,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+526,Owned with mortgage or loan,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+527,Rented,101-150K,3+,2+,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+528,Owned free and clear,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+529,Rented,26-50K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+530,Rented,101-150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+531,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+532,Owned with mortgage or loan,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+533,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+534,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+535,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+536,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+537,Rented,26-50K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+538,Rented,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+539,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+540,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+541,Owned free and clear,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+542,Rented,26-50K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+543,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+544,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+545,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+546,Owned with mortgage or loan,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+547,Rented,26-50K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+548,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+549,Rented,101-150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+550,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+551,Owned free and clear,1-25K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+552,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+553,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+554,Rented,51-75K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+555,Rented,101-150K,3+,1,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+556,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+557,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+558,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+559,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+560,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+561,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+562,Rented,76-100K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+563,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+564,Rented,101-150K,2,2+,3+,6+,7,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.6+,Rented
+565,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+566,Rented,101-150K,3+,1,3+,6+,8,3,4,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.6+,Rented
+567,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+568,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+569,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+570,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+571,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+572,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+573,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+574,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+575,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+576,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+577,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+578,Owned with mortgage or loan,26-50K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.26-50K,Owned.5,Owned
+579,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+580,Rented,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+581,Owned free and clear,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+582,Rented,76-100K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+583,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+584,Rented,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+585,Owned with mortgage or loan,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+586,Owned with mortgage or loan,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+587,Owned with mortgage or loan,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+588,Owned free and clear,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+589,Owned free and clear,>150K,1,2+,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+590,Rented,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+591,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+592,Rented,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+593,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+594,Rented,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+595,Owned free and clear,51-75K,0,1,0,4,4,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+596,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+597,Owned with mortgage or loan,>150K,2,2+,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+598,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+599,Owned with mortgage or loan,51-75K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+600,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+601,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+602,Rented,>150K,3+,1,1,5,5,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+603,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+604,Rented,51-75K,3+,0,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+605,Rented,26-50K,1,0,3+,5,5,1,4,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+606,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+607,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+608,Rented,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+609,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+610,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+611,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+612,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+613,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+614,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+615,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+616,Rented,>150K,0,2+,0,3,3,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+617,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+618,Owned with mortgage or loan,>150K,3+,2+,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+619,Rented,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+620,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+621,Owned with mortgage or loan,101-150K,3+,2+,2+,5,5,3,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.5,Owned
+622,Rented,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+623,Rented,51-75K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+624,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+625,Rented,101-150K,3+,2+,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+626,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+627,Owned free and clear,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+628,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+629,Rented,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+630,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+631,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+632,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+633,Owned with mortgage or loan,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+634,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+635,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+636,Owned with mortgage or loan,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+637,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+638,Rented,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+639,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+640,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+641,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+642,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+643,Rented,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+644,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+645,Rented,1-25K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.3,Rented
+646,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+647,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+648,Rented,51-75K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+649,Rented,101-150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+650,Rented,26-50K,3+,0,0,6+,7,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.6+,Rented
+651,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+652,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+653,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+654,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+655,Rented,101-150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+656,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+657,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+658,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+659,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+660,Rented,>150K,1,0,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+661,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+662,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+663,Owned with mortgage or loan,>150K,3+,2+,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+664,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+665,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+666,Rented,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+667,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+668,Rented,101-150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+669,Rented,>150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+670,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+671,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+672,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+673,Owned with mortgage or loan,>150K,2,1,2+,6+,7,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+674,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+675,Owned free and clear,>150K,1,1,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+676,Owned free and clear,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+677,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+678,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+679,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+680,Rented,<=0K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.2,Rented
+681,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+682,Rented,>150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+683,Rented,76-100K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+684,Rented,>150K,2,1,1,4,4,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+685,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+686,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+687,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+688,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+689,Rented,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+690,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+691,Owned with mortgage or loan,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+692,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+693,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+694,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+695,Owned free and clear,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+696,Owned free and clear,51-75K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+697,Rented,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+698,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+699,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+700,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+701,Owned free and clear,1-25K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+702,Owned with mortgage or loan,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+703,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+704,Rented,26-50K,1,0,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.3,Rented
+705,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+706,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+707,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+708,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+709,Rented,1-25K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.2,Rented
+710,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+711,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+712,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+713,Owned free and clear,>150K,0,1,0,5,5,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+714,Owned free and clear,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+715,Owned free and clear,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+716,Rented,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+717,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+718,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+719,Owned free and clear,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+720,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+721,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+722,Rented,51-75K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+723,Rented,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+724,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+725,Rented,101-150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+726,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+727,Owned free and clear,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+728,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+729,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+730,Rented,26-50K,1,2+,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+731,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+732,Owned free and clear,51-75K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+733,Rented,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+734,Rented,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+735,Rented,76-100K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+736,Rented,51-75K,3+,0,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+737,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+738,Owned free and clear,1-25K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.<25K,Owned.2,Owned
+739,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+740,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+741,Owned free and clear,51-75K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+742,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+743,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+744,Rented,101-150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+745,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+746,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+747,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+748,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+749,Owned free and clear,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+750,Rented,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+751,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+752,Owned free and clear,76-100K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+753,Owned free and clear,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+754,Rented,76-100K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+755,Owned free and clear,101-150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+756,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+757,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+758,Owned with mortgage or loan,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+759,Owned with mortgage or loan,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+760,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+761,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+762,Owned free and clear,101-150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+763,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+764,Rented,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+765,Rented,76-100K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+766,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+767,Rented,51-75K,0,1,0,4,4,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+768,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+769,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+770,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+771,Owned free and clear,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+772,Rented,51-75K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+773,Rented,76-100K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+774,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+775,Rented,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+776,Rented,76-100K,3+,1,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.4,Rented
+777,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+778,Rented,26-50K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+779,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+780,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+781,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+782,Owned free and clear,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.26-50K,Owned.2,Owned
+783,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+784,Owned with mortgage or loan,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+785,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+786,Rented,>150K,3+,1,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+787,Owned free and clear,>150K,1,1,0,6+,7,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+788,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+789,Rented,101-150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+790,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+791,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+792,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+793,Rented,101-150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+794,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+795,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+796,Rented,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+797,Owned with mortgage or loan,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+798,Rented,76-100K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+799,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+800,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+801,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+802,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+803,Owned free and clear,>150K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+804,Rented,>150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+805,Rented,1-25K,1,0,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.4,Rented
+806,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+807,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+808,Owned free and clear,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+809,Owned free and clear,51-75K,0,1,0,4,4,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.4,Owned
+810,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+811,Rented,76-100K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+812,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+813,Rented,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+814,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+815,Owned with mortgage or loan,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+816,Rented,>150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+817,Owned free and clear,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+818,Rented,26-50K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+819,Owned free and clear,26-50K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.26-50K,Owned.2,Owned
+820,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+821,Owned free and clear,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+822,Owned free and clear,101-150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+823,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+824,Owned free and clear,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+825,Owned free and clear,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+826,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+827,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+828,Owned free and clear,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+829,Rented,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+830,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+831,Rented,1-25K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.3,Rented
+832,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+833,Owned with mortgage or loan,>150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+834,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+835,Rented,26-50K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.4,Rented
+836,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+837,Rented,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+838,Owned with mortgage or loan,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+839,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+840,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+841,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+842,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+843,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+844,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+845,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+846,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+847,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+848,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+849,Rented,1-25K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.2,Rented
+850,Rented,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+851,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+852,Owned with mortgage or loan,101-150K,3+,2+,1,6+,7,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.6+,Owned
+853,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+854,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+855,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+856,Rented,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+857,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+858,Owned free and clear,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+859,Owned free and clear,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+860,Owned free and clear,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+861,Rented,101-150K,3+,1,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.4,Rented
+862,Rented,51-75K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+863,Owned with mortgage or loan,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+864,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+865,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+866,Rented,51-75K,3+,1,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+867,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+868,Owned free and clear,>150K,3+,2+,1,4,4,3,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+869,Rented,>150K,1,2+,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+870,Owned with mortgage or loan,>150K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+871,Rented,76-100K,3+,1,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.4,Rented
+872,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+873,Owned free and clear,51-75K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+874,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+875,Rented,101-150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+876,Rented,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+877,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+878,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+879,Rented,76-100K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+880,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+881,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+882,Owned with mortgage or loan,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+883,Owned with mortgage or loan,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.76-100K,Owned.2,Owned
+884,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+885,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+886,Rented,51-75K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.4,Rented
+887,Rented,26-50K,1,0,3+,5,5,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.5,Rented
+888,Owned with mortgage or loan,>150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+889,Owned with mortgage or loan,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+890,Owned with mortgage or loan,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+891,Rented,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+892,Rented,51-75K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+893,Rented,101-150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+894,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+895,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+896,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+897,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+898,Rented,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+899,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+900,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+901,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+902,Owned with mortgage or loan,101-150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+903,Rented,101-150K,2,0,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+904,Owned with mortgage or loan,101-150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+905,Rented,76-100K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+906,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+907,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+908,Rented,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.5,Rented
+909,Rented,26-50K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+910,Rented,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+911,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+912,Owned free and clear,101-150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+913,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+914,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+915,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+916,Owned with mortgage or loan,101-150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+917,Rented,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+918,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+919,Rented,51-75K,3+,0,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+920,Owned free and clear,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+921,Rented,>150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+922,Owned with mortgage or loan,>150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+923,Owned with mortgage or loan,>150K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+924,Rented,26-50K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+925,Owned with mortgage or loan,101-150K,2,1,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.3,Owned
+926,Owned with mortgage or loan,>150K,2,1,3+,6+,7,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+927,Owned with mortgage or loan,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+928,Owned with mortgage or loan,>150K,2,1,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.5,Owned
+929,Rented,51-75K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
+930,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+931,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+932,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+933,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+934,Rented,26-50K,1,0,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.3,Rented
+935,Rented,76-100K,2,2+,0,3,3,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.3,Rented
+936,Rented,1-25K,2,0,3+,5,5,2,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.5,Rented
+937,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+938,Rented,51-75K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+939,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+940,Owned free and clear,101-150K,3+,0,0,4,4,4,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+941,Owned with mortgage or loan,101-150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+942,Owned with mortgage or loan,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+943,Rented,76-100K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+944,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+945,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+946,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+947,Rented,1-25K,1,1,3+,6+,10,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.<25K,Rented.6+,Rented
+948,Rented,101-150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+949,Rented,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+950,Rented,101-150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.2,Rented
+951,Rented,>150K,1,1,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+952,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+953,Owned free and clear,>150K,1,0,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+954,Owned with mortgage or loan,>150K,3+,2+,0,3,3,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+955,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+956,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+957,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+958,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+959,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+960,Rented,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+961,Rented,101-150K,1,1,3+,6+,7,1,3,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.6+,Rented
+962,Rented,>150K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.3,Rented
+963,Rented,101-150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+964,Rented,51-75K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.2,Rented
+965,Owned free and clear,51-75K,0,1,0,3,3,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.3,Owned
+966,Owned free and clear,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+967,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+968,Rented,>150K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+969,Owned with mortgage or loan,101-150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.2,Owned
+970,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+971,Owned free and clear,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+972,Owned with mortgage or loan,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+973,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+974,Owned free and clear,>150K,3+,2+,1,6+,6,4,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.6+,Owned
+975,Rented,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+976,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+977,Owned with mortgage or loan,26-50K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.26-50K,Owned.2,Owned
+978,Owned free and clear,101-150K,2,1,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.4,Owned
+979,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+980,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+981,Rented,101-150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.101-150K,Rented.3,Rented
+982,Rented,26-50K,0,0,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.26-50K,Rented.2,Rented
+983,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+984,Owned with mortgage or loan,>150K,2,1,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+985,Owned with mortgage or loan,>150K,1,2+,0,3,3,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+986,Owned with mortgage or loan,>150K,2,1,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+987,Owned with mortgage or loan,>150K,0,2+,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+988,Rented,76-100K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.76-100K,Rented.2,Rented
+989,Owned with mortgage or loan,>150K,2,2+,2+,4,4,2,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+990,Rented,>150K,1,1,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+991,Owned with mortgage or loan,>150K,2,2+,1,3,3,2,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.3,Owned
+992,Rented,>150K,1,2+,0,2,2,1,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.2,Rented
+993,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+994,Owned with mortgage or loan,>150K,2,2+,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+995,Owned with mortgage or loan,>150K,3+,2+,0,4,4,3,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.4,Owned
+996,Owned with mortgage or loan,51-75K,2,0,0,2,2,2,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.51-75K,Owned.2,Owned
+997,Rented,>150K,1,2+,2+,4,4,1,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.>150K,Rented.4,Rented
+998,Owned free and clear,>150K,0,1,0,2,2,0,0,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.>150K,Owned.2,Owned
+999,Owned with mortgage or loan,101-150K,3+,2+,2+,5,5,3,2,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Owned.101-150K,Owned.5,Owned
+1000,Rented,51-75K,1,1,1,3,3,1,1,MC,2503302,NA,NA,NA,NA,NA,NA,NA,NA,Rented.51-75K,Rented.3,Rented
