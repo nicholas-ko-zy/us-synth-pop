@@ -132,3 +132,17 @@ for (marg_i, (marg_col, marg, lvls, indv_facs)) in enumerate(zip(vcat(MARG_COLS,
                 end
         end
 end
+
+sum(tract_hh_pops)
+sum(blkgp_hh_pops)
+n
+
+# Rescale blkgp_hh's population to match `n`
+blkgp_hh_pops_rescaled = blkgp_hh_pops .* (n / sum(blkgp_hh_pops))
+sum(blkgp_hh_pops_rescaled)
+
+length(tract_hh_pops)
+length(blkgp_hh_pops)
+
+
+

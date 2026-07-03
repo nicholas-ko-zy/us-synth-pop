@@ -1034,3 +1034,10 @@ $$\sum_{i=1}^{n}\frac{\sum_{j=1}^{n}w_{ij}(x_j - \bar{x})}{(x_i - \bar{x})} = \f
 
 
 $$n$$
+
+$$\sum^n_{i=1} \sum^m_{j=1}x_{ij} = \sum^n_{i=1} 1 = n$$
+
+$$\sum^m_{j=1} \sum^n_{i=1}x_{ij} = \sum^m_{j=1} \text{blkgp\_hh\_pops[j]}$$
+
+$$\implies \text{blkgp\_hh\_pops[j]} = n$$
+

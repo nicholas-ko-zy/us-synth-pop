@@ -822,3 +822,37 @@ map_plot
 # Save high-res vector file
 tmap_save(map_plot, filename = "plots/map_plot_2.pdf", width = 16, height = 5)
 ```
+
+## Check RMSE of Suffolk County
+```R
+# From plot_maps.R
+
+# Initialise vars
+pumas = '2503302'
+dim1 = 'hhtype'
+dim2 ="tract"
+
+
+# Get geodata
+sf_geos <- readRDS(file=paste0("map_data/geos/",pumas,"_tract_geos.Rds")) %>% 
+            mutate(geoid = stringr::str_pad(as.character(geoid), width = 11, side = "left", pad = "0"))
+sf_geos <- left_join(sf_geos, get_rmses(distr_by_tract, "tract"), by=c("geoid"))
+sf_geos$puma <- pumas
+
+# Get error values
+heatmap_data <- left_join(pop, marg, by=c(quo_name(dim1), quo_name(dim2))) %>%
+                mutate(percent_error = (synpop_ct - marg_ct)/(1+marg_ct) * 100,
+                        error = synpop_ct - marg_ct)
+
+get_rmses <- function(heatmap_data, spatial_level) {
+  return(heatmap_data %>%
+           group_by(geoid) %>%
+           mutate(share_error=(synpop_ct/sum(synpop_ct)-marg_ct/sum(marg_ct))*100) %>%
+           ungroup() %>%
+           pivot_wider(id_cols=geoid, ., names_from=names(.)[1], values_from=share_error) %>%
+           # replace NAs that arise because of 0 count in synpop/marg (mostly GQ)
+           replace(is.na(.), 0) %>%
+           mutate(rmse = apply(., 1, function(x) rmse(as.numeric(x[2:length(x)])))) %>%
+           select(geoid, rmse))
+}
+```
